@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    [
+      "import",
+      [
+        {
+          "libraryName": "antd",
+          "style": true
+        }
+      ]
+    ]
+  ],
+  "ignore": [
+    "foo.js",
+    "bar/**/*.js"
+  ]
+}
