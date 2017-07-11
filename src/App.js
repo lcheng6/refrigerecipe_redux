@@ -1,36 +1,50 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { Header, Content, Footer } = Layout;
+import { Layout, Menu, Icon, Row } from 'antd';
+const { Header, Footer, Sider, Content } = Layout
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 class App extends Component {
+  state = {
+    current: 'home',
+  }
+  handleClick = (e) => {
+    console.log('click ', e);
+    this.setState({
+      current: e.key,
+    });
+  }
   render() {
     return (
-      <Layout className="layout">
-          <Header>
-            <div className="logo" />
-            <Menu
-              theme="dark"
-              mode="horizontal"
-              defaultSelectedKeys={['2']}
-              style={{ lineHeight: '64px' }}
-            >
-              <Menu.Item key="1"><Icon type="pie-chart" />nav 1</Menu.Item>
-              <Menu.Item key="2"><Icon type="desktop" />nav 2</Menu.Item>
-              <Menu.Item key="3"><Icon type="user" />nav 3</Menu.Item>
-            </Menu>
-          </Header>
-          <Content style={{ padding: '0 50px' }}>
-            <Breadcrumb style={{ margin: '12px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-            <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2016 Created by Ant UED
-          </Footer>
+      <Layout>
+        <Menu
+          onClick={this.handleClick}
+          selectedKeys={[this.state.current]}
+          mode="horizontal"
+          >
+          <Menu.Item key="home">
+            <Icon type="home" />Refrigerecipe
+          </Menu.Item>
+          <Menu.Item key="fridge">
+            <Icon type="book" />My Fridge
+          </Menu.Item>
+          <Menu.Item key="recipes">
+            <Icon type="schedule" />Recipes
+          </Menu.Item>
+          <Menu.Item key="cook">
+            <Icon type="calculator" />Let's Cook!
+          </Menu.Item>
+          <Menu.Item key="cart">
+            <Icon type="shopping-cart" />Shopping List
+          </Menu.Item>
+        </Menu>
+        <Layout>
+
         </Layout>
+        <Footer>
+
+        </Footer>
+      </Layout>
     );
   }
 }
