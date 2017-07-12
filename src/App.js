@@ -1,28 +1,14 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
-class Header extends Component {
-  render() { return <div>HEADER</div> }
-}
-class Footer extends Component {
-  render() { return <div>FOOTER</div> }
-}
-class Fridge extends Component {
-  render() { return <div>This is the fridge</div> }
-}
-class Recipes extends Component {
-  render() { return <div>These are the recipes</div> }
-}
-class MyRecipes extends Component {
-  render() { return <div>These are MY SAVED recipes</div> }
-}
-class Cart extends Component {
-  render() { return <div>This is the Shopping Cart</div> }
-}
-class SignIn extends Component {
-  render() { return <div>Sign in HERE</div> }
-}
+import Fridge from './views/pages/fridge'
+import Recipes from './views/pages/recipes'
+import MyRecipes from './views/pages/my-recipes'
+import Cart from './views/pages/cart'
+import SignIn from './views/pages/sign-in'
 
+import Header from './views/components/header'
+import Footer from './views/components/footer'
 
 class App extends Component {
   render() {
