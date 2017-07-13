@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: grey;
+  background-color: #5C5859;
   height: 100%;
 `
 export default class Footer extends Component {
