@@ -8,6 +8,7 @@ import 'normalize.css';
 import App from './App';
 
 import WebFont from 'webfontloader';
+import './index.css'
 
 WebFont.load({
   google: {

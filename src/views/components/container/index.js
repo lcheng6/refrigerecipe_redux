@@ -1,17 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 const Content = styled.div`
-  background-color: deepskyblue;
-  width: 100%;
+  min-height: calc(100vh - 60px);
+  background-color: #EEEEEE;
 `
 
-const Footer = () => {
+const Container = ({children}) => {
   return (
     <Content>
-      Footer
+      {children}
     </Content>
   )
 }
 
-export default Footer
+export default Container
