@@ -4,10 +4,27 @@ import styled from 'styled-components'
 
 import Container from '../../components/container'
 
+const style = {
+  backgroundColor: "blue",
+  color: "white",
+  margin: "10px"
+}
 export default class Fridge extends Component {
   render() {
     return (
-      <Container>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis, quia! Totam eligendi architecto et voluptas distinctio molestiae est a. Minus, nobis! Accusamus sed laborum, repellat sit est tempore eveniet deserunt!</Container>
+      <Container className="flex vertical">
+        <div >1</div>
+        <div >1</div>
+        <div >1</div>
+        <div style={style}>1</div>
+        <div style={style}>1</div>
+        <div >1</div>
+        <div style={style}>1</div>
+        <div style={style}>1</div>
+        <div style={style}>1</div>
+        <div style={style}>1</div>
+        <div style={style}>1</div>
+      </Container>
     )
   }
 }

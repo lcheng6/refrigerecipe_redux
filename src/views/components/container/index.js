@@ -1,15 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import classnames from 'classnames'
 
 const Content = styled.div`
   min-height: calc(100vh - 60px);
   background-color: #EEEEEE;
+  padding: 10px;
+  justify-content: center;
+  &.flex{
+    display: flex;
+    flex-wrap: wrap;
+    &.vertical {
+      flex-direction: column;
+    }
+  }
 `
 
-const Container = ({children}) => {
+const Container = ({ className, children }) => {
   return (
-    <Content>
+    <Content className={className}>
       {children}
     </Content>
   )
