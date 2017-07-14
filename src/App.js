@@ -1,52 +1,32 @@
-import React, { Component } from 'react';
-import { Layout, Menu, Icon, Row } from 'antd';
-const { Header, Footer, Sider, Content } = Layout
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+
+import Fridge from './views/pages/fridge'
+import Recipes from './views/pages/recipes'
+import MyRecipes from './views/pages/my-recipes'
+import Cart from './views/pages/cart'
+import SignIn from './views/pages/sign-in'
+import Home from './views/pages/home'
+
+import Header from './views/components/header'
+import Footer from './views/components/footer'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
-  state = {
-    current: 'home',
-  }
-  handleClick = (e) => {
-    console.log('click ', e);
-    this.setState({
-      current: e.key,
-    });
-  }
   render() {
     return (
-      <Layout>
-        <Menu
-          onClick={this.handleClick}
-          selectedKeys={[this.state.current]}
-          mode="horizontal"
-          >
-          <Menu.Item key="home">
-            <Icon type="home" />Refrigerecipe
-          </Menu.Item>
-          <Menu.Item key="fridge">
-            <Icon type="book" />My Fridge
-          </Menu.Item>
-          <Menu.Item key="recipes">
-            <Icon type="schedule" />Recipes
-          </Menu.Item>
-          <Menu.Item key="cook">
-            <Icon type="calculator" />Let's Cook!
-          </Menu.Item>
-          <Menu.Item key="cart">
-            <Icon type="shopping-cart" />Shopping List
-          </Menu.Item>
-        </Menu>
-        <Layout>
-
-        </Layout>
-        <Footer>
-
-        </Footer>
-      </Layout>
-    );
+      <MuiThemeProvider>
+        <Header />
+        {/* <Route exact path="/" component={Home} />
+        <Route path="/fridge" component={Fridge} />
+        <Route path="/recipes" component={Recipes} />
+        <Route path="/my-recipes" component={MyRecipes} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/sign-in" component={SignIn} />
+        <Footer /> */}
+      </MuiThemeProvider>
+    )
   }
 }
 
-export default App;
+export default App
