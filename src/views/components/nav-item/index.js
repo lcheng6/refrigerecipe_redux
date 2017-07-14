@@ -1,8 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
+// local
+import Icon from '../icon'
+// styles
 import styled from 'styled-components'
 import {ContainerQuery} from 'react-container-query';
 import classnames from 'classnames';
-import Icon from '../icon'
 
 const query = {
   'small': {
@@ -28,12 +31,12 @@ const SmallIcon = styled(Icon)`
    font-size: 1em;
  }
  &.small {
-   margin: 10px;
+   margin: 10px auto;
    font-size: 1.2em;
  }
 `
 
-const ResponsiveText = styled.h2`
+const ResponsiveText = styled.p`
   width: 100%;
   font-size: 1em;
   &.medium {
@@ -42,23 +45,31 @@ const ResponsiveText = styled.h2`
   }
   &.small {
     display: none;
-    align-self: center;
   }
 `
-const NavLink = styled.a`
+const Item = styled(NavLink)`
   width: 20%;
   display: flex;
   flex-wrap: nowrap;
+  ${'' /* color: #D8D8D8; */}
+  color: #818181;
+  text-decoration: none;
+  &.selected {
+    color: white;
+  }
 `
 
-const NavItem = ({className, children, icon, ml}) => {
+const NavItem = ({ className, children, icon, to }) => {
   return(
     <ContainerQuery query={query}>
       {(params) => (
-        <NavLink className={className}>
+        <Item to={to} activeClassName="selected">
           <SmallIcon name={icon} className={classnames(params)} />
-          <ResponsiveText children={children} className={classnames(params)} />
-        </NavLink>
+          <ResponsiveText
+            children={children}
+            className={classnames(params)}
+          />
+        </Item>
       )}
     </ContainerQuery>
   )

@@ -43,13 +43,13 @@ class App extends Component {
     return (
       <Provider theme={theme}>
         <Header />
-        {/* <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route path="/fridge" component={Fridge} />
         <Route path="/recipes" component={Recipes} />
         <Route path="/my-recipes" component={MyRecipes} />
         <Route path="/cart" component={Cart} />
         <Route path="/sign-in" component={SignIn} />
-        <Footer /> */}
+        <Footer />
       </Provider>
     )
   }

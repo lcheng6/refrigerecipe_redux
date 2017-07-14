@@ -8,7 +8,8 @@ const Toolbar = styled.div`
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-around;
-  background-color: #5C5859;
+  ${'' /* background-color: #5C5859; */}
+  background-color: #373334;
   font-family: Raleway;
   color: #EAEAEA;
 `
@@ -16,11 +17,11 @@ const Toolbar = styled.div`
 const Header = () => {
   return(
     <Toolbar>
-      <NavItem children="RFGRDX" icon="restaurant_menu" className="" />
-      <NavItem children="Fridge" icon="beenhere" ml='auto' />
-      <NavItem children="Recipes" icon="find_in_page" />
-      <NavItem children="Cart" icon="local_grocery_store" />
-      <NavItem children="My Recipes" icon="style" />
+      <NavItem children="RFGRDX" icon="restaurant_menu" to="/" />
+      <NavItem children="Fridge" icon="beenhere" to="/fridge" />
+      <NavItem children="Recipes" icon="find_in_page" to="/recipes" />
+      <NavItem children="Cart" icon="local_grocery_store" to="/cart" />
+      <NavItem children="My Recipes" icon="style" to="/my-recipes" />
     </Toolbar>
   )
 }
