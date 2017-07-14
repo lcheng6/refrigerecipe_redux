@@ -7,10 +7,10 @@ import Icon from '../icon'
 const query = {
   'small': {
     minWidth: 0,
-    maxWidth: 99
+    maxWidth: 109
   },
   'medium': {
-    minWidth: 100,
+    minWidth: 110,
     maxWidth: 139
   },
   'large': {
@@ -21,8 +21,11 @@ const query = {
 const SmallIcon = styled(Icon)`
  &.large {
    font-size: 1em;
-   margin: 0 5px 0 15px;
-   align-self: center;
+   margin: auto 5px auto 15px;
+ }
+ &.medium {
+   margin: auto 5px auto 15px;
+   font-size: 1em;
  }
  &.small {
    margin: 10px;
@@ -35,12 +38,11 @@ const ResponsiveText = styled.h2`
   font-size: 1em;
   &.medium {
     font-size: .8em;
-    justify-content: center;
     vertical-align: middle;
   }
   &.small {
     display: none;
-    text-align: center;
+    align-self: center;
   }
 `
 const NavLink = styled.a`
@@ -54,7 +56,7 @@ const NavItem = ({className, children, icon, ml}) => {
     <ContainerQuery query={query}>
       {(params) => (
         <NavLink className={className}>
-          <SmallIcon name={icon} />
+          <SmallIcon name={icon} className={classnames(params)} />
           <ResponsiveText children={children} className={classnames(params)} />
         </NavLink>
       )}
