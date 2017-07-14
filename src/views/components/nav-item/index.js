@@ -12,8 +12,12 @@ const query = {
   }
 };
 
-const ResponsiveText = styled(Text)`
+const SmallIcon = styled(Icon)`
+ font-size: 16px;
+ margin-right: 5px;
+`
 
+const ResponsiveText = styled(Text)`
   &.small {
     display: none;
   }
@@ -23,7 +27,7 @@ const NavItem = ({className, children, icon, ml}) => {
   return(
     <NavLink ml={ml}>
       <Flex>
-        <Icon name={icon}/>
+        <SmallIcon name={icon} className="wi"/>
         <ContainerQuery query={query}>
           {(params) => (
             <ResponsiveText children={children} className={classnames(params, `${className}`)} />
