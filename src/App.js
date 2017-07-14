@@ -10,12 +10,38 @@ import Home from './views/pages/home'
 
 import Header from './views/components/header'
 import Footer from './views/components/footer'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import { Provider } from 'rebass'
+
+const theme = {
+  breakpoints: [
+  // min-width breakpoints in ems
+  40, 52, 64
+  ],
+  space: [
+    0, 6, 12, 18, 24, 30, 36
+  ],
+  fontSizes: [
+    12, 16, 18, 24, 36, 48, 72
+  ],
+  weights: [
+    400, 600
+  ],
+  colors: {
+    black: '#111',
+    white: '#fff',
+    blue: '#07c'
+  },
+  font: 'Josefin Slab',
+  monospace: '"Roboto Mono", Menlo, monospace',
+  radius: 2
+}
+
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider>
+      <Provider theme={theme}>
         <Header />
         {/* <Route exact path="/" component={Home} />
         <Route path="/fridge" component={Fridge} />
@@ -24,7 +50,7 @@ class App extends Component {
         <Route path="/cart" component={Cart} />
         <Route path="/sign-in" component={SignIn} />
         <Footer /> */}
-      </MuiThemeProvider>
+      </Provider>
     )
   }
 }

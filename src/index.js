@@ -7,8 +7,15 @@ import registerServiceWorker from './registerServiceWorker';
 import 'normalize.css';
 import App from './App';
 
-// const createStoreWithMiddleare = applyMiddleware()(createStore)
+import WebFont from 'webfontloader';
 
+WebFont.load({
+  google: {
+    families: ['Material Icons', 'Josefin Slab', 'Niconne', 'Raleway']
+  }
+});
+
+// const createStoreWithMiddleare = applyMiddleware()(createStore)
 
 
 
