@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Text, Flex } from 'rebass'
+import { NavLink, Text, Flex, Box } from 'rebass'
 import styled from 'styled-components'
 import {ContainerQuery} from 'react-container-query';
 import classnames from 'classnames';
@@ -7,8 +7,8 @@ import Icon from '../icon'
 
 const query = {
   'small': {
-    minWidth: 200,
-    maxWidth: 599
+    minWidth: 0,
+    maxWidth: 20
   }
 };
 
@@ -19,20 +19,22 @@ const SmallIcon = styled(Icon)`
 
 const ResponsiveText = styled(Text)`
   &.small {
-    display: none;
+    color: red;
   }
 `
 
 const NavItem = ({className, children, icon, ml}) => {
   return(
     <NavLink ml={ml}>
-      <Flex>
-        <SmallIcon name={icon} className="wi"/>
-        <ContainerQuery query={query}>
-          {(params) => (
-            <ResponsiveText children={children} className={classnames(params, `${className}`)} />
-          )}
-        </ContainerQuery>
+      <Flex wrap>
+        <Box width={1/2}>
+          <SmallIcon name={icon} className="wi"/>
+          <ContainerQuery query={query}>
+            {(params) => (
+              <ResponsiveText children={children} className={classnames(params, `${className}`)} />
+            )}
+          </ContainerQuery>
+        </Box>
       </Flex>
     </NavLink>
   )
