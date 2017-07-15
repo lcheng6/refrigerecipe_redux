@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Content = styled.div`
+  background-color: deepskyblue;
   width: 100%;
-  background-color: #5C5859;
-  height: 100%;
 `
-export default class Footer extends Component {
-  render() {
-    return (
-      <Wrapper>Footer</Wrapper>
-    )
-  }
+
+const Footer = () => {
+  return (
+    <Content>
+      Footer
+    </Content>
+  )
 }
+
+export default Footer

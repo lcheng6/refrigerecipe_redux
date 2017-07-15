@@ -1,23 +1,28 @@
 import React from 'react';
-import {Tabs, Tab} from 'material-ui/Tabs';
-import FontIcon from 'material-ui/FontIcon';
-import MapsPersonPin from 'material-ui/svg-icons/maps/person-pin';
+import styled from 'styled-components'
 
-const TabsExampleIconText = () => (
-  <Tabs>
-    <Tab
-      icon={<FontIcon className="material-icons">phone</FontIcon>}
-      label="RECENTS"
-    />
-    <Tab
-      icon={<FontIcon className="material-icons">favorite</FontIcon>}
-      label="FAVORITES"
-    />
-    <Tab
-      icon={<MapsPersonPin />}
-      label="NEARBY"
-    />
-  </Tabs>
-);
+import NavItem from '../nav-item'
 
-export default TabsExampleIconText;
+const Toolbar = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #373334;
+  font-family: Raleway;
+  color: #EAEAEA;
+`
+
+const Header = () => {
+  return(
+    <Toolbar>
+      <NavItem children="RFGRDX" icon="restaurant_menu" to="/" />
+      <NavItem children="Fridge" icon="beenhere" to="/fridge" />
+      <NavItem children="Recipes" icon="find_in_page" to="/recipes" />
+      <NavItem children="Cart" icon="local_grocery_store" to="/cart" />
+      <NavItem children="My Recipes" icon="style" to="/my-recipes" />
+    </Toolbar>
+  )
+}
+
+export default Header
