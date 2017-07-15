@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import Container from '../../components/container'
-
+import IngredientItem from '../../components/c-ingredient-item'
 const style = {
   backgroundColor: "blue",
   color: "white",
@@ -13,17 +13,7 @@ export default class Fridge extends Component {
   render() {
     return (
       <Container className="flex vertical">
-        <div >1</div>
-        <div >1</div>
-        <div >1</div>
-        <div style={style}>1</div>
-        <div style={style}>1</div>
-        <div >1</div>
-        <div style={style}>1</div>
-        <div style={style}>1</div>
-        <div style={style}>1</div>
-        <div style={style}>1</div>
-        <div style={style}>1</div>
+        <IngredientItem />
       </Container>
     )
   }

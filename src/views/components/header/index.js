@@ -8,7 +8,6 @@ const Toolbar = styled.div`
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-around;
-  ${'' /* background-color: #5C5859; */}
   background-color: #373334;
   font-family: Raleway;
   color: #EAEAEA;

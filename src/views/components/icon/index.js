@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import classnames from 'classnames'
 
 const Icon = ({className, name}) => {

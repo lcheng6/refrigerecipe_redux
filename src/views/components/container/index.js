@@ -6,8 +6,8 @@ const Content = styled.div`
   min-height: calc(100vh - 60px);
   background-color: #EEEEEE;
   padding: 10px;
-  justify-content: center;
   &.flex{
+    align-content: flex-start;
     display: flex;
     flex-wrap: wrap;
     &.vertical {
