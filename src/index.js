@@ -1,13 +1,14 @@
+import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux'
+
 import React from 'react'
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
-// import { Provider } from 'react-redux'
-// import { createStore, applyMiddleware } from 'redux'
-import registerServiceWorker from './registerServiceWorker';
-import 'normalize.css';
-import App from './App';
+import ReactDOM from 'react-dom'
+import App from './App'
+import rootReducer from './reducers'
+import { configureStore } from './core/store'
 
 import WebFont from 'webfontloader';
+import 'normalize.css';
 import './index.css'
 
 WebFont.load({
@@ -16,15 +17,20 @@ WebFont.load({
   }
 });
 
-// const createStoreWithMiddleare = applyMiddleware()(createStore)
 
 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = configureStore()
 
-ReactDOM.render((
-  // <Provider store={createStoreWithMiddleare(reducers)}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  // </Provider>
-), document.getElementById('root'))
-registerServiceWorker();
+const render = () => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <App history={history} />
+      </Provider>
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
+
+render()

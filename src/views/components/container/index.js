@@ -8,6 +8,7 @@ const Content = styled.div`
   padding: 10px;
   &.flex{
     align-content: flex-start;
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
     &.vertical {
@@ -16,7 +17,7 @@ const Content = styled.div`
   }
 `
 
-const Container = ({ className, children }) => {
+const FlexContainer = ({ className, children }) => {
   return (
     <Content className={className}>
       {children}
@@ -24,4 +25,4 @@ const Container = ({ className, children }) => {
   )
 }
 
-export default Container
+export default FlexContainer
