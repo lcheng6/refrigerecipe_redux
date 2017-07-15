@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import classnames from 'classnames';
 import styled from 'styled-components'
 // local presentational components
@@ -47,9 +47,6 @@ const Action = styled(Icon)`
 `
 
 export class IngredientItem extends Component {
-  constructor() {
-    super(...arguments);
-  }
 
   remove = () => {
     this.props.removeItem(this.props.item)
@@ -65,7 +62,7 @@ export class IngredientItem extends Component {
               <Action name="done" className={classnames(params)} />
             </ToggleButton>
             <div>
-              {this.props.title}
+              {title}
             </div>
             <ToggleButton
               onClick={this.remove}>

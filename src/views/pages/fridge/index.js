@@ -2,15 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ingredientActions, getCurrentIngredients } from 'core/ingredients'
 // import { Route } from 'react-router-dom'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 import Container from '../../components/container'
 import IngredientList from '../../components/ingredient-list'
-const style = {
-  backgroundColor: "blue",
-  color: "white",
-  margin: "10px"
-}
+
 const Fridge = ({removeItem, items}) => {
   return (
     <Container className="flex vertical">

@@ -1,5 +1,5 @@
-import { browserHistory as history } from 'react-router';
 import { call, fork, put, take } from 'redux-saga/effects';
+import { push, replace } from 'connected-react-router'
 import { firebaseAuth } from 'core/firebase';
 import { authActions } from './actions';
 
@@ -8,7 +8,7 @@ function* signIn(authProvider) {
   try {
     const authData = yield call([firebaseAuth, firebaseAuth.signInWithPopup], authProvider);
     yield put(authActions.signInFulfilled(authData.user));
-    yield history.push('/');
+    yield put(push('/'))
   }
   catch (error) {
     yield put(authActions.signInFailed(error));
@@ -19,7 +19,7 @@ function* signOut() {
   try {
     yield call([firebaseAuth, firebaseAuth.signOut]);
     yield put(authActions.signOutFulfilled());
-    yield history.replace('/sign-in');
+    yield put(replace('/sign-in'))
   }
   catch (error) {
     yield put(authActions.signOutFailed(error));

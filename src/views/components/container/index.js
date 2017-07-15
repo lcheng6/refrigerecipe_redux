@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import classnames from 'classnames'
 
 const Content = styled.div`
   min-height: calc(100vh - 60px);
