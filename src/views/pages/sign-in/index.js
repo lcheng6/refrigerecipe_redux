@@ -1,34 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { authActions } from 'core/auth';
-import Button from 'views/components/button';
+import React from 'react'
+import FullWidthResponsive from '../../components/layout/full-width'
+import NavBar from '../../components/navbar'
+import LoginCard from '../../components/card-login'
 
 
-const SignInPage = ({signInWithGithub, signInWithGoogle, signInWithTwitter}) => {
-  return (
-    <div className="g-row sign-in">
-      <div className="g-col">
-        <h1 className="sign-in__heading">Sign in</h1>
-        <Button onClick={signInWithGithub}>GitHub</Button>
-        <Button onClick={signInWithGoogle}>Google</Button>
-        <Button onClick={signInWithTwitter}>Twitter</Button>
-      </div>
-    </div>
-  );
-};
+const SignIn = () => (
+  <div>
+    <NavBar/>
+    <FullWidthResponsive>
+      <LoginCard/>
+    </FullWidthResponsive>
+  </div>
+)
 
-
-//=====================================
-//  CONNECT
-//-------------------------------------
-
-const mapDispatchToProps = {
-  signInWithGithub: authActions.signInWithGithub,
-  signInWithGoogle: authActions.signInWithGoogle,
-  signInWithTwitter: authActions.signInWithTwitter
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignInPage);
+export default SignIn
