@@ -6,6 +6,13 @@ const {Fridge} = require('./../../models/fridge_model');
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
+
+const fridgeOneId = new ObjectID();
+const fridgeTwoId = new ObjectID();
+
+const cartOneId = new ObjectID();
+const cartTwoId = new ObjectID();
+
 const users = [{
   //userOneId is signed in.
   _id: userOneId,
@@ -35,7 +42,9 @@ const populateUsers = (done) => {
   }).then(() => done());
 };
 
-const fridges = [{}];
+const fridges = [{
+
+}];
 
 const populateFridges = (done) => {
   Fridge.remove({}).then(() => {
