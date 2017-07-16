@@ -7,18 +7,19 @@ const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
 const users = [{
     _id: userOneId,
-    email: 'andrew@example.com',
+    email: 'liangc@example.com',
     password: 'userOnePass',
     mobileNumber: "5712430741",
     tokens: [{
         access: 'auth',
-        token: jwt.sign({_id: userOneId, access: 'auth'}, 'abc123').toString()
+        token: jwt.sign({_id: userOneId, access: 'auth'}, process.env.PASSWORD_SALT).toString()
     }]
 }, {
     _id: userTwoId,
-    email: 'jen@example.com',
+    email: 'not_signed_in@example.com',
     password: 'userTwoPass',
     mobileNumber: "5712430741"
+
 }];
 
 
