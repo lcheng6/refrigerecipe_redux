@@ -2,6 +2,7 @@ const {ObjectID} = require('mongodb');
 const jwt = require('jsonwebtoken');
 
 const {User} = require('./../../models/user_model');
+const {Fridge} = require('./../../models/fridge_model');
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
@@ -32,4 +33,14 @@ const populateUsers = (done) => {
     }).then(() => done());
 };
 
-module.exports = {users, populateUsers};
+const fridges = [ {
+
+}];
+
+const populateFridges = (done)  => {
+    Fridge.remove({}).then(() => {
+
+    }).then(() => done());
+};
+
+module.exports = {users, populateUsers, fridges, populateFridges};
