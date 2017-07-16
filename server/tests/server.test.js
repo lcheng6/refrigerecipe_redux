@@ -37,12 +37,24 @@ describe('POST /users', () => {
             });
     });
 
-    it('should return validation errors if request invalid', (done) => {
+    it('should return validation errors if phone number is missing ', (done) => {
         request(app)
             .post('/users')
             .send({
-                email: 'and',
+                email: 'example@example.com',
                 password: '123',
+            })
+            .expect(400)
+            .end(done);
+    });
+
+    it('should return validation errors if email has the wrong format', (done) => {
+        request(app)
+            .post('/users')
+            .send({
+                email: 'example.com',
+                password: '123',
+                mobileNumber: '5712430741'
             })
             .expect(400)
             .end(done);
@@ -53,7 +65,8 @@ describe('POST /users', () => {
             .post('/users')
             .send({
                 email: users[0].email,
-                password: 'Password123!'
+                password: 'Password123!',
+                mobileNumber: '5712430741'
             })
             .expect(400)
             .end(done);

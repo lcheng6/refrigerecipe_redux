@@ -28,12 +28,13 @@ var UserSchema = new mongoose.Schema({
         type: String,
         require: true, // should this phone number to be true?
         maxlength: 16,
-        // validate: {
-        //     validator: function(value) {
-        //         return validator.isMobilePhone(value, 'en-US');
-        //         },
-        //     message: '{VALUE} is not a valid mobile number'
-        // }
+        //within this validation, the number must be all numeric, with no (), - or space characters
+        validate: {
+            validator: function(value) {
+                return validator.isMobilePhone(value, 'en-US');
+                },
+            message: '{VALUE} is not a valid mobile number'
+        }
     },
     tokens: [{
         access: {
@@ -51,7 +52,7 @@ UserSchema.methods.toJSON = function () {
     var user = this;
     var userObject = user.toObject();
 
-    return _.pick(userObject, ['_id', 'email', 'mobilenumber']);
+    return _.pick(userObject, ['_id', 'email', 'mobileNumber']);
 };
 
 UserSchema.methods.generateAuthToken = function () {

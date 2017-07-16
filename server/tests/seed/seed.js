@@ -9,7 +9,7 @@ const users = [{
     _id: userOneId,
     email: 'andrew@example.com',
     password: 'userOnePass',
-    mobileNumber: "(571)243-0741",
+    mobileNumber: "5712430741",
     tokens: [{
         access: 'auth',
         token: jwt.sign({_id: userOneId, access: 'auth'}, 'abc123').toString()
@@ -18,7 +18,7 @@ const users = [{
     _id: userTwoId,
     email: 'jen@example.com',
     password: 'userTwoPass',
-    mobileNumber: "(571)243-0741"
+    mobileNumber: "5712430741"
 }];
 
 
