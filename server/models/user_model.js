@@ -1,5 +1,5 @@
 'use strict';
-require('./config/config');
+require('../config/config');
 
 const mongoose = require('mongoose');
 const validator = require('validator');
@@ -57,7 +57,7 @@ UserSchema.methods.toJSON = function () {
 UserSchema.methods.generateAuthToken = function () {
     var user = this;
     var access = 'auth';
-    var token = jwt.sign({_id: user._id.toHexString(), access}, ).toString();
+    var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.PASSWORD_SALT).toString();
 
     user.tokens.push({access, token});
 
