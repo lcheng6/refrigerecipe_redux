@@ -8,126 +8,126 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 1,
-        unique: true,
-        validate: {
-            validator: validator.isEmail,
-            message: '{VALUE} is not a valid email'
-        }
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1,
+    unique: true,
+    validate: {
+      validator: validator.isEmail,
+      message: '{VALUE} is not a valid email'
+    }
+  },
+  password: {
+    type: String,
+    require: true,
+    minlength: 6
+  },
+  mobileNumber: {
+    type: String,
+    require: true, // should this phone number to be true?
+    maxlength: 16,
+    //within this validation, the number must be all numeric, with no (), - or space characters
+    validate: {
+      validator: function (value) {
+        return validator.isMobilePhone(value, 'en-US');
+      },
+      message: '{VALUE} is not a valid mobile number'
+    }
+  },
+  tokens: [{
+    access: {
+      type: String,
+      required: true
     },
-    password: {
-        type: String,
-        require: true,
-        minlength: 6
-    },
-    mobileNumber: {
-        type: String,
-        require: true, // should this phone number to be true?
-        maxlength: 16,
-        //within this validation, the number must be all numeric, with no (), - or space characters
-        validate: {
-            validator: function(value) {
-                return validator.isMobilePhone(value, 'en-US');
-                },
-            message: '{VALUE} is not a valid mobile number'
-        }
-    },
-    tokens: [{
-        access: {
-            type: String,
-            required: true
-        },
-        token: {
-            type: String,
-            required: true
-        }
-    }]
+    token: {
+      type: String,
+      required: true
+    }
+  }]
 });
 
 UserSchema.methods.toJSON = function () {
-    var user = this;
-    var userObject = user.toObject();
+  var user = this;
+  var userObject = user.toObject();
 
-    return _.pick(userObject, ['_id', 'email', 'mobileNumber']);
+  return _.pick(userObject, ['_id', 'email', 'mobileNumber']);
 };
 
 UserSchema.methods.generateAuthToken = function () {
-    var user = this;
-    var access = 'auth';
-    var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.PASSWORD_SALT).toString();
+  var user = this;
+  var access = 'auth';
+  var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.PASSWORD_SALT).toString();
 
-    user.tokens.push({access, token});
+  user.tokens.push({access, token});
 
-    return user.save().then(() => {
-        return token;
-    });
+  return user.save().then(() => {
+    return token;
+  });
 };
 
 UserSchema.methods.removeToken = function (token) {
-    var user = this;
+  var user = this;
 
-    return user.update({
-        $pull: {
-            tokens: {token}
-        }
-    });
+  return user.update({
+    $pull: {
+      tokens: {token}
+    }
+  });
 };
 
 UserSchema.statics.findByToken = function (token) {
-    var User = this;
-    var decoded;
+  var User = this;
+  var decoded;
 
-    try {
-        decoded = jwt.verify(token, process.env.PASSWORD_SALT);
-    } catch (e) {
-        return Promise.reject();
-    }
+  try {
+    decoded = jwt.verify(token, process.env.PASSWORD_SALT);
+  } catch (e) {
+    return Promise.reject();
+  }
 
-    return User.findOne({
-        '_id': decoded._id,
-        'tokens.token': token,
-        'tokens.access': 'auth'
-    });
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
+  });
 };
 
 UserSchema.statics.findByCredentials = function (email, password) {
-    var User = this;
+  var User = this;
 
-    return User.findOne({email}).then((user) => {
-        if (!user) {
-            return Promise.reject();
+  return User.findOne({email}).then((user) => {
+    if (!user) {
+      return Promise.reject();
+    }
+
+    return new Promise((resolve, reject) => {
+      // Use bcrypt.compare to compare password and user.password
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          resolve(user);
+        } else {
+          reject();
         }
-
-        return new Promise((resolve, reject) => {
-            // Use bcrypt.compare to compare password and user.password
-            bcrypt.compare(password, user.password, (err, res) => {
-                if (res) {
-                    resolve(user);
-                } else {
-                    reject();
-                }
-            });
-        });
+      });
     });
+  });
 };
 
 UserSchema.pre('save', function (next) {
-    var user = this;
+  var user = this;
 
-    if (user.isModified('password')) {
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                user.password = hash;
-                next();
-            });
-        });
-    } else {
+  if (user.isModified('password')) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, (err, hash) => {
+        user.password = hash;
         next();
-    }
+      });
+    });
+  } else {
+    next();
+  }
 });
 
 var User = mongoose.model('User', UserSchema);

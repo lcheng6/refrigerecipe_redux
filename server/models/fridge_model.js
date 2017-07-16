@@ -6,28 +6,28 @@ const validator = require('validator');
 const _ = require('lodash');
 
 var FridgeSchema = new mongoose.Schema({
-    fridge_name: {
-        type:String,
-        require: true
-    },
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
-    ingredients: [{
-        item: {
-            type: String,
-            quantity:Number
-        }
-    }]
+  fridge_name: {
+    type:String,
+    require: true
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
+  },
+  ingredients: [{
+    item: {
+      type: String,
+      quantity:Number
+    }
+  }]
 });
 
 
 FridgeSchema.methods.toJSON = function () {
-    var user = this;
-    var userObject = user.toObject();
+  var fridge = this;
+  var fridgeObject = fridge.toObject();
 
-    return _.pick(userObject, ['fridge_name', 'ingredients']);
+  return _.pick(fridgeObject, ['_id', 'fridge_name', 'ingredients']);
 };
 
 var Fridge = mongoose.model('Fridge', FridgeSchema);
