@@ -10,14 +10,14 @@ const {users, populateUsers, fridges, populateFridges} = require('./seed/seed');
 beforeEach(populateUsers);
 beforeEach(populateFridges);
 
-describe('POST /users', () => {
+describe('POST /api/users', () => {
   it('should create a user', (done) => {
     var email = 'example@example.com';
     var password = '123mnb!';
     var mobileNumber = '5712430741';
 
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({email, password, mobileNumber})
       .expect(200)
       .expect((res) => {
@@ -41,7 +41,7 @@ describe('POST /users', () => {
 
   it('should return validation errors if phone number is missing', (done) => {
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({
         email: 'example@example.com',
         password: '123',
@@ -52,7 +52,7 @@ describe('POST /users', () => {
 
   it('should return validation errors if phone number is wrong', (done) => {
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({
         email: 'example@example.com',
         password: '123',
@@ -64,7 +64,7 @@ describe('POST /users', () => {
 
   it('should return validation errors if email has the wrong format', (done) => {
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({
         email: 'example.com',
         password: '123',
@@ -76,7 +76,7 @@ describe('POST /users', () => {
 
   it('should not create user if email in use', (done) => {
     request(app)
-      .post('/users')
+      .post('/api/users')
       .send({
         email: users[0].email,
         password: 'Password123!',
@@ -86,19 +86,36 @@ describe('POST /users', () => {
       .end(done);
   });
 
-  it('should create a cart for a new user', (done) => {
-
-  });
-
-  it('should create a fridge for a new user', (done) => {
-
-  });
+  // it('should create a cart for a new user', (done) => {
+  //   newUser = newUserGen('1');
+  //   request(app)
+  //     .post('/api/users')
+  //     .send({
+  //       email: newUser.email,
+  //       password: newUser.password,
+  //       mobileNumber: newUser.mobileNumber
+  //     })
+  //     .expect(200)
+  //     .end((err, res) => {
+  //       if(err) {
+  //         return done(err);
+  //       }
+  //       done();
+  //     }).catch((e) => done(e));
+  //   //TODO: check for existence of a cart
+  // });
+  //
+  // it('should create a fridge for a new user', (done) => {
+  //
+  // });
 });
+
+//TODO: should check to see that a fridge and a cart are both created for this user.
 
 describe('POST /users/login', () => {
   it('should login user and return auth token', (done) => {
     request(app)
-      .post('/users/login')
+      .post('/api/users/login')
       .send({
         email: users[1].email,
         password: users[1].password
@@ -123,4 +140,3 @@ describe('POST /users/login', () => {
   });
 });
 
-//TODO: should check to see that a fridge and a cart are both created for this user.

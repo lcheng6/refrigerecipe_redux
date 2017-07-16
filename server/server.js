@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT;
 
 
-app.use('/users', users_route);
+app.use('/api/users', users_route);
 // POST /users
 // app.post('/users', (req, res) => {
 //     var body = _.pick(req.body, ['email', 'password', 'mobileNumber']);
