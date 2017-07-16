@@ -24,12 +24,14 @@ var UserSchema = new mongoose.Schema({
         require: true,
         minlength: 6
     },
-    mobilenumber: {
+    mobileNumber: {
         type: String,
         require: true, // should this phone number to be true?
-        maxlength: 15,
+        maxlength: 16,
         validate: {
-            validator:validator.isMobilePhone,
+            validator: function(value) {
+                return validator.isMobilePhone(value, 'en-US');
+                },
             message: '{VALUE} is not a valid mobile number'
         }
     },
