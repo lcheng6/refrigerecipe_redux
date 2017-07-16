@@ -37,4 +37,4 @@ coverage
 /.idea
 package-lock.json
 
-/server/config/
+/server/config/config.js
