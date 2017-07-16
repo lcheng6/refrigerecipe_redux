@@ -16,7 +16,7 @@ const Toolbar = styled.div`
 const Header = () => {
   return(
     <Toolbar>
-      <NavItem children="RFGRDX" icon="restaurant_menu" to="/" />
+      <NavItem children="Sign In" icon="restaurant_menu" to="/sign-in" />
       <NavItem children="Fridge" icon="beenhere" to="/fridge" />
       <NavItem children="Recipes" icon="find_in_page" to="/recipes" />
       <NavItem children="Cart" icon="local_grocery_store" to="/cart" />
