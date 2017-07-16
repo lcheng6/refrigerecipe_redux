@@ -32,6 +32,14 @@ const users = [{
 
 }];
 
+newUserGen = function(newId) {
+  return {
+    email: `newuser{newId}@example.com`,
+    password: `newuserpass{newId}`,
+    mobilenumber: "7035551234"
+  };
+};
+
 
 const populateUsers = (done) => {
   User.remove({}).then(() => {

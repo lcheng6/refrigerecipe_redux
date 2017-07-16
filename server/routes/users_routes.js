@@ -22,4 +22,9 @@ router.post('/', (req, res) => {
   });
 });
 
+router.post('/login', (req, res) => {
+
+});
+
+//TODO: login, me, send message, 
 module.exports = router;
