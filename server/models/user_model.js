@@ -28,12 +28,12 @@ var UserSchema = new mongoose.Schema({
         type: String,
         require: true, // should this phone number to be true?
         maxlength: 16,
-        validate: {
-            validator: function(value) {
-                return validator.isMobilePhone(value, 'en-US');
-                },
-            message: '{VALUE} is not a valid mobile number'
-        }
+        // validate: {
+        //     validator: function(value) {
+        //         return validator.isMobilePhone(value, 'en-US');
+        //         },
+        //     message: '{VALUE} is not a valid mobile number'
+        // }
     },
     tokens: [{
         access: {
@@ -131,4 +131,4 @@ UserSchema.pre('save', function (next) {
 
 var User = mongoose.model('User', UserSchema);
 
-module.exports = {User}
+module.exports = {User};
