@@ -27,9 +27,14 @@ CartSchema.methods.toJSON = function () {
   var cart = this;
   var cartObject = cart.toObject();
 
-  return _.pick(cartObject, ['_id', 'cart_name', 'ingredients']);
+  return _.pick(cartObject, ['_id', 'cart_name', 'user_id', 'ingredients']);
 };
 
+CartSchema.statics.findByUserId = function(user_id) {
+  var Cart = this;
+
+  return Cart.findOne({user_id});
+};
 var Cart = mongoose.model('Cart', CartSchema);
 
 module.exports = {Cart};

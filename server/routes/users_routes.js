@@ -14,9 +14,9 @@ router.post('/', (req, res) => {
   var body = _.pick(req.body, ['email', 'password', 'mobileNumber']);
   var user = new User(body);
 
-  user.save((err, doc) => {
-    var newFridge = new Fridge({fridge_name: "default", user_id: doc._id, content:[]}).save();
-    var newCart = new Cart({cart_name:"default", user_id: doc.id, content:[]}).save();
+  user.save().then(() => {
+    var newFridge = new Fridge({fridge_name: "default", user_id: user._id, content:[]}).save();
+    var newCart = new Cart({cart_name:"default", user_id: user._id, content:[]}).save();
 
     return Promise.all([newFridge, newCart]);
 

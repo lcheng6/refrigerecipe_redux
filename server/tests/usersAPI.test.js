@@ -5,6 +5,7 @@ const {ObjectID} = require('mongodb');
 const {app} = require('./../server');
 const {User} = require('./../models/user_model');
 const {Fridge} = require('./../models/fridge_model');
+const {Cart} = require('./../models/cart_model');
 const {users, populateUsers, fridges, populateFridges} = require('./seed/seed');
 
 beforeEach(populateUsers);
@@ -39,10 +40,13 @@ describe('POST /api/users', () => {
       });
   });
 
+  //Verify a cart and fridge is created for a new user.
+  //Will need to add saved recipes later.
   it('should create a cart and fridge for a new user', (done) => {
     var email = 'example2@example.com';
     var password = '123mnb!';
     var mobileNumber = '5712430741';
+    var userId;
 
     request(app)
       .post('/api/users')
@@ -59,19 +63,24 @@ describe('POST /api/users', () => {
           return done(err);
         }
 
-        var userId;
-
         User.findOne({email}).then((user) => {
           expect(user).toExist();
           expect(user.password).toNotBe(password);
-          //done();
           userId = user._id;
-          return Fridge.findByUserId(user._id);
+
+          return Fridge.findByUserId(userId);
+        }).then((fridge) => {
+          expect(fridge).toExist();
+          expect(fridge.fridge_name).toBe('default');
+          expect(fridge.content.length).toBe(0);
+        }).then(() => {
+          return Cart.findByUserId(userId);
+        }).then((cart) => {
+          expect(cart).toExist();
+          expect(cart.cart_name).toBe('default');
+          expect(fridge.content.length).toBe(0);
+          done();
         })
-          .then((fridge) => {
-            expect(fridge.name.toExist());
-            done();
-          })
           .catch((e) => done(e));
       });
   });
