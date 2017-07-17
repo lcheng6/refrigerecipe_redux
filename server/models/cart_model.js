@@ -8,13 +8,13 @@ const _ = require('lodash');
 var CartSchema = new mongoose.Schema({
   cart_name: {
     type: String,
-    require: true
+    required: true
   },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  ingredients: [{
+  content: [{
     item: {
       type: String,
       quantity: Number
