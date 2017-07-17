@@ -20,10 +20,11 @@ class RecipeList extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    recipes: state.recipes
-  }
-}
-
-export default connect(mapStateToProps)(RecipeList)
+export default RecipeList
+// function mapStateToProps(state) {
+//   return {
+//     recipes: state.recipes
+//   }
+// }
+//
+// export default connect(mapStateToProps)(RecipeList)
