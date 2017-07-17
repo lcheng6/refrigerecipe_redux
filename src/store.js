@@ -1,16 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-
-import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
-import SignIn from './views/pages/sign-in'
-import GetRecipes from './views/pages/get-recipes'
-
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { Provider } from 'react-redux'
+
 import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
+
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 import reducers from './reducers' // Or wherever you keep your reducers
@@ -39,9 +35,9 @@ ReactDOM.render(
     { /* ConnectedRouter will use the store from Provider automatically */ }
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path="/" component={SignIn}/>
-        <Route path="/sign-in" component={SignIn}/>
-        <Route path="/get-recipes" component={GetRecipes}/>
+        <Route exact path="/" component={Home}/>
+        <Route path="/about" component={About}/>
+        <Route path="/topics" component={Topics}/>
       </div>
     </ConnectedRouter>
   </Provider>,

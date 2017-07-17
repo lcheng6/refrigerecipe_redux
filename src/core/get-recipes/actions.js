@@ -1,24 +1,36 @@
-// import axios from 'axios'
-const axios = require('axios')
+// good video for redux: https://www.youtube.com/watch?v=Td-2D-_7Y2E&index=17&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b#t=78.911747
+
+import axios from 'axios'
+// const axios = require('axios')
 const API_KEY = 'PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn'
 const ROOT_URL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&limitLicense=false&number=30&ranking=1&ingredients=`
 
-const GET_RECIPES = 'GET_RECIPES'
+export const FETCH_RECIPES_PENDING = "FETCH_RECIPES_PENDING"
+export const FETCH_RECIPES_REJECTED = "FETCH_RECIPES_REJECTED"
+export const FETCH_RECIPES_FULFILLED = "FETCH_RECIPES_FULFILLED"
 
-let ingredients = 'apples%2Cflour%2Csugar'
 
-function getRecipesReducer(ingredients) {
-  axios({
-    method: 'get',
-    url: ROOT_URL + API_KEY + ingredients,
-    headers: {
-      "X-Mashape-Key": "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn",
-      "Accept": "application/json",
-    }
-  })
-  .then(response => {
-    console.log(response.data)
-  })
+export function fetchRecipes(ingredients) {
+  return function(dispatch) {
+    axios({
+      method: 'get',
+      url: ROOT_URL + API_KEY + ingredients,
+      headers: {
+        "X-Mashape-Key": "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn",
+        "Accept": "application/json",
+      }
+    })
+    .then(
+      dispatch({type: "FETCH_RECIPES_PENDING"})
+    )
+    .then((response) => {
+      dispatch({type: "FETCH_RECIPES_FULFILLED", payload: response[0]})
+    })
+    .catch((error) => {
+      dispatch({type: "FETCH_RECIPES_REJECTED", payload: error})
+    })
+  }
+}
 
   // const request = axios.get(ingredients, config)
   // console.log('Request ', request)
@@ -27,6 +39,4 @@ function getRecipesReducer(ingredients) {
   //   type: GET_RECIPES,
   //   payload: request
   // }
-}
-
-getRecipesReducer(ingredients)
+// getRecipesReducer(ingredients)
