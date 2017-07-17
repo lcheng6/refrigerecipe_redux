@@ -1,0 +1,1 @@
+export { getRecipesReducer } from './reducer'
