@@ -56,6 +56,10 @@ router.delete('/me/token', authenticate, (req, res) => {
   });
 });
 
+router.post('/message', authenticate, (req, res) => {
+  //TODO: send my cart to self.
+
+});
 
 //TODO: login, me, send message,
 module.exports = router;
