@@ -1,14 +1,13 @@
 import React from 'react';
-import { Card, Button, CardTitle, CardHeader, CardBlock, CardText, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, Button, CardTitle, CardHeader, CardBlock, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Example = (props) => {
+const LoginCard = (props) => {
   return (
     <div>
       <Card>
         <CardHeader>Sign In</CardHeader>
         <CardBlock>
           <CardTitle className="text-center">Are You Hungry?</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
           <Form>
             <FormGroup>
               <Label for="exampleEmail">Email</Label>
@@ -30,4 +29,4 @@ const Example = (props) => {
   );
 };
 
-export default Example;
+export default LoginCard;
