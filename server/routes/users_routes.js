@@ -5,6 +5,7 @@ var router = express.Router();
 const _ = require('lodash');
 var {User} = require('../models/user_model');
 var {mongoose} = require('../db/mongoose');
+var {authenticate} = require('../middleware/authenticate');
 
 
 router.post('/', (req, res) => {
@@ -23,8 +24,20 @@ router.post('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+  var body = _.pick(req.body, ['email', 'password']);
 
+  User.findByCredentials(body.email, body.password).then((user) => {
+    return user.generateAuthToken().then((token) => {
+      res.header('x-auth', token).send(user);
+    });
+  }).catch((e) => {
+    res.status(400).send();
+  });
 });
 
-//TODO: login, me, send message, 
+router.get('/me', authenticate, (req, res) => {
+  res.send(req.user);
+});
+
+//TODO: login, me, send message,
 module.exports = router;

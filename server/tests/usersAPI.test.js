@@ -112,7 +112,7 @@ describe('POST /api/users', () => {
 
 //TODO: should check to see that a fridge and a cart are both created for this user.
 
-describe('POST /users/login', () => {
+describe('POST /api/users/login', () => {
   it('should login user and return auth token', (done) => {
     request(app)
       .post('/api/users/login')
@@ -140,3 +140,26 @@ describe('POST /users/login', () => {
   });
 });
 
+describe('GET /api/users/me', () => {
+  it('should return user if authenticated', (done) => {
+    request(app)
+      .get('/api/users/me')
+      .set('x-auth', users[0].tokens[0].token)
+      .expect(200)
+      .expect((res) => {
+        expect(res.body._id).toBe(users[0]._id.toHexString());
+        expect(res.body.email).toBe(users[0].email);
+      })
+      .end(done);
+  });
+
+  it('should return 401 if not authenticated', (done) => {
+    request(app)
+      .get('/api/users/me')
+      .expect(401)
+      .expect((res) => {
+        expect(res.body).toEqual({});
+      })
+      .end(done);
+  });
+});
