@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import RecipeBoardCard from '../../components/card-recipe-board'
-import { fetchRecipes } from '../../../core/get-recipes'
-//
+import RecipeCardIntro from '../../components/recipe-card-intro'
+import { getRecipes } from '../../../core/get-recipes'
+
 // const RecipeList = () => {
 //   return (
-//     <RecipeBoardCard/>
+//     <RecipeCardIntro/>
 //   )
 // }
+//          // temporarily hard-coded
+// getRecipes('apples%2Cflour%2Csugar')
+
 class RecipeList extends Component {
-  componentWillMount() {
-                                    // temporarily hard-coded
-    this.props.dispatch(fetchRecipes('apples%2Cflour%2Csugar'))
+  constructor(props) {
+    super(props)
+    this.state = { recipes: {} }
   }
+  // componentWillMount() {
+  //   this.props.dispatch(getRecipes)
+  // }
   fetchRecipes = () => {
-    this.props.dispatch(fetchRecipes('apples%2Cflour%2Csugar'))
+    this.props.dispatch(getRecipes)
   }
-  renderList = () => {
-    const { recipes } = this.props
-    if (!recipes.recipes.length) {
-      return <button onClick={this.fetchRecipes}></button>
+  renderList = (recipes) => {
+    // const { recipes } = this.props
+    if (!recipes.recipes) {
+      return <RecipeCardIntro key="1" title="Didn't work"/>
     }
     return recipes.map((recipe) => {
       return (
-        <RecipeBoardCard key={recipe.recipes.title} title={recipe.recipes.id}/>
+        <RecipeCardIntro key={recipe.recipes.id} title={recipe.recipes.title}/>
       )
     })
   }
@@ -31,6 +37,7 @@ class RecipeList extends Component {
   render() {
     return (
       <div>
+        <RecipeCardIntro />
         {this.renderList}
       </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
+import promise from 'redux-promise-middleware'
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import SignIn from './views/pages/sign-in'
@@ -28,7 +28,7 @@ const store = createStore(
     ...reducers,
     router: routerReducer
   }),
-  applyMiddleware(middleware)
+  applyMiddleware(promise, middleware)
 )
 
 // Now you can dispatch navigation actions from anywhere!
