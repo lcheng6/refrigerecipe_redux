@@ -12,7 +12,7 @@ beforeEach(populateFridges);
 
 describe('POST /api/users', () => {
   it('should create a user', (done) => {
-    var email = 'example@example.com';
+    var email = 'example1@example.com';
     var password = '123mnb!';
     var mobileNumber = '5712430741';
 
@@ -36,6 +36,43 @@ describe('POST /api/users', () => {
           expect(user.password).toNotBe(password);
           done();
         }).catch((e) => done(e));
+      });
+  });
+
+  it('should create a cart and fridge for a new user', (done) => {
+    var email = 'example2@example.com';
+    var password = '123mnb!';
+    var mobileNumber = '5712430741';
+
+    request(app)
+      .post('/api/users')
+      .send({email, password, mobileNumber})
+      .expect(200)
+      .expect((res) => {
+        expect(res.headers['x-auth']).toExist();
+        expect(res.body._id).toExist();
+        expect(res.body.email).toBe(email);
+        expect(res.body.mobileNumber).toBe(mobileNumber);
+      })
+      .end((err) => {
+        if (err) {
+          return done(err);
+        }
+
+        var userId;
+
+        User.findOne({email}).then((user) => {
+          expect(user).toExist();
+          expect(user.password).toNotBe(password);
+          //done();
+          userId = user._id;
+          return Fridge.findByUserId(user._id);
+        })
+          .then((fridge) => {
+            expect(fridge.name.toExist());
+            done();
+          })
+          .catch((e) => done(e));
       });
   });
 
@@ -86,28 +123,7 @@ describe('POST /api/users', () => {
       .end(done);
   });
 
-  // it('should create a cart for a new user', (done) => {
-  //   newUser = newUserGen('1');
-  //   request(app)
-  //     .post('/api/users')
-  //     .send({
-  //       email: newUser.email,
-  //       password: newUser.password,
-  //       mobileNumber: newUser.mobileNumber
-  //     })
-  //     .expect(200)
-  //     .end((err, res) => {
-  //       if(err) {
-  //         return done(err);
-  //       }
-  //       done();
-  //     }).catch((e) => done(e));
-  //   //TODO: check for existence of a cart
-  // });
-  //
-  // it('should create a fridge for a new user', (done) => {
-  //
-  // });
+
 });
 
 //TODO: should check to see that a fridge and a cart are both created for this user.
@@ -161,5 +177,24 @@ describe('GET /api/users/me', () => {
         expect(res.body).toEqual({});
       })
       .end(done);
+  });
+});
+
+describe('DELETE /api/users/me/token', () => {
+  it('should remove auth token on logout', (done) => {
+    request(app)
+      .delete('/api/users/me/token')
+      .set('x-auth', users[0].tokens[0].token)
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+
+        User.findById(users[0]._id).then((user) => {
+          expect(user.tokens.length).toBe(0);
+          done();
+        }).catch((e) => done(e));
+      });
   });
 });

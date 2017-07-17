@@ -32,11 +32,11 @@ const users = [{
 
 }];
 
-newUserGen = function(newId) {
+const newUserGen = function(newId) {
   return {
-    email: `newuser{newId}@example.com`,
-    password: `newuserpass{newId}`,
-    mobilenumber: "7035551234"
+    email: 'newuser' + newId + '@example.com',
+    password: 'newuserpass' + newId,
+    mobileNumber: "7035551234"
   };
 };
 
@@ -51,12 +51,34 @@ const populateUsers = (done) => {
 };
 
 const fridges = [{
-
+  _id:fridgeOneId,
+  fridge_name:"FridgeOne",
+  user_id:userOneId,
+  content: [
+    {item:"beef", quantity:1},
+    {item:"mushroom", quantity:1},
+    {item:"celery", quantity:1},
+    {item:"chicken breast", quantity: 1}
+  ]
+},
+{
+  _id:fridgeTwoId,
+  fridge_name:'FridgeTwo',
+  user_id:userTwoId,
+  content: [
+    {item:"beef", quantity:1},
+    {item:"mushroom", quantity:1},
+    {item:"beer", quantity:1},
+    {item:"chicken breast", quantity: 1}
+  ]
 }];
 
 const populateFridges = (done) => {
   Fridge.remove({}).then(() => {
+    var fridgeOne = new Fridge(fridges[0]).save();
+    var fridgeTwo = new Fridge(fridges[1]).save();
 
+    return Promise.all([fridgeOne, fridgeTwo]);
   }).then(() => done());
 };
 
@@ -69,4 +91,4 @@ const populateCarts = (done) => {
 };
 
 
-module.exports = {users, populateUsers, fridges, populateFridges, carts, populateCarts};
+module.exports = {users, populateUsers, fridges, populateFridges, carts, populateCarts, newUserGen};

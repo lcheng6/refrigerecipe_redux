@@ -27,7 +27,7 @@ FridgeSchema.methods.toJSON = function () {
   var fridge = this;
   var fridgeObject = fridge.toObject();
 
-  return _.pick(fridgeObject, ['_id', 'fridge_name', 'ingredients']);
+  return _.pick(fridgeObject, ['_id', 'fridge_name', 'user_id', 'content']);
 };
 
 FridgeSchema.statics.findByUserId = function(user_id) {

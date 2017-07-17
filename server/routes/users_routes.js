@@ -5,6 +5,8 @@ var router = express.Router();
 const _ = require('lodash');
 var {User} = require('../models/user_model');
 var {mongoose} = require('../db/mongoose');
+var {Fridge} = require('../models/fridge_model');
+var {Cart} = require('../models/cart_model');
 var {authenticate} = require('../middleware/authenticate');
 
 
@@ -12,7 +14,13 @@ router.post('/', (req, res) => {
   var body = _.pick(req.body, ['email', 'password', 'mobileNumber']);
   var user = new User(body);
 
-  user.save().then(() => {
+  user.save((err, doc) => {
+    var newFridge = new Fridge({fridge_name: "default", user_id: doc._id, content:[]}).save();
+    var newCart = new Cart({cart_name:"default", user_id: doc.id, content:[]}).save();
+
+    return Promise.all([newFridge, newCart]);
+
+  }).then(() => {
     return user.generateAuthToken();
   }).then((token) => {
     res.header('x-auth', token).send(user);
@@ -22,6 +30,7 @@ router.post('/', (req, res) => {
     res.status(400).send(ret_e);
   });
 });
+
 
 router.post('/login', (req, res) => {
   var body = _.pick(req.body, ['email', 'password']);
@@ -38,6 +47,15 @@ router.post('/login', (req, res) => {
 router.get('/me', authenticate, (req, res) => {
   res.send(req.user);
 });
+
+router.delete('/me/token', authenticate, (req, res) => {
+  req.user.removeToken(req.token).then(() => {
+    res.status(200).send();
+  }, () => {
+    res.status(400).send();
+  });
+});
+
 
 //TODO: login, me, send message,
 module.exports = router;
