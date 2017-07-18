@@ -32,3 +32,38 @@ describe('Get /api/fridges', () => {
       .end(done);
   });
 });
+
+
+describe('POST /api/fridges/setcontent', () => {
+  it('should refer to a valid user through x-auth header', (done) => {
+    request(app)
+      .post('/api/fridges/setcontent')
+      .set('x-auth', users[0].tokens[0].token)
+      .send({content: []})
+      .expect(200)
+      .end(done);
+
+  });
+
+  it('should set the contents in the cart', (done) => {
+    request(app)
+      .post('/api/fridges/setcontent')
+      .set('x-auth', users[0].tokens[0].token)
+      .send({content: setFridgeContent})
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+
+        Fridge.findByUserId(users[0]._id).then((fridge) => {
+          expect(fridge.content.length).toBe(setFridgeContent.length);
+          //expect(cart.content).toInclude({item: "liquor", quantity: 50000});
+          done();
+        }).catch((e) => done(e));
+      });
+  });
+
+  //TODO: check also a previous element was also present
+
+});
