@@ -1,11 +1,11 @@
 import React from 'react';
 import { Card, Button, CardTitle, CardHeader, CardBlock, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const LoginCard = (props) => {
+const SignUpCard = (props) => {
   return (
     <div>
       <Card>
-        <CardHeader>Sign In</CardHeader>
+        <CardHeader>Sign Up</CardHeader>
         <CardBlock>
           <CardTitle className="text-center">Are You Hungry?</CardTitle>
           <Form>
@@ -14,15 +14,19 @@ const LoginCard = (props) => {
               <Input type="email" name="email" id="userEmail" placeholder="john@example.com" />
             </FormGroup>
             <FormGroup>
+              <Label for="phoneNumber">Phone Number</Label>
+              <Input type="phone" name="phone" id="userPhone" placeholder="Text yourself your grociery lists" />
+            </FormGroup>
+            <FormGroup>
               <Label for="examplePassword">Password</Label>
               <Input type="password" name="password" id="examplePassword" placeholder="enter your password" />
             </FormGroup>
           </Form>
-          <Button color="primary" block>Sign In</Button>
+          <Button color="primary" block>Let's Get Cookin'</Button>
         </CardBlock>
       </Card>
     </div>
   );
 };
 
-export default LoginCard;
+export default SignUpCard;

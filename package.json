@@ -21,6 +21,7 @@
     "mongodb": "^2.2.30",
     "mongoose": "^4.11.3",
     "normalize.css": "^7.0.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
@@ -33,12 +34,8 @@
     "react-tap-event-plugin": "^2.0.1",
     "reactstrap": "^4.8.0",
     "redux": "^3.7.1",
-<<<<<<< HEAD
     "redux-devtools-extension": "^2.13.2",
-    "redux-promise-middleware": "4.2.1",
-=======
     "redux-promise-middleware": "^4.2.1",
->>>>>>> 2210cd9940f41702cf3f9c333d542f5a4c2120a9
     "redux-saga": "^0.15.4",
     "reselect": "^3.0.1",
     "styled-components": "^2.1.1",

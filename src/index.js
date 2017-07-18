@@ -9,6 +9,8 @@ import promise from 'redux-promise-middleware'
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import SignIn from './views/pages/sign-in'
+import SignUp from './views/pages/sign-up'
+
 import GetRecipes from './views/pages/get-recipes'
 
 
@@ -41,6 +43,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={SignIn}/>
+        <Route path="/sign-up" component={SignUp}/>
         <Route path="/sign-in" component={SignIn}/>
         <Route path="/get-recipes" component={GetRecipes}/>
       </div>

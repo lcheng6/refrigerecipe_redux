@@ -30,7 +30,7 @@ export function getRecipesReducer(state = new RecipesState(), action) {
       return state.merge({
         fetching: false,
         fetched: true,
-        recipes: new List(action.payload.data)
+        recipes: action.payload.data
       })
 
     default:

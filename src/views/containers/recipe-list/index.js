@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
+import _ from 'lodash'
 import RecipeCardIntro from '../../components/recipe-card-intro'
 import { getRecipes } from '../../../core/get-recipes'
 
@@ -10,19 +12,16 @@ import { getRecipes } from '../../../core/get-recipes'
 class RecipeList extends Component {
   constructor(props) {
     super(props)
-    this.state = { recipes: []}
+    this.state = { recipes: [] }
   }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below
-  componentWillMount() {
-    console.log("this.props in componentWillMount in recipe-list", this.state.recipes)
-  }
   componentDidMount() {
     this.props.getRecipes('flour,sugar,milk')
   }
-  render() {
-    const { recipes } = this.state
-    const recipeDeck = recipes.map((recipe) => {
+
+  renderRecipes() {
+    return _.map(this.state.recipes, recipe => {
       return (
         <RecipeCardIntro
           key={recipe.id}
@@ -33,11 +32,11 @@ class RecipeList extends Component {
          />
       )
     })
-
+  }
+  render() {
     return (
       <div>
-        {/* <RecipeCardIntro/> */}
-        {recipeDeck}
+        {this.renderRecipes()}
       </div>
     )
   }
@@ -57,6 +56,7 @@ function mapDispatchtoProps(dispatch) {
   // be passed to all of our reducers
   return bindActionCreators({ getRecipes }, dispatch)
 }
+
 
 // promote RecipeList from a component to a container class
 // it needs to know about this new dispatch method, getRecipes
