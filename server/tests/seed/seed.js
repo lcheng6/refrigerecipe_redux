@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const {User} = require('./../../models/user_model');
 const {Fridge} = require('./../../models/fridge_model');
+const {Cart} = require('./../../models/cart_model');
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
@@ -73,6 +74,7 @@ const fridges = [{
   ]
 }];
 
+
 const populateFridges = (done) => {
   Fridge.remove({}).then(() => {
     var fridgeOne = new Fridge(fridges[0]).save();
@@ -82,10 +84,38 @@ const populateFridges = (done) => {
   }).then(() => done());
 };
 
-const carts = [{}];
+const carts = [
+  {
+    _id:cartOneId,
+    cart_name:"CartOne",
+    user_id:userOneId,
+    content: [
+      {item:"rosemary", quantity:1},
+      {item:"coffee", quantity:1},
+      {item:"sub rolls", quantity:1},
+      {item:"carrots", quantity: 1}
+    ]
+  },
+  {
+    _id:cartTwoId,
+    cart_name:'CartTwo',
+    user_id:userTwoId,
+    content: [
+      {item:"tomatoes", quantity:1},
+      {item:"oregano", quantity:1},
+      {item:"beer", quantity:1},
+      {item:"chuck roast", quantity: 1}
+    ]
+  }
+];
 
 const populateCarts = (done) => {
   Cart.remove({}).then(() => {
+
+    var cartOne = new Cart(carts[0]).save();
+    var cartTwo = new Cart(carts[1]).save();
+
+    return Promise.all([cartOne, cartTwo]);
 
   }).then(() => done());
 };

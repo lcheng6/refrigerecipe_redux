@@ -9,5 +9,7 @@ var {Fridge} = require('../models/fridge_model');
 var {authenticate} = require('../middleware/authenticate');
 
 
+//TODO: set items in a fridge
+
 
 module.exports = router;
