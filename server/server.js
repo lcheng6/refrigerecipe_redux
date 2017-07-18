@@ -1,37 +1,29 @@
 require('./config/config');
 
-const _ = require('lodash');
 const express = require('express');
 var logger = require('winston');
 var cookieParser = require('cookie-parser');
 
-var {mongoose} = require('./db/mongoose');
 const bodyParser = require('body-parser');
-var {User} = require('./models/user_model');
-const {ObjectID} = require('mongodb');
 
 var users_route = require('./routes/users_routes');
+var carts_route = require('./routes/carts_routes');
+var fridges_route = require('./routes/fridges_routes');
+var recipes_route = require('./routes/recipes_routes');
+//var saved_recipes_route = require('./routes/saved_recipes_routes');
 
 var app = express();
 //use and only use body parser for JSON
 app.use(bodyParser.json());
 const port = process.env.PORT;
 
-// POST /users
-app.post('/users', (req, res) => {
-    var body = _.pick(req.body, ['email', 'password', 'mobileNumber']);
-    var user = new User(body);
 
-    user.save().then(() => {
-        return user.generateAuthToken();
-    }).then((token) => {
-        res.header('x-auth', token).send(user);
-    }).catch((e) => {
-        //TODO: filter the e going to the server.
-        let ret_e  = e;
-        res.status(400).send(ret_e);
-    });
-});
+app.use('/api/users', users_route);
+app.use('/api/carts', carts_route);
+app.use('/api/fridges', fridges_route);
+//recipes_route is the one that gets the recipes from Spponacular.
+app.use('/api/recipes', recipes_route);
+//app.use('/api/saved_recipes', saved_recipes_route);
 
 
 app.listen(port, () => {

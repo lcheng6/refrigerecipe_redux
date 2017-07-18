@@ -8,16 +8,18 @@ const _ = require('lodash');
 var FridgeSchema = new mongoose.Schema({
   fridge_name: {
     type:String,
-    require: true
+    required: true
   },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  ingredients: [{
+  content: [{
     item: {
-      type: String,
-      quantity:Number
+      type: String
+    },
+    quantity: {
+      type: Number
     }
   }]
 });
@@ -27,7 +29,13 @@ FridgeSchema.methods.toJSON = function () {
   var fridge = this;
   var fridgeObject = fridge.toObject();
 
-  return _.pick(fridgeObject, ['_id', 'fridge_name', 'ingredients']);
+  return _.pick(fridgeObject, ['_id', 'fridge_name', 'user_id', 'content']);
+};
+
+FridgeSchema.statics.findByUserId = function(user_id) {
+  var Fridge = this;
+
+  return Fridge.findOne({user_id});
 };
 
 var Fridge = mongoose.model('Fridge', FridgeSchema);

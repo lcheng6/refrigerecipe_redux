@@ -6,7 +6,7 @@ import {
 } from './constants'
 
 export const RecipesState = new Record({
-  list: new List(),
+  recipes: new List(),
   fetching: false,
   fetched: false,
   error: null
@@ -16,7 +16,9 @@ export function getRecipesReducer(state = new RecipesState(), action) {
   console.log('action received', action)
   switch (action.type) {
     case FETCH_RECIPES_PENDING:
-      return state.set('fetching', true)
+      return state.merge({
+        fetching: true
+      })
 
     case FETCH_RECIPES_REJECTED:
       return state.merge({
@@ -28,7 +30,7 @@ export function getRecipesReducer(state = new RecipesState(), action) {
       return state.merge({
         fetching: false,
         fetched: true,
-        list: new List(action.payload.data)
+        recipes: new List(action.payload.data)
       })
 
     default:
