@@ -27,7 +27,7 @@ CartSchema.methods.toJSON = function () {
   var cart = this;
   var cartObject = cart.toObject();
 
-  return _.pick(cartObject, ['_id', 'cart_name', 'user_id', 'ingredients']);
+  return _.pick(cartObject, ['_id', 'cart_name', 'user_id', 'content']);
 };
 
 CartSchema.statics.findByUserId = function(user_id) {

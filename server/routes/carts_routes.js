@@ -12,5 +12,12 @@ var {authenticate} = require('../middleware/authenticate');
 //TODO: add items
 //TODO: nice to have features: select items
 
+router.get('/', authenticate, (req, res) => {
+  Cart.findByUserId(req.user._id).then((cart) => {
+    res.send(cart);
+  }, (e) => {
+    res.status(400).send(e);
+  });
+});
 
 module.exports = router;
