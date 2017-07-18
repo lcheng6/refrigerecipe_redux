@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { composeWithDevTools } from 'redux-devtools-extension';
 import promise from 'redux-promise-middleware'
+
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import SignIn from './views/pages/sign-in'
 import GetRecipes from './views/pages/get-recipes'
 
 
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import createHistory from 'history/createBrowserHistory'
 import { Route } from 'react-router'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
 
 import reducers from './reducers' // Or wherever you keep your reducers
 
@@ -25,12 +27,11 @@ const middleware = routerMiddleware(history)
 // Also apply our middleware for navigating
 const store = createStore(
   combineReducers({
-    ...reducers,
+    reducers,
     router: routerReducer
   }),
-  applyMiddleware(promise, middleware)
+  composeWithDevTools(applyMiddleware(promise(), middleware))
 )
-
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))
 

@@ -3,11 +3,10 @@ import {
   FETCH_RECIPES_PENDING,
   FETCH_RECIPES_REJECTED,
   FETCH_RECIPES_FULFILLED
-} from './actions'
-
+} from './constants'
 
 export const RecipesState = new Record({
-  recipes: new List(),
+  list: new List(),
   fetching: false,
   fetched: false,
   error: null
@@ -29,7 +28,7 @@ export function getRecipesReducer(state = new RecipesState(), action) {
       return state.merge({
         fetching: false,
         fetched: true,
-        recipes: new List(action.payload)
+        list: new List(action.payload.data)
       })
 
     default:

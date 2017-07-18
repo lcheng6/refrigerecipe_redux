@@ -1,35 +1,35 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import RecipeCardIntro from '../../components/recipe-card-intro'
 import { getRecipes } from '../../../core/get-recipes'
 
-// const RecipeList = () => {
-//   return (
-//     <RecipeCardIntro/>
-//   )
-// }
 //          // temporarily hard-coded
 // getRecipes('apples%2Cflour%2Csugar')
 
 class RecipeList extends Component {
   constructor(props) {
     super(props)
-    this.state = { recipes: {} }
+    this.state = { list: {} }
   }
-  // componentWillMount() {
-  //   this.props.dispatch(getRecipes)
-  // }
-  fetchRecipes = () => {
-    this.props.dispatch(getRecipes)
+  // getRecipes is available on props cuz bindActionCreators
+  // registers it and 'connect' it with react as props below
+  componentWillMount() {
+    this.props.getRecipes('flour,sugar,milk')
+    console.log("this.state in componentWillMount in recipe-list", this.state.list)
   }
-  renderList = (recipes) => {
-    // const { recipes } = this.props
-    if (!recipes.recipes) {
-      return <RecipeCardIntro key="1" title="Didn't work"/>
-    }
-    return recipes.map((recipe) => {
+
+  renderList = () => {
+    console.log("renderList inside recipe-list component ", this.state)
+    return this.state.recipes.list.map((recipe) => {
       return (
-        <RecipeCardIntro key={recipe.recipes.id} title={recipe.recipes.title}/>
+        <RecipeCardIntro
+          key={recipe.id}
+          title={recipe.title}
+          usedCount={recipe.usedIngredientCount}
+          middedCount={recipe.missedIngredientCount}
+          image={recipe.image}
+         />
       )
     })
   }
@@ -37,18 +37,28 @@ class RecipeList extends Component {
   render() {
     return (
       <div>
-        <RecipeCardIntro />
+        <RecipeCardIntro/>
         {this.renderList}
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    recipes: state.recipes
-  }
+function mapStateToProps({ list }) {
+  // anything returned here will
+  // end up as props on this container
+  return { list }
 }
 
-export default connect(mapStateToProps)(RecipeList)
-// export default RecipeList
+// anything returned from this function will
+// end up as props on this container
+function mapDispatchtoProps(dispatch) {
+  // whenever getRecipes is called, the result should
+  // be passed to all of our reducers
+  return bindActionCreators({ getRecipes }, dispatch)
+}
+
+// promote RecipeList from a component to a container class
+// it needs to know about this new dispatch method, getRecipes
+// Make it available as a prop of the container
+export default connect(mapStateToProps, mapDispatchtoProps)(RecipeList)

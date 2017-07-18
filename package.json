@@ -33,6 +33,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "reactstrap": "^4.8.0",
     "redux": "^3.7.1",
+    "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "4.2.1",
     "redux-saga": "^0.15.4",
     "reselect": "^3.0.1",
