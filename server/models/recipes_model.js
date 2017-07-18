@@ -7,7 +7,7 @@ const _ = require('lodash');
 
 //insert a recipe schema.
 var RecipeSchema = new mongoose.Schema({
-  fridge_name: {
+  title: {
     type:String,
     required: true
   },
