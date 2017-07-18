@@ -78,7 +78,7 @@ describe('POST /api/users', () => {
         }).then((cart) => {
           expect(cart).toExist();
           expect(cart.cart_name).toBe('default');
-          expect(fridge.content.length).toBe(0);
+          expect(cart.content.length).toBe(0);
           done();
         })
           .catch((e) => done(e));

@@ -61,5 +61,5 @@ router.post('/message', authenticate, (req, res) => {
 
 });
 
-//TODO: login, me, send message,
+//TODO: send message,
 module.exports = router;
