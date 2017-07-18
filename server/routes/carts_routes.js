@@ -22,9 +22,11 @@ router.get('/', authenticate, (req, res) => {
 
 //The addcontent must be in this format:
 // [{item: <item name>, quantity: <number>}]
+// This function will not return the updated content in the fridge.
+// Only a follow on read of the fridge will get it.
 
 router.post('/addcontent', authenticate, (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   if(!req.body.content instanceof Array) {
     res.status(500).send('wrong input type');
   }
@@ -36,24 +38,23 @@ router.post('/addcontent', authenticate, (req, res) => {
       if (!cart) {
         res.status(400).send();
       }else {
-        // cart.content.push(newContent);
-        // cart.save(() => {
-        //   res.status(200).send(cart);
-        // });
+
         cart.update(
           {
             $push: {content: {$each: newContents}}
           }, {safe: true, upsert: true},
-          (err, model) => {
+          (err, raw) => {
             if (err) {
               res.status(500).send(err);
             }
-            return cart.save().then((cart) => {
-              res.status(200).send(cart);
-            });
+
+            res.status(200).send();
           }
         );
       }
+  }).catch((e) => {
+    //catch fucking exception and update user with 500 internal error.
+    res.status(500).send(e);
   });
 });
 
