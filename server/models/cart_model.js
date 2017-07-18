@@ -17,7 +17,9 @@ var CartSchema = new mongoose.Schema({
   content: [{
     item: {
       type: String,
-      quantity: Number
+    },
+    quantity: {
+      type:Number
     }
   }]
 });

@@ -16,8 +16,10 @@ var FridgeSchema = new mongoose.Schema({
   },
   content: [{
     item: {
-      type: String,
-      quantity:Number
+      type: String
+    },
+    quantity: {
+      type: Number
     }
   }]
 });

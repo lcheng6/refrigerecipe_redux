@@ -37,7 +37,7 @@ describe('Get /api/cart', () => {
 describe('POST /api/cart/addcontents', () => {
   it('should refer to a valid user through x-auth header', (done) => {
     request(app)
-      .get('/api/carts')
+      .post('/api/carts/addcontents')
       .set('x-auth', users[0].tokens[0].token)
       .send({})
       .expect(200)
