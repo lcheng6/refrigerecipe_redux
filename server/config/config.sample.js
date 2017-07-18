@@ -21,3 +21,5 @@ process.env.spoonacular_cred = "Spoonacular Credential";
 
 process.env.peapop_username = "PeaPod user name";
 process.env.peapop_password = "PeaPod password";
+
+process.env.spponacularAPIKey = "X-Mashape API Key"
