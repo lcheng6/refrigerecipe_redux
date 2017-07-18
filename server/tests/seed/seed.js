@@ -122,10 +122,10 @@ const populateCarts = (done) => {
 
 newCartContent = [{item: "chicken", quantity: 2}, {item: "liquor", quantity: 50000}];
 
-updateFridgeContent = [{item: "Butter", quantity:2}, {item: "Eggs", quantity: 10}, {item: "Apples", quantity: 2},
+setFridgeContent = [{item: "Butter", quantity:2}, {item: "Eggs", quantity: 10}, {item: "Apples", quantity: 2},
   {item:"Corn", quantity:5}, {item: "Bread", quantity: 2}];
 
 
 
 module.exports = {users, populateUsers, fridges, populateFridges, carts, populateCarts,
-  newUserGen, newCartContent, updateFridgeContent};
+  newUserGen, newCartContent, setFridgeContent};

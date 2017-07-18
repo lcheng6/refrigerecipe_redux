@@ -10,7 +10,7 @@ const {users, populateUsers, carts, populateCarts, newCartContent} = require('./
 beforeEach(populateUsers);
 beforeEach(populateCarts);
 
-describe('Get /api/cart', () => {
+describe('Get /api/carts', () => {
   it ('should get the content of the cart if authenticated', (done) => {
     request(app)
       .get('/api/carts')
