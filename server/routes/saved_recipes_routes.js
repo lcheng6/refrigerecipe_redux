@@ -9,8 +9,6 @@ var {SavedRecipe} = require('../models/saved_recipe_model');
 var {authenticate} = require('../middleware/authenticate');
 
 
-//TODO: add items
-//TODO: nice to have features: select items
 
 
 module.exports = router;

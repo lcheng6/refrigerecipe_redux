@@ -20,14 +20,20 @@ function cacheRecipesDetail (params) {
   return axios.get(params.queryUrl,
     {
       headers: {
-        "X-Mashape-Key": process.env.spponacularAPIKey,
+        "X-Mashape-Key": process.env.spoonacularAPIKey,
         "Accept": "application/json"
       }
     })
     .then(function(response) {
       var filtered_data = _.pick(response.data,
         "id", "title", "image", "vegetarian", "vegan","cookingMinutes","preparationMinutes","readyInMinutes",
-        "extendedIngredients", "pricePerServing", "servings", "sourceUrl", "spoonacularSourceUrl", "nutrition");
+        "extendedIngredients", "pricePerServing", "servings", "sourceUrl", "spoonacularSourceUrl", "nutrition", "dishTypes",
+        "instructions", "analyzedInstructions");
+      if ("instructions" in response.data) {
+        filtered_data["haveInstructions"] = true;
+      }else {
+        filtered_data["haveInstructions"] = false;
+      }
       filtered_data.user_id = params.user_id;
       filtered_data.createdAt = new Date();
 
@@ -35,11 +41,9 @@ function cacheRecipesDetail (params) {
       Recipe.findOneAndUpdate(query, filtered_data, {upsert:true, returnNewDocument: true}, function(err, doc) {
         if (err) {
           //do nothing; should log it.
-          //TODO: log it
-          throw(err);
-        }else {
-          return doc;
+          //TODO: handle exception cases.
         }
+        return doc;
       });
     });
 }
@@ -60,7 +64,7 @@ router.get('/', authenticate, (req, res) => {
         return axios.get(SpoonacularFindByRecipesURL,
           {
             headers: {
-              "X-Mashape-Key": process.env.spponacularAPIKey,
+              "X-Mashape-Key": process.env.spoonacularAPIKey,
               "Accept": "application/json"
             },
             params: {
@@ -105,11 +109,16 @@ router.get('/', authenticate, (req, res) => {
 
 
 //to access detial of specific recipes that you get from the summary API or /api/recipes/
+//if the recipe doesn't exist in local cache, try to get it from the Spoonacular API and cache it in Mongo.
 router.get('/:id', authenticate, (req, res) => {
   recipeId = req.params.id;
   Recipe.findOne({id: recipeId}, function(err, recipe) {
-    if(err) {
-      var queryUrl = SpoonacularRecipeDetailURL + recipe_summary.id + SpoonacularRecipeDetailOption;
+    if (err) {
+      res.status(500).send(err);
+    }
+    //if recipe doesn't exist in local cache, try to get it from Spoonacular.
+    if(!recipe) {
+      var queryUrl = SpoonacularRecipeDetailURL + recipeId + SpoonacularRecipeDetailOption;
       var user_id = req.user._id;
       cacheRecipesDetail({queryUrl, user_id})
         .then((recipe) => {
