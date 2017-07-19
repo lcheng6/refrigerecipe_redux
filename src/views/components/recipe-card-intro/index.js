@@ -6,7 +6,7 @@ import { Card, CardImg, CardText, CardBlock, CardLink,
 const RecipeCardIntro = (props) => {
   return (
     <Card>
-      <CardImg top width="100%" src="https://spoonacular.com/recipeImages/easy-no-knead-artisan-bread-866619.jpg" alt="Card image cap" />{props.image}
+      <CardImg top width="100%" src={props.image} alt="Card image cap" />
       <CardBlock>
         <CardTitle>{props.title}Cinnamon Chip Bread</CardTitle>
         <CardSubtitle>Ingredients: </CardSubtitle>

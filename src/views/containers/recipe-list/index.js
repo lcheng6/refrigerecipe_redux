@@ -12,16 +12,18 @@ import { getRecipes } from '../../../core/get-recipes'
 class RecipeList extends Component {
   constructor(props) {
     super(props)
-    this.state = { recipes: [] }
+    // this.state = { recipes: [] }
   }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below
   componentDidMount() {
     this.props.getRecipes('flour,sugar,milk')
+    console.log('in componentDidMount: this.state = ' + this.state + ' this.props = ' + this.props)
   }
 
   renderRecipes() {
-    return _.map(this.state.recipes, recipe => {
+    console.log('in renderRecipes: this.state = ' + this.state + ' this.props = ' + this.props)
+    return _.map(this.props.recipes, recipe => {
       return (
         <RecipeCardIntro
           key={recipe.id}
@@ -34,19 +36,23 @@ class RecipeList extends Component {
     })
   }
   render() {
+      console.log('in componentDidMount: this.state = ' + this.state + ' this.props = ' + this.props)
     return (
       <div>
         {this.renderRecipes()}
+        {console.log("renderingRecipes ", this.renderRecipes())}
       </div>
     )
   }
 }
 
-function mapStateToProps({ recipes }) {
-
+function mapStateToProps(state) {
+  console.log('in mapStateToProps state =', state)
   // anything returned here will
   // end up as props on this container
-  return ({ recipes })
+  return {
+    recipes: state.reducers.intro_recipes.recipes
+  }
 }
 
 // anything returned from this function will

@@ -6,7 +6,6 @@ import {
   FETCH_RECIPES
 } from './constants'
 
-import axios from 'axios'
 
 export function getRecipes(ingredients) {
   return {
