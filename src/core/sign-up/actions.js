@@ -1,16 +1,16 @@
 // this is an important part... the api...
-import getRecipesByIngredients from '../api/getRecipesIntroAPI'
+import signUpAPI from '../api/signUpAPI'
 // ... implements redux-promise-middleware,
 // so the rest of the FETCH_RECIPES cases are appended
 import {
-  FETCH_RECIPES
+  SIGNUP_REQUEST
 } from './constants'
 
 import axios from 'axios'
 
-export function getRecipes(ingredients) {
+export function signUp({ email, password, phone }) {
   return {
-    type:FETCH_RECIPES,
-    payload: getRecipesByIngredients(ingredients)
+    type:SIGNUP_REQUEST,
+    payload: signUpRequest({ email, password, phone })
   }
 }
