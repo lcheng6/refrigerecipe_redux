@@ -20,9 +20,14 @@ var RecipeSchema = new mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true
-  }
-});
+  },
+  createdAt: {
+    //TODO: changed to required later
+    type:mongoose.Schema.Types.Date,
+    required: true
+  },
+}, {strict: false});
 
-var Recipe = mongoose.model('Recipe', FridgeSchema);
+var Recipe = mongoose.model('Recipe', RecipeSchema);
 
 module.exports = {Recipe};
