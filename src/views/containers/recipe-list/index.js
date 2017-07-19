@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import _ from 'lodash'
+// import _ from 'lodash'
 import RecipeCardIntro from '../../components/recipe-card-intro'
 import { getRecipes } from '../../../core/get-recipes'
 
@@ -17,19 +17,20 @@ class RecipeList extends Component {
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below
   componentDidMount() {
-    this.props.getRecipes('flour,sugar,milk')
+    // =====================  HARD CODED ==========================
+    this.props.getRecipes('rice,eggs,tortillas,sausage')
     console.log('in componentDidMount: this.state = ' + this.state + ' this.props = ' + this.props)
   }
 
   renderRecipes() {
     console.log('in renderRecipes: this.state = ' + this.state + ' this.props = ' + this.props)
-    return _.map(this.props.recipes, recipe => {
+    return this.props.recipes.map((recipe) => {
       return (
         <RecipeCardIntro
           key={recipe.id}
           title={recipe.title}
           usedCount={recipe.usedIngredientCount}
-          middedCount={recipe.missedIngredientCount}
+          missedCount={recipe.missedIngredientCount}
           image={recipe.image}
          />
       )
