@@ -122,7 +122,7 @@ const populateCarts = (done) => {
 };
 
 const clearCachedRecipes = (done) => {
-  Recipes.remove({}).then(done);
+  Recipe.remove({}).then(done);
 };
 
 newCartContent = [{item: "chicken", quantity: 2}, {item: "liquor", quantity: 50000}];

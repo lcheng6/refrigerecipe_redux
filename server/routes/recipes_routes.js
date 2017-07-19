@@ -17,7 +17,7 @@ const SpoonacularRecipeDetailOption = "/information?includeNutrition=true";
 
 function cacheRecipesDetail (params) {
 
-  axios.get(params.queryUrl,
+  return axios.get(params.queryUrl,
     {
       headers: {
         "X-Mashape-Key": process.env.spponacularAPIKey,
@@ -32,12 +32,13 @@ function cacheRecipesDetail (params) {
       filtered_data.createdAt = new Date();
 
       var query = {'id': filtered_data.id};
-      Recipe.findOneAndUpdate(query, filtered_data, {upsert:true}, function(err, doc) {
+      Recipe.findOneAndUpdate(query, filtered_data, {upsert:true, returnNewDocument: true}, function(err, doc) {
         if (err) {
           //do nothing; should log it.
           //TODO: log it
+          throw(err);
         }else {
-          //do nothing. should log it.
+          return doc;
         }
       });
     });
@@ -105,7 +106,22 @@ router.get('/', authenticate, (req, res) => {
 
 //to access detial of specific recipes that you get from the summary API or /api/recipes/
 router.get('/:id', authenticate, (req, res) => {
-
+  recipeId = req.params.id;
+  Recipe.findOne({id: recipeId}, function(err, recipe) {
+    if(err) {
+      var queryUrl = SpoonacularRecipeDetailURL + recipe_summary.id + SpoonacularRecipeDetailOption;
+      var user_id = req.user._id;
+      cacheRecipesDetail({queryUrl, user_id})
+        .then((recipe) => {
+          res.send(recipe);
+        })
+        .catch((e) => {
+          res.status(500).send(e);
+        });
+    }else {
+      res.send(recipe);
+    }
+  });
 });
 
 module.exports = router;
