@@ -19,13 +19,14 @@ const signUpRequest = () => {
         "Accept": "application/json",
       }
     })
-    .then((request) => {
-      console.log("request ", request)
-      resolve(request)
+    .then((res) => {
+      //console.log("res ", res);
+      console.log("x-auth: " + res.headers['x-auth']);
+      resolve(res);
     })
     .catch((error) => {
-      reject(error)
-    })
+      reject(error);
+    });
   })
 }
 
