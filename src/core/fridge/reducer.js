@@ -30,6 +30,27 @@ export function fridgeReducer(state = initialState, action) {
         response: action.payload
       })
 
+
+    case fridgeActions.FRIDGE_UPDATE_PENDING:
+      return Object.assign({}, state, {
+        fetching: true
+      })
+
+    case fridgeActions.FRIDGE_UPDATE_REJECTED:
+      return Object.assign({}, state, {
+        fetching: false,
+        error: action.payload
+      })
+
+    case fridgeActions.FRIDGE_UPDATE_FULFILLED:
+    console.log(action.payload)
+      return Object.assign({}, state, {
+        fetching: false,
+        fetched: true,
+        response: action.payload
+      })
+
+
     default:
       return state
   }

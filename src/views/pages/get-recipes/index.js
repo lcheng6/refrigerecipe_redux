@@ -3,12 +3,10 @@ import { CardColumns } from 'reactstrap';
 
 import FullWidthResponsive from '../../components/layout/full-width'
 import RecipeList from '../../containers/recipe-list'
-import NavBar from '../../components/navbar'
 
 const GetRecipes = () => {
   return (
     <div>
-      <NavBar/>
       <FullWidthResponsive>
         <CardColumns>
           <RecipeList/>

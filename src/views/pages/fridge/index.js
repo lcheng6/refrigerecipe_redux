@@ -1,14 +1,15 @@
 import React from 'react'
 import SingleCardResponsive from '../../components/layout/single-column'
-import SignUpCard from '../../containers/card-sign-up'
+
+import FridgeForm from '../../containers/fridge-form'
 
 
-const SignIn = () => (
+const Fridge = () => (
   <div>
     <SingleCardResponsive>
-      <SignUpCard/>
+      <FridgeForm/>
     </SingleCardResponsive>
   </div>
 )
 
-export default SignIn
+export default Fridge
