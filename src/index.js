@@ -1,52 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+
 import promise from 'redux-promise-middleware'
+import createHistory from 'history/createBrowserHistory'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
-import SignIn from './views/pages/sign-in'
-import SignUp from './views/pages/sign-up'
 
-import GetRecipes from './views/pages/get-recipes'
+import reducers from './reducers'
+import App from './App'
 
-
-import { Route } from 'react-router'
-import createHistory from 'history/createBrowserHistory'
-
-import reducers from './reducers' // Or wherever you keep your reducers
-
-// Create a history of your choosing (we're using a browser history in this case)
+//  using a browser history in this case
 const history = createHistory()
-
-// Build the middleware for intercepting and dispatching navigation actions
-// const middleware = routerMiddleware(history)
-
-// Add the reducer to your store on the `router` key
-// Also apply our middleware for navigating
 const store = createStore(
   combineReducers({
     reducers,
+    // router reducer in redux store on the `router` key
     router: routerReducer
   }),
-  composeWithDevTools(applyMiddleware(promise(), routerMiddleware(history)))
+  composeWithDevTools(applyMiddleware(
+    // middleware for async actions
+    promise(),
+    // middleware for tracking navigation in redux store
+    routerMiddleware(history))
+  )
 )
 // Now you can dispatch navigation actions from anywhere!
 // store.dispatch(push('/foo'))
 
 ReactDOM.render(
+// The Provider component provides
+//  the React store to all its child
+//  components so we don't need to pass
+//  it explicitly to all the components.
   <Provider store={store}>
     { /* ConnectedRouter will use the store from Provider automatically */ }
     <ConnectedRouter history={history}>
-      <div>
-        <Route exact path="/" component={SignIn}/>
-        <Route path="/sign-up" component={SignUp}/>
-        <Route path="/sign-in" component={SignIn}/>
-        <Route path="/get-recipes" component={GetRecipes}/>
-      </div>
+      <App/>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

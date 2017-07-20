@@ -5,7 +5,7 @@ import FullWidthResponsive from '../../components/layout/full-width'
 import RecipeList from '../../containers/recipe-list'
 import NavBar from '../../components/navbar'
 
-const GetRecipes = ({key, title}) => {
+const GetRecipes = () => {
   return (
     <div>
       <NavBar/>

@@ -1,9 +1,9 @@
 import { List, Record } from 'immutable'
 import {
-  SIGNUP_REQUEST_PENDING,
-  SIGNUP_REQUEST_REJECTED,
-  SIGNUP_REQUEST_FULFILLED
-} from './constants'
+  SIGN_IN_PENDING,
+  SIGN_IN_REJECTED,
+  SIGN_IN_FULFILLED
+} from './actions'
 
 export const RecipesState = new Record({
   recipes: new List(),
@@ -15,18 +15,18 @@ export const RecipesState = new Record({
 export function getRecipesReducer(state = new RecipesState(), action) {
   console.log('action received', action)
   switch (action.type) {
-    case SIGNUP_REQUEST_PENDING:
+    case SIGN_IN_PENDING:
       return state.merge({
         fetching: true
       })
 
-    case SIGNUP_REQUEST_REJECTED:
+    case SIGN_IN_REJECTED:
       return state.merge({
         fetching: false,
         error: action.payload
       })
 
-    case SIGNUP_REQUEST_FULFILLED:
+    case SIGN_IN_FULFILLED:
       return state.merge({
         fetching: false,
         fetched: true,
@@ -37,7 +37,7 @@ export function getRecipesReducer(state = new RecipesState(), action) {
       return state
   }
 }
-// 
+//
 // import {
 //   SIGNUP_REQUEST
 // } from './constants'

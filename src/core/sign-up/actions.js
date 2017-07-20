@@ -1,16 +1,13 @@
-// this is an important part... the api...
-import signUpAPI from '../api/signUpAPI'
-// ... implements redux-promise-middleware,
-// so the rest of the FETCH_RECIPES cases are appended
-import {
-  SIGNUP_REQUEST
-} from './constants'
+import signUpRequest from '../api/signUpAPI'
 
-import axios from 'axios'
+export const SIGN_UP_PENDING = "SIGN_UP_PENDING"
+export const SIGN_UP_REJECTED = "SIGN_UP_REJECTED"
+export const SIGN_UP_FULFILLED = "SIGN_UP_FULFILLED"
+export const SIGN_UP = "SIGN_UP"
 
 export function signUp({ email, password, phone }) {
   return {
-    type:SIGNUP_REQUEST,
+    type:SIGN_UP,
     payload: signUpRequest({ email, password, phone })
   }
 }

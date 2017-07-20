@@ -3,13 +3,13 @@ import { Container, Row, Col } from 'reactstrap';
 // import classNames from 'classnames'
 // import styled from 'styled-components'
 
-const FullWidthResponsive = ({children, className}) => (
+const SingleCardResponsive = ({children, className}) => (
   <Container fluid>
     <Row noGutters>
       <Col
         sm="12"
-        md="12"
-        lg={{ size: 10, offset: 1 }}
+        md={{ size: 6, offset: 3 }}
+        lg={{ size: 4, offset: 4 }}
         >
           {children}
         </Col>
@@ -17,4 +17,4 @@ const FullWidthResponsive = ({children, className}) => (
   </Container>
 )
 
-export default FullWidthResponsive
+export default SingleCardResponsive

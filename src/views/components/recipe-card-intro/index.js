@@ -3,6 +3,9 @@ import { Card, CardImg, CardText, CardBlock, CardLink,
   CardTitle, CardSubtitle, Badge, Button } from 'reactstrap';
 // import styled from 'styled-components'
 
+
+// components can receive state and actions as props.
+
 const RecipeCardIntro = (props) => {
   return (
     <Card>

@@ -1,15 +1,15 @@
 import React from 'react'
-import FullWidthResponsive from '../../components/layout/full-width'
+import SingleCardResponsive from '../../components/layout/single-column'
 import NavBar from '../../components/navbar'
-import SignUpCard from '../../components/card-signup'
+import SignUpCard from '../../containers/card-sign-up'
 
 
 const SignIn = () => (
   <div>
     <NavBar/>
-    <FullWidthResponsive>
+    <SingleCardResponsive>
       <SignUpCard/>
-    </FullWidthResponsive>
+    </SingleCardResponsive>
   </div>
 )
 
