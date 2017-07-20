@@ -3,12 +3,10 @@ import { connect } from 'react-redux'
 
 import RecipeCardIntro from '../../components/recipe-card-intro'
 import { getRecipesActions } from '../../../core/get-recipes'
-// import { PacmanLoader } from '../../components/loaders'
 
 class RecipeList extends Component {
   constructor(props) {
     super(props)
-    // this.state = { recipes: [] }
   }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below

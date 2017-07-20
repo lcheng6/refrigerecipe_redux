@@ -37,8 +37,8 @@ ReactDOM.render(
 //  the React store to all its child
 //  components so we don't need to pass
 //  it explicitly to all the components.
+// ConnectedRouter will use the store from Provider automatically
   <Provider store={store}>
-    { /* ConnectedRouter will use the store from Provider automatically */ }
     <ConnectedRouter history={history}>
       <App/>
     </ConnectedRouter>

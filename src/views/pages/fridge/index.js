@@ -1,15 +1,40 @@
-import React from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fridgeActions } from '../../../core/fridge';
+import FridgeForm from '../../containers/fridge-form';
+import FridgeList from '../../containers/fridge-list';
+
 import SingleCardResponsive from '../../components/layout/single-column'
 
-import FridgeForm from '../../containers/fridge-form'
+class Fridge extends Component{
+  constructor(props){
+    super(props)
+  }
+  render() {
+    return (
+      <SingleCardResponsive>
+        <FridgeForm handleSubmit={this.props.createItem} />
+        <FridgeList
+          removeItem={this.props.removeItem}
+          items={this.props.items}
+        />
+      </SingleCardResponsive>
+    )
+  }
+}
 
+function mapStateToProps (state) {
+  return{
+    items: state.reducers.fridge.items
+  }
+}
 
-const Fridge = () => (
-  <div>
-    <SingleCardResponsive>
-      <FridgeForm/>
-    </SingleCardResponsive>
-  </div>
-)
+const mapDispatchToProps = {
+  createItem: fridgeActions.fridgeUpdate,
+  // removeItem: fridgeActions.fridgeUpdate,
+}
 
-export default Fridge
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Fridge)

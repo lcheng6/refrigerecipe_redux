@@ -2,7 +2,7 @@
 import { fridgeActions } from './actions'
 
 export const initialState = {
-  response: null,
+  items: [],
   fetching: false,
   fetched: false,
   error: null
@@ -27,7 +27,7 @@ export function fridgeReducer(state = initialState, action) {
       return Object.assign({}, state, {
         fetching: false,
         fetched: true,
-        response: action.payload
+        items: action.payload
       })
 
 
@@ -47,7 +47,7 @@ export function fridgeReducer(state = initialState, action) {
       return Object.assign({}, state, {
         fetching: false,
         fetched: true,
-        response: action.payload
+        items: action.payload
       })
 
 

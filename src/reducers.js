@@ -7,6 +7,5 @@ import { fridgeReducer } from './core/fridge'
 export default combineReducers({
   intro_recipes: getRecipesReducer,
   fridge: fridgeReducer,
-  form: formReducer
   // sign_up: signUpReducer
 })
