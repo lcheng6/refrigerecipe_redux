@@ -1,4 +1,5 @@
-import fridgeLoadRequest from '../api/signUpAPI'
+import fridgeRequestAPI from '../api/fridgeRequestAPI'
+import fridgeUpdateAPI from '../api/fridgeUpdateAPI'
 
 export const fridgeActions = {
   FRIDGE_LOAD_PENDING: "FRIDGE_LOAD_PENDING",
@@ -6,18 +7,18 @@ export const fridgeActions = {
   FRIDGE_LOAD_FULFILLED: "FRIDGE_LOAD_FULFILLED",
   FRIDGE_LOAD: "FRIDGE_LOAD",
 
-  FRIDGE_ITEM_REMOVE_PENDING: "FRIDGE_ITEM_REMOVE_PENDING",
-  FRIDGE_ITEM_REMOVE_REJECTED: "FRIDGE_ITEM_REMOVE_REJECTED",
-  FRIDGE_ITEM_REMOVE_FULFILLED: "FRIDGE_ITEM_REMOVE_FULFILLED",
-  FRIDGE_ITEM_REMOVE: "FRIDGE_ITEM_REMOVE",
+  FRIDGE_UPDATE_PENDING: "FRIDGE_UPDATE_PENDING",
+  FRIDGE_UPDATE_REJECTED: "FRIDGE_UPDATE_REJECTED",
+  FRIDGE_UPDATE_FULFILLED: "FRIDGE_UPDATE_FULFILLED",
+  FRIDGE_UPDATE: "FRIDGE_UPDATE",
 
-  FRIDGE_ITEM_ADD_PENDING: "FRIDGE_ITEM_ADD_PENDING",
-  FRIDGE_ITEM_ADD_REJECTED: "FRIDGE_ITEM_ADD_REJECTED",
-  FRIDGE_ITEM_ADD_FULFILLED: "FRIDGE_ITEM_ADD_FULFILLED",
-  FRIDGE_ITEM_ADD: "FRIDGE_ITEM_ADD",
-
-  fridgeLoad: ({ email, password, phone }) => ({
+  fridgeRequest: (request) => ({
     type: fridgeActions.FRIDGE_LOAD,
-    payload: fridgeLoadRequest({ email, password, phone })
-  })
+    payload: fridgeRequestAPI(request)
+  }),
+
+  fridgeUpdate: (request) => ({
+    type: fridgeActions.FRIDGE_UPDATE,
+    payload: fridgeUpdateAPI(request)
+  }),
 }

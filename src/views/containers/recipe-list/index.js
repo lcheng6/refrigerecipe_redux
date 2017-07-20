@@ -15,7 +15,7 @@ class RecipeList extends Component {
   // registers it and 'connect' it with react as props below
   componentDidMount() {
     // =====================  HARD CODED ==========================
-    this.props.getRecipes('rice,eggs,tortillas,sausage')
+    // this.props.getRecipes('rice,eggs,tortillas,sausage')
   }
 
   renderRecipes() {
