@@ -38,6 +38,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "^4.2.1",
     "redux-saga": "^0.15.4",
+    "reselect": "^3.0.1",
     "styled-components": "^2.1.1",
     "validator": "^8.0.0",
     "webfontloader": "^1.6.28",
@@ -53,7 +54,8 @@
     "supertest": "^3.0.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

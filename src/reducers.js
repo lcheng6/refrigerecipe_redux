@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux'
-import { reducer as formReducer } from 'redux-form'
+import { routerReducer } from 'react-router-redux'
 import { getRecipesReducer } from './core/get-recipes'
+import { authReducer } from './core/auth';
 import { fridgeReducer } from './core/fridge'
-// import { signUpReducer } from './core/sign-up'
 
 export default combineReducers({
   intro_recipes: getRecipesReducer,
   fridge: fridgeReducer,
-  // sign_up: signUpReducer
+  auth: authReducer,
+  routing: routerReducer,
 })

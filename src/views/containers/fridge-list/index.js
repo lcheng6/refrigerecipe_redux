@@ -19,5 +19,4 @@ const FridgeList = ({removeItem, items}) => {
   );
 };
 
-
 export default FridgeList;

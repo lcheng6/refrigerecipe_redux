@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fridgeActions } from '../../../core/fridge';
-import FridgeForm from '../../containers/fridge-form';
-import FridgeList from '../../containers/fridge-list';
+import { fridgeActions } from 'src/core/fridge';
+import FridgeForm from 'src/views/containers/fridge-form';
+import FridgeList from 'src/views/containers/fridge-list';
 
 import SingleCardResponsive from '../../components/layout/single-column'
 
@@ -25,7 +25,7 @@ class Fridge extends Component{
 
 function mapStateToProps (state) {
   return{
-    items: state.reducers.fridge.items
+    items: state.fridge.items
   }
 }
 

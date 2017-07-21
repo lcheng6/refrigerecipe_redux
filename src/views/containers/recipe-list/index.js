@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import RecipeCardIntro from '../../components/recipe-card-intro'
-import { getRecipesActions } from '../../../core/get-recipes'
+import RecipeCardIntro from 'src/views/components/recipe-card-intro'
+import { getRecipesActions } from 'src/core/get-recipes'
 
 class RecipeList extends Component {
   constructor(props) {
     super(props)
+    // =====================  HARD CODED ==========================
+    this.props.getRecipes('rice,eggs,tortillas,sausage')
   }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below
   componentDidMount() {
-    // =====================  HARD CODED ==========================
-    // this.props.getRecipes('rice,eggs,tortillas,sausage')
   }
 
   renderRecipes() {
@@ -51,8 +51,8 @@ function mapStateToProps(state) {
   // anything returned here will
   // end up as props on this container
   return {
-    recipes: state.reducers.intro_recipes.recipes,
-    fetching: state.reducers.intro_recipes.fetching
+    recipes: state.intro_recipes.recipes,
+    fetching: state.intro_recipes.fetching
   }
 }
 
