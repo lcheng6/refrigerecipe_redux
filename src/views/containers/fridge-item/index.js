@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 
@@ -19,24 +18,24 @@ export class FridgeItem extends Component {
   }
 
   remove() {
-    this.props.removeTask(this.props.task);
+    this.props.removeTask(this.props.item);
   }
 
-  renderTitle(task) {
+  renderTitle(item) {
     return (
-      <div className="task-item__title" tabIndex="0">
-        {task.title}
+      <div className="item-item__title" tabIndex="0">
+        {item.title}
       </div>
     );
   }
 
-  renderTitleInput(task) {
+  renderTitleInput(item) {
     return (
       <input
         autoComplete="off"
         autoFocus
-        className="task-item__input"
-        defaultValue={task.title}
+        className="item-item__input"
+        defaultValue={item.title}
         maxLength="64"
         onKeyUp={this.handleKeyUp}
         type="text"
@@ -45,20 +44,20 @@ export class FridgeItem extends Component {
   }
 
   render() {
-    const { task } = this.props
+    const { item } = this.props
 
-    let containerClasses = classNames('task-item', {
-      'task-item--completed': task.completed,
+    let containerClasses = classNames('item-item', {
+      'item-item--completed': item.completed,
     })
 
     return (
       <div className={containerClasses} tabIndex="0">
         <div className="cell">
-          {this.renderTitle(task)}
+          {this.renderTitle(item)}
         </div>
         <div>
           <Button
-            className={classNames('btn--icon', 'task-item__button')}
+            className={classNames('btn--icon', 'item-item__button')}
             onClick={this.remove}>
             <i className={classNames('material-icons')}>delete</i>
           </Button>

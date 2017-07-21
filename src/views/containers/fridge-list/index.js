@@ -9,14 +9,14 @@ const FridgeList = ({removeItem, items}) => {
         key={index}
         item={item}
       />
-    );
-  });
+    )
+  })
 
   return (
     <div>
       {fridgeItems}
     </div>
-  );
-};
+  )
+}
 
 export default FridgeList;

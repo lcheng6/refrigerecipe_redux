@@ -8,7 +8,7 @@ class RecipeList extends Component {
   constructor(props) {
     super(props)
     // =====================  HARD CODED ==========================
-    this.props.getRecipes('rice,eggs,tortillas,sausage')
+    // this.props.getRecipes('rice,eggs,tortillas,sausage')
   }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below

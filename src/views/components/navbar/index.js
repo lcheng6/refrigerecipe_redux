@@ -34,11 +34,8 @@ export default class NavBar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               {this.props.authenticated ?
                 <Nav className="ml-auto" navbar>
-                  <NavItem>
+                  <NavItem style={{cursor: "pointer"}} >
                     <NavLink onClick={this.props.signOut}>Sign Out</NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink tag={RrNavLink} to="/fridge">My Fridge</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink tag={RrNavLink} to="/get-recipes">Get Recipes</NavLink>

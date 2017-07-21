@@ -1,24 +1,47 @@
-import fridgeRequestAPI from '../api/fridgeRequestAPI'
-import fridgeUpdateAPI from '../api/fridgeUpdateAPI'
-
 export const fridgeActions = {
-  FRIDGE_LOAD_PENDING: "FRIDGE_LOAD_PENDING",
-  FRIDGE_LOAD_REJECTED: "FRIDGE_LOAD_REJECTED",
-  FRIDGE_LOAD_FULFILLED: "FRIDGE_LOAD_FULFILLED",
-  FRIDGE_LOAD: "FRIDGE_LOAD",
+  CREATE_ITEM: 'CREATE_ITEM',
+  CREATE_ITEM_FAILED: 'CREATE_ITEM_FAILED',
+  CREATE_ITEM_FULFILLED: 'CREATE_ITEM_FULFILLED',
 
-  FRIDGE_UPDATE_PENDING: "FRIDGE_UPDATE_PENDING",
-  FRIDGE_UPDATE_REJECTED: "FRIDGE_UPDATE_REJECTED",
-  FRIDGE_UPDATE_FULFILLED: "FRIDGE_UPDATE_FULFILLED",
-  FRIDGE_UPDATE: "FRIDGE_UPDATE",
+  REMOVE_ITEM: 'REMOVE_ITEM',
+  REMOVE_ITEM_FAILED: 'REMOVE_ITEM_FAILED',
+  REMOVE_ITEM_FULFILLED: 'REMOVE_ITEM_FULFILLED',
 
-  fridgeRequest: (request) => ({
-    type: fridgeActions.FRIDGE_LOAD,
-    payload: fridgeRequestAPI(request)
+  LOAD_ITEMS_FULFILLED: 'LOAD_ITEMS_FULFILLED',
+
+
+  createItem: title => ({
+    type: fridgeActions.CREATE_ITEM,
+    payload: {item: {title, completed: false}}
   }),
 
-  fridgeUpdate: (request) => ({
-    type: fridgeActions.FRIDGE_UPDATE,
-    payload: fridgeUpdateAPI(request)
+  createItemFailed: error => ({
+    type: fridgeActions.CREATE_ITEM_FAILED,
+    payload: {error}
   }),
-}
+
+  createItemFulfilled: item => ({
+    type: fridgeActions.CREATE_ITEM_FULFILLED,
+    payload: {item}
+  }),
+
+  removeItem: item => ({
+    type: fridgeActions.REMOVE_ITEM,
+    payload: {item}
+  }),
+
+  removeItemFailed: error => ({
+    type: fridgeActions.REMOVE_ITEM_FAILED,
+    payload: {error}
+  }),
+
+  removeItemFulfilled: item => ({
+    type: fridgeActions.REMOVE_ITEM_FULFILLED,
+    payload: {item}
+  }),
+
+  loadItemsFulfilled: items => ({
+    type: fridgeActions.LOAD_ITEMS_FULFILLED,
+    payload: {items}
+  })
+};

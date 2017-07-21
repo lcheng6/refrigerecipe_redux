@@ -32,19 +32,3 @@ export default function configureStore() {
 
   return store;
 }
-
-//
-//
-// const store = createStore(
-//   combineReducers({
-//     reducers,
-//     // router reducer in redux store on the `router` key
-//     router: routerReducer
-//   }),
-//   composeWithDevTools(applyMiddleware(
-//     // middleware for async actions
-//     promise(),
-//     // middleware for tracking navigation in redux store
-//     routerMiddleware(history))
-//   )
-// )

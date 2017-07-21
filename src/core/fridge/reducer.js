@@ -1,57 +1,30 @@
-// import { List, Record } from 'immutable'
-import { fridgeActions } from './actions'
+import { fridgeActions } from './actions';
 
 export const initialState = {
-  items: [],
-  fetching: false,
-  fetched: false,
-  error: null
+  filter: '',
+  items: []
 }
 
 export function fridgeReducer(state = initialState, action) {
-  console.log('action received', action)
   switch (action.type) {
-    case fridgeActions.FRIDGE_LOAD_PENDING:
+    case fridgeActions.CREATE_ITEM_FULFILLED:
       return Object.assign({}, state, {
-        fetching: true
+        items: state.items.unshift(action.payload.item)
       })
 
-    case fridgeActions.FRIDGE_LOAD_REJECTED:
+    case fridgeActions.LOAD_ITEMS_FULFILLED:
       return Object.assign({}, state, {
-        fetching: false,
-        error: action.payload
+        items: action.payload.items.reverse()
       })
 
-    case fridgeActions.FRIDGE_LOAD_FULFILLED:
-    console.log(action.payload)
+    case fridgeActions.REMOVE_ITEM_FULFILLED:
       return Object.assign({}, state, {
-        fetching: false,
-        fetched: true,
-        items: action.payload
+        items: state.items.filter(item => {
+          return item.key !== action.payload.item.key;
+        })
       })
-
-
-    case fridgeActions.FRIDGE_UPDATE_PENDING:
-      return Object.assign({}, state, {
-        fetching: true
-      })
-
-    case fridgeActions.FRIDGE_UPDATE_REJECTED:
-      return Object.assign({}, state, {
-        fetching: false,
-        error: action.payload
-      })
-
-    case fridgeActions.FRIDGE_UPDATE_FULFILLED:
-    console.log(action.payload)
-      return Object.assign({}, state, {
-        fetching: false,
-        fetched: true,
-        items: action.payload
-      })
-
 
     default:
-      return state
+      return state;
   }
 }

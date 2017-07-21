@@ -23,15 +23,13 @@ class Fridge extends Component{
   }
 }
 
-function mapStateToProps (state) {
-  return{
-    items: state.fridge.items
-  }
-}
+const mapStateToProps = (state) => ({
+  items: state.fridge.items
+})
 
 const mapDispatchToProps = {
-  createItem: fridgeActions.fridgeUpdate,
-  // removeItem: fridgeActions.fridgeUpdate,
+  createItem: fridgeActions.createItem,
+  removeItem: fridgeActions.removeItem,
 }
 
 export default connect(
