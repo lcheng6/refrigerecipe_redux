@@ -17,13 +17,33 @@ export class FridgeItem extends Component {
     }
   }
 
+  edit = () => {
+    this.setState({editing: true});
+  }
+
   remove = () => {
     this.props.removeItem(this.props.item);
   }
 
+  save = (event) => {
+    if (this.state.editing) {
+      const { item } = this.props;
+      const title = event.target.value.trim();
+
+      if (title.length && title !== item.title) {
+        this.props.updateItem(item, {title});
+      }
+
+      this.stopEditing();
+    }
+  }
+  toggleStatus = () => {
+    const { item } = this.props;
+    this.props.updateItem(item, {completed: !item.completed});
+  }
   renderTitle = (item) => {
     return (
-      <div className="task-item__title" tabIndex="0">
+      <div tabIndex="0">
         {item.title}
       </div>
     );
@@ -64,9 +84,8 @@ export class FridgeItem extends Component {
             {this.renderTitle(item)}
           </div>
 
-          <div className="cell" style={{marginLeft: "auto"}}>
+          <div className="cell" style={{marginLeft: "auto", cursor: "pointer"}}>
             <Button
-              className={classNames('btn--icon', 'task-item__button')}
               onClick={this.remove}>
               <Icon name="delete" />
             </Button>
