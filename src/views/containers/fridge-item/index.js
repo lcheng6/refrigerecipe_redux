@@ -23,7 +23,7 @@ export class FridgeItem extends Component {
 
   renderTitle = (item) => {
     return (
-      <div className="item-item__title" tabIndex="0">
+      <div className="task-item__title" tabIndex="0">
         {item.title}
       </div>
     );
@@ -34,7 +34,7 @@ export class FridgeItem extends Component {
       <input
         autoComplete="off"
         autoFocus
-        className="item-item__input"
+        className="task-item__input"
         defaultValue={item.title}
         maxLength="64"
         onKeyUp={this.handleKeyUp}
@@ -46,27 +46,27 @@ export class FridgeItem extends Component {
   render () {
       const { item } = this.props;
 
-      let containerClasses = classNames('item-item', {
-        'item-item--completed': item.completed,
+      let containerClasses = classNames('task-item', {
+        'task-item--completed': item.completed,
       });
 
       return (
-        <div className={containerClasses} tabIndex="0">
-          <div className="cell">
+        <div className={containerClasses} tabIndex="0" style={{display: "flex", marginBottom: "15px"}}>
+          {/* <div className="cell">
             <Button
-              className={classNames('btn--icon', 'item-item__button', {'active': item.completed})}
+              className={classNames('btn--icon', 'task-item__button', {'active': item.completed})}
               onClick={this.toggleStatus}>
               <Icon name="done" />
             </Button>
-          </div>
+          </div> */}
 
-          <div className="cell">
+          <div className="cell" style={{fontSize: "20px"}}>
             {this.renderTitle(item)}
           </div>
 
-          <div className="cell">
+          <div className="cell" style={{marginLeft: "auto"}}>
             <Button
-              className={classNames('btn--icon', 'item-item__button')}
+              className={classNames('btn--icon', 'task-item__button')}
               onClick={this.remove}>
               <Icon name="delete" />
             </Button>

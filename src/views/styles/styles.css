@@ -1,4 +1,39 @@
+button {
+  overflow: visible;
+  cursor: pointer; }
+  button::-moz-focus-inner {
+    border: 0;
+    padding: 0; }
+
+a {
+  background-color: transparent; }
+  a:active, a:hover {
+    outline: 0; }
+
+body {
+  font-family: Helvetica Neue, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.3125;
+  color: #333; }
+
+.g-row {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px; }
+  .g-row:before, .g-row:after {
+    content: '';
+    display: table; }
+  .g-row:after {
+    clear: both; }
+  .g-row .g-row {
+    margin: 0 -15px;
+    width: auto; }
+
 .g-col {
+  float: left;
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
   width: 100%; }
 
 html {
