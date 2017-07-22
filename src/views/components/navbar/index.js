@@ -1,7 +1,7 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import styled from 'styled-components'
-// import { NavLink as RrNavLink } from 'react-router-dom'
+import { NavLink as RrNavLink } from 'react-router-dom'
 import Container from '../layout/full-width'
 
 const Wrapper = styled.div`
@@ -30,19 +30,18 @@ export default class NavBar extends React.Component {
         <Container>
           <Navbar color="faded" light toggleable>
             <NavbarToggler right onClick={this.toggle} />
-            <NavbarBrand href="/">RFGRDX</NavbarBrand>
+            <NavbarBrand tag={RrNavLink} to="/">RFGRDX</NavbarBrand>
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink href="/get-recipes">Find Recipes</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/sign-in">Sign In</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/sign-up">Sign Up</NavLink>
-                </NavItem>
-              </Nav>
+              {this.props.authenticated ?
+                <Nav className="ml-auto" navbar>
+                  <NavItem style={{cursor: "pointer"}} >
+                    <NavLink onClick={this.props.signOut}>Sign Out</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={RrNavLink} to="/get-recipes">Get Recipes</NavLink>
+                  </NavItem>
+                </Nav>
+              : null}
             </Collapse>
           </Navbar>
         </Container>

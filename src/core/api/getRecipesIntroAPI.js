@@ -1,9 +1,11 @@
-const axios = require('axios') // tested this in node cli to make sure it worked first
-// import axios from 'axios'
+const axios = require('axios')
+
 const API_KEY = 'PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn'
 const ROOT_URL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&limitLicense=false&number=50&ranking=1&ingredients=`
 
-
+// redux-promise-middleware requires it get a promise,
+// so we create one with the api call (also a promise)
+// nested inside
 const getRecipesByIngredients = (ingredients) => {
   console.log("fetching from api ...")
   return new Promise((resolve, reject) => {
@@ -15,8 +17,8 @@ const getRecipesByIngredients = (ingredients) => {
         "Accept": "application/json",
       }
     })
-    .then((request) => {
-      resolve(request)
+    .then((response) => {
+      resolve(response)
     })
     .catch((error) => {
       reject(error)

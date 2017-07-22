@@ -8,8 +8,8 @@ const FullWidthResponsive = ({children, className}) => (
     <Row noGutters>
       <Col
         sm="12"
-        md={{ size: 10, offset: 1 }}
-        lg={{ size: 8, offset: 2 }}
+        md="12"
+        lg={{ size: 10, offset: 1 }}
         >
           {children}
         </Col>

@@ -1,5 +1,4 @@
-const axios = require('axios') // tested this in node cli to make sure it worked first
-// import axios from 'axios'
+const axios = require('axios')
 const ROOT_URL = `http://localhost:8080/api/users/login`;
 
 
@@ -16,8 +15,7 @@ const signInRequest = (req) => {
       }
     })
     .then((res) => {
-      //console.log("res ", res);
-      console.log("x-auth: " + res.headers['x-auth']);
+      console.log(res)
       resolve(res);
     })
     .catch((error) => {
@@ -26,5 +24,4 @@ const signInRequest = (req) => {
   })
 }
 
-// export default signInRequest
-signInRequest({email: "logan@gmail.com", password: "my-password"});
+export default signInRequest;
