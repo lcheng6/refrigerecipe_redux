@@ -1,16 +1,16 @@
 import { createSelector } from 'reselect';
 
 
-export function getTasks(state) {
-  return state.tasks;
+export function getItems(state) {
+  return state.fridge;
 }
 
-export function getTaskFilter(state) {
-  return getTasks(state).filter;
+export function getFridgeFilter(state) {
+  return getItems(state).filter;
 }
 
-export function getTaskList(state) {
-  return getTasks(state).list;
+export function getFridgeList(state) {
+  return getItems(state).items;
 }
 
 
@@ -18,19 +18,19 @@ export function getTaskList(state) {
 //  MEMOIZED SELECTORS
 //-------------------------------------
 
-export const getVisibleTasks = createSelector(
-  getTaskFilter,
-  getTaskList,
-  (filter, taskList) => {
+export const getVisibleItems = createSelector(
+  getFridgeFilter,
+  getFridgeList,
+  (filter, fridgeList) => {
     switch (filter) {
       case 'active':
-        return taskList.filter(task => !task.completed);
+        return fridgeList.filter(item => !item.completed);
 
       case 'completed':
-        return taskList.filter(task => task.completed);
+        return fridgeList.filter(item => item.completed);
 
       default:
-        return taskList;
+        return fridgeList;
     }
   }
 );

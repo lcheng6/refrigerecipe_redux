@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBlock, CardLink,
-  CardTitle, CardSubtitle, Badge, Button } from 'reactstrap';
+import { Card, CardImg, CardBlock, CardLink,
+  CardTitle, CardSubtitle, Badge } from 'reactstrap';
 // import styled from 'styled-components'
 
 

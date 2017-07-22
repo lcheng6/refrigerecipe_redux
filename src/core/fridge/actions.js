@@ -7,6 +7,11 @@ export const fridgeActions = {
   REMOVE_ITEM_FAILED: 'REMOVE_ITEM_FAILED',
   REMOVE_ITEM_FULFILLED: 'REMOVE_ITEM_FULFILLED',
 
+  UPDATE_ITEM: 'UPDATE_ITEM',
+  UPDATE_ITEM_FAILED: 'UPDATE_ITEM_FAILED',
+  UPDATE_ITEM_FULFILLED: 'UPDATE_ITEM_FULFILLED',
+
+  FILTER_ITEMS: 'FILTER_ITEMS',
   LOAD_ITEMS_FULFILLED: 'LOAD_ITEMS_FULFILLED',
 
 
@@ -38,6 +43,26 @@ export const fridgeActions = {
   removeItemFulfilled: item => ({
     type: fridgeActions.REMOVE_ITEM_FULFILLED,
     payload: {item}
+  }),
+
+  updateItem: (item, changes) => ({
+    type: fridgeActions.UPDATE_ITEM,
+    payload: {item, changes}
+  }),
+
+  updateItemFailed: error => ({
+    type: fridgeActions.UPDATE_ITEM_FAILED,
+    payload: {error}
+  }),
+
+  updateItemFulfilled: item => ({
+    type: fridgeActions.UPDATE_ITEM_FULFILLED,
+    payload: {item}
+  }),
+
+  filterItems: filterType => ({
+    type: fridgeActions.FILTER_ITEMS,
+    payload: {filterType}
   }),
 
   loadItemsFulfilled: items => ({

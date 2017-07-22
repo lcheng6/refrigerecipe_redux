@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { call, cancel, fork, put, take } from 'redux-saga/effects';
 import { authActions } from 'src/core/auth';
 import { fridgeActions } from './actions';
-import { fridgeList } from './fridge-list';
+import { fridgeList } from './fridge-list'; // firebase list
 
 
 function subscribe() {
@@ -29,7 +29,7 @@ function* write(context, method, onError, ...params) {
 
 const createItem = write.bind(null, fridgeList, fridgeList.push, fridgeActions.createItemFailed);
 const removeItem = write.bind(null, fridgeList, fridgeList.remove, fridgeActions.removeItemFailed);
-// const updateItem = write.bind(null, fridgeList, fridgeList.update, fridgeActions.updateItemFailed);
+const updateItem = write.bind(null, fridgeList, fridgeList.update, fridgeActions.updateItemFailed);
 
 
 //=====================================
@@ -40,7 +40,8 @@ function* watchAuthentication() {
   while (true) {
     let { payload } = yield take(authActions.SIGN_IN_FULFILLED);
 
-    fridgeList.path = `items/${payload.authUser.uid}`;
+    fridgeList.path = `fridge/${payload.authUser.uid}`;
+    console.log("fridgeList.path " + fridgeList.path)
     const job = yield fork(read);
 
     yield take([authActions.SIGN_OUT_FULFILLED]);
@@ -50,7 +51,7 @@ function* watchAuthentication() {
 
 function* watchCreateItem() {
   while (true) {
-    let { payload } = yield take(fridgeActions.CREATE_TASK);
+    let { payload } = yield take(fridgeActions.CREATE_ITEM);
     yield fork(createItem, payload.item);
   }
 }
@@ -68,27 +69,27 @@ function* watchLocationChange() {
 
 function* watchRemoveItem() {
   while (true) {
-    let { payload } = yield take(fridgeActions.REMOVE_TASK);
+    let { payload } = yield take(fridgeActions.REMOVE_ITEM);
     yield fork(removeItem, payload.item.key);
   }
 }
-//
-// function* watchUpdateItem() {
-//   while (true) {
-//     let { payload } = yield take(fridgeActions.UPDATE_TASK);
-//     yield fork(updateItem, payload.item.key, payload.changes);
-//   }
-// }
+
+function* watchUpdateItem() {
+  while (true) {
+    let { payload } = yield take(fridgeActions.UPDATE_ITEM);
+    yield fork(updateItem, payload.item.key, payload.changes);
+  }
+}
 
 
 //=====================================
-//  TASK SAGAS
+//  ITEM SAGAS
 //-------------------------------------
 
-export const itemSagas = [
+export const fridgeSagas = [
   fork(watchAuthentication),
   fork(watchCreateItem),
   fork(watchLocationChange),
   fork(watchRemoveItem)
-  // , fork(watchUpdateItem)
+  , fork(watchUpdateItem)
 ];

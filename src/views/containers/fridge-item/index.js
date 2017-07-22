@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { Button } from 'reactstrap';
-
+import Button from 'src/views/components/button';
+import Icon from 'src/views/components/icon';
 
 export class FridgeItem extends Component {
   constructor() {
     super(...arguments);
   }
 
-  handleKeyUp(event) {
+  handleKeyUp = (event) => {
     if (event.keyCode === 13) {
       this.save(event);
     }
@@ -17,11 +17,11 @@ export class FridgeItem extends Component {
     }
   }
 
-  remove() {
-    this.props.removeTask(this.props.item);
+  remove = () => {
+    this.props.removeItem(this.props.item);
   }
 
-  renderTitle(item) {
+  renderTitle = (item) => {
     return (
       <div className="item-item__title" tabIndex="0">
         {item.title}
@@ -29,7 +29,7 @@ export class FridgeItem extends Component {
     );
   }
 
-  renderTitleInput(item) {
+  renderTitleInput = (item) => {
     return (
       <input
         autoComplete="off"
@@ -43,29 +43,38 @@ export class FridgeItem extends Component {
     );
   }
 
-  render() {
-    const { item } = this.props
+  render () {
+      const { item } = this.props;
 
-    let containerClasses = classNames('item-item', {
-      'item-item--completed': item.completed,
-    })
+      let containerClasses = classNames('item-item', {
+        'item-item--completed': item.completed,
+      });
 
-    return (
-      <div className={containerClasses} tabIndex="0">
-        <div className="cell">
-          {this.renderTitle(item)}
+      return (
+        <div className={containerClasses} tabIndex="0">
+          <div className="cell">
+            <Button
+              className={classNames('btn--icon', 'item-item__button', {'active': item.completed})}
+              onClick={this.toggleStatus}>
+              <Icon name="done" />
+            </Button>
+          </div>
+
+          <div className="cell">
+            {this.renderTitle(item)}
+          </div>
+
+          <div className="cell">
+            <Button
+              className={classNames('btn--icon', 'item-item__button')}
+              onClick={this.remove}>
+              <Icon name="delete" />
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button
-            className={classNames('btn--icon', 'item-item__button')}
-            onClick={this.remove}>
-            <i className={classNames('material-icons')}>delete</i>
-          </Button>
-        </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 
 

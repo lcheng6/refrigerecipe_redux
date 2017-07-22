@@ -5,15 +5,15 @@ import RecipeCardIntro from 'src/views/components/recipe-card-intro'
 import { getRecipesActions } from 'src/core/get-recipes'
 
 class RecipeList extends Component {
-  constructor(props) {
-    super(props)
-    // =====================  HARD CODED ==========================
-    // this.props.getRecipes('rice,eggs,tortillas,sausage')
-  }
+  // constructor(props) {
+  //   super(props)
+  //   =====================  HARD CODED ==========================
+  //   this.props.getRecipes('rice,eggs,tortillas,sausage')
+  // }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below
-  componentDidMount() {
-  }
+  // componentDidMount() {
+  // }
 
   renderRecipes() {
 

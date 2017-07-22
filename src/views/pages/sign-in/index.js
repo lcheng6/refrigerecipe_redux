@@ -1,10 +1,10 @@
 // import React from 'react'
 import SingleCardResponsive from 'src/views/components/layout/single-column'
-import { Card, Button, CardTitle, CardHeader, CardBlock, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, Button, CardTitle, CardHeader, CardBlock } from 'reactstrap';
 
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { authActions } from 'src/core/auth';

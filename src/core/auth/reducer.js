@@ -8,13 +8,13 @@ export const AuthState = {
 }
 
 
-export function authReducer(state = AuthState, action) {
-  switch (action.type) {
+export function authReducer(state = AuthState, {payload, type}) {
+  switch (type) {
     case authActions.SIGN_IN_FULFILLED:
       return Object.assign({}, state, {
         authenticated: true,
-        uid: action.payload.uid,
-        user: action.payload
+        uid: payload.uid,
+        user: payload
       });
 
     case authActions.SIGN_OUT_FULFILLED:
