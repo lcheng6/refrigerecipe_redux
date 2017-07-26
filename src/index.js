@@ -1,53 +1,47 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import { composeWithDevTools } from 'redux-devtools-extension';
-import promise from 'redux-promise-middleware'
+import { ConnectedRouter } from 'react-router-redux';
 
-import 'bootstrap/dist/css/bootstrap.css';
-import './index.css';
-import SignIn from './views/pages/sign-in'
-import SignUp from './views/pages/sign-up'
-
-import GetRecipes from './views/pages/get-recipes'
+import { initAuth } from './core/auth';
+import history from './history';
+import configureStore from './store';
+import App from './views/app';
+import registerServiceWorker from './registerServiceWorker';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
 
-import { Route } from 'react-router'
-import createHistory from 'history/createBrowserHistory'
+const store = configureStore();
+const rootElement = document.getElementById('root');
 
-import reducers from './reducers' // Or wherever you keep your reducers
 
-// Create a history of your choosing (we're using a browser history in this case)
-const history = createHistory()
+function render(Component) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          <Component/>
+        </div>
+      </ConnectedRouter>
+    </Provider>,
+    rootElement
+  );
+}
 
-// Build the middleware for intercepting and dispatching navigation actions
-// const middleware = routerMiddleware(history)
 
-// Add the reducer to your store on the `router` key
-// Also apply our middleware for navigating
-const store = createStore(
-  combineReducers({
-    reducers,
-    router: routerReducer
-  }),
-  composeWithDevTools(applyMiddleware(promise(), routerMiddleware(history)))
-)
-// Now you can dispatch navigation actions from anywhere!
-// store.dispatch(push('/foo'))
+if (module.hot) {
+  module.hot.accept('./views/app', () => {
+    render(require('./views/app').default);
+  })
+}
 
-ReactDOM.render(
-  <Provider store={store}>
-    { /* ConnectedRouter will use the store from Provider automatically */ }
-    <ConnectedRouter history={history}>
-      <div>
-        <Route exact path="/" component={SignIn}/>
-        <Route path="/sign-up" component={SignUp}/>
-        <Route path="/sign-in" component={SignIn}/>
-        <Route path="/get-recipes" component={GetRecipes}/>
-      </div>
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root')
-)
+
+registerServiceWorker();
+
+
+initAuth(store.dispatch)
+  .then(() => render(App))
+  .catch(error => console.error(error));

@@ -1,9 +1,5 @@
 // import { List, Record } from 'immutable'
-import {
-  FETCH_RECIPES_PENDING,
-  FETCH_RECIPES_REJECTED,
-  FETCH_RECIPES_FULFILLED
-} from './constants'
+import { getRecipesActions } from './actions'
 
 export const initialState = {
   recipes: [],
@@ -15,18 +11,18 @@ export const initialState = {
 export function getRecipesReducer(state = initialState, action) {
   console.log('action received', action)
   switch (action.type) {
-    case FETCH_RECIPES_PENDING:
+    case getRecipesActions.FETCH_RECIPES_PENDING:
       return Object.assign({}, state, {
         fetching: true
       })
 
-    case FETCH_RECIPES_REJECTED:
+    case getRecipesActions.FETCH_RECIPES_REJECTED:
       return Object.assign({}, state, {
         fetching: false,
         error: action.payload
       })
 
-    case FETCH_RECIPES_FULFILLED:
+    case getRecipesActions.FETCH_RECIPES_FULFILLED:
     console.log(action.payload)
       return Object.assign({}, state, {
         fetching: false,

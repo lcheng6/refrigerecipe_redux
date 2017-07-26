@@ -1,69 +1,73 @@
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import _ from 'lodash'
-import RecipeCardIntro from '../../components/recipe-card-intro'
-import { getRecipes } from '../../../core/get-recipes'
-
-//          // temporarily hard-coded
-// getRecipes('apples%2Cflour%2Csugar')
+import RecipeCardIntro from 'src/views/components/recipe-card-intro'
+import { getRecipesActions } from 'src/core/get-recipes'
 
 class RecipeList extends Component {
   constructor(props) {
     super(props)
-    // this.state = { recipes: [] }
+    // =====================  HARD CODED ==========================
+    // this.props.getRecipes('rice,eggs,tortillas,sausage')
   }
   // getRecipes is available on props cuz bindActionCreators
   // registers it and 'connect' it with react as props below
   componentDidMount() {
-    this.props.getRecipes('flour,sugar,milk')
-    console.log('in componentDidMount: this.state = ' + this.state + ' this.props = ' + this.props)
+    console.log("items in state = " + this.props.items.map(item => item.get('title')).toJS())
+    let ingredients = this.props.items.map(item => item.get('title')).toJS()
+    let call = encodeURIComponent(ingredients)
+    this.props.getRecipes(call)
   }
 
   renderRecipes() {
-    console.log('in renderRecipes: this.state = ' + this.state + ' this.props = ' + this.props)
-    return _.map(this.props.recipes, recipe => {
+
+    return this.props.recipes.map((recipe) => {
       return (
         <RecipeCardIntro
           key={recipe.id}
           title={recipe.title}
           usedCount={recipe.usedIngredientCount}
-          middedCount={recipe.missedIngredientCount}
+          missedCount={recipe.missedIngredientCount}
           image={recipe.image}
          />
       )
     })
   }
   render() {
-      console.log('in componentDidMount: this.state = ' + this.state + ' this.props = ' + this.props)
     return (
+      // !this.props.fetching ? <PacmanLoader/> :
       <div>
         {this.renderRecipes()}
-        {console.log("renderingRecipes ", this.renderRecipes())}
       </div>
     )
   }
 }
 
+// This function maps a specific part of
+// the state to the prop `recipes`.
+
+// In larger apps it is often good
+// to be more selective and only
+// map the part of the state tree
+// that is necessary.
+
 function mapStateToProps(state) {
-  console.log('in mapStateToProps state =', state)
   // anything returned here will
   // end up as props on this container
   return {
-    recipes: state.reducers.intro_recipes.recipes
+    recipes: state.intro_recipes.recipes,
+    fetching: state.intro_recipes.fetching,
+    items: state.fridge.items,
   }
 }
 
 // anything returned from this function will
 // end up as props on this container
-function mapDispatchtoProps(dispatch) {
+const mapDispatchtoProps = {
   // whenever getRecipes is called, the result should
-  // be passed to all of our reducers
-  return bindActionCreators({ getRecipes }, dispatch)
+  // be passed to our reducers
+  getRecipes: getRecipesActions.getRecipes
 }
-
-
 // promote RecipeList from a component to a container class
 // it needs to know about this new dispatch method, getRecipes
 // Make it available as a prop of the container
