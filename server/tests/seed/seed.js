@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const {User} = require('./../../models/user_model');
 const {Fridge} = require('./../../models/fridge_model');
 const {Cart} = require('./../../models/cart_model');
-const {Recipe} = require('./../../models/recipes_model');
 
 const userOneId = new ObjectID();
 const userTwoId = new ObjectID();
@@ -121,10 +120,6 @@ const populateCarts = (done) => {
   }).then(() => done());
 };
 
-const clearCachedRecipes = (done) => {
-  Recipes.remove({}).then(done);
-};
-
 newCartContent = [{item: "chicken", quantity: 2}, {item: "liquor", quantity: 50000}];
 
 setFridgeContent = [{item: "Butter", quantity:2}, {item: "Eggs", quantity: 10}, {item: "Apples", quantity: 2},
@@ -133,4 +128,4 @@ setFridgeContent = [{item: "Butter", quantity:2}, {item: "Eggs", quantity: 10}, 
 
 
 module.exports = {users, populateUsers, fridges, populateFridges, carts, populateCarts,
-  newUserGen, clearCachedRecipes, newCartContent, setFridgeContent};
+  newUserGen, newCartContent, setFridgeContent};

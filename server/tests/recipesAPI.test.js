@@ -5,10 +5,11 @@ const {ObjectID} = require('mongodb');
 const {app} = require('./../server');
 const {User} = require('./../models/user_model');
 const {Fridge} = require('./../models/fridge_model');
-const {users, populateUsers, fridges, populateFridges} = require('./seed/seed');
+const {users, populateUsers, populateFridges, clearCachedRecipes} = require('./seed/seed');
 
 beforeEach(populateUsers);
 beforeEach(populateFridges);
+beforeEach(clearCachedRecipes);
 
 describe('Get /recipes', () => {
   //this.timeout(5000);
@@ -40,7 +41,15 @@ describe('Get /recipes', () => {
 describe ('Get /recipes/:id', () => {
   it('should be triggered by /recipes call', function(done) {
     this.timeout(5000);
-
+    request(app)
+      .get('/api/recipes')
+      .set('x-auth', users[0].tokens[0].token)
+      .send({})
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.length).toBeGreaterThan(20);
+      })
+      .end();
   });
 
 });
