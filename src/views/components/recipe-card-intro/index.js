@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardBlock, CardLink,
-  CardTitle, CardSubtitle, Badge } from 'reactstrap';
+  CardTitle, CardSubtitle, Badge,
+  Modal, ModalHeader, ModalBody, ModalFooter, Button} from 'reactstrap';
 // import styled from 'styled-components'
 
 
