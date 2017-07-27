@@ -20,7 +20,7 @@ class RecipeList extends Component {
   }
 
   renderRecipes() {
-
+    //TODO: put in the dispatch for getting recipe detail
     return this.props.recipes.map((recipe) => {
       return (
         <RecipeCardIntro
@@ -33,6 +33,7 @@ class RecipeList extends Component {
       );
     });
   }
+
   render() {
     return (
       // !this.props.fetching ? <PacmanLoader/> :
