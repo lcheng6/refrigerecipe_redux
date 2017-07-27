@@ -1,5 +1,7 @@
 // this is an important part... the api...
 import getRecipesByIngredients from '../api/getRecipesIntroAPI';
+import getRecipeDetailByRecipeId from '../api/getRecipeDetailAPI';
+
 // ... implements redux-promise-middleware,
 // so the rest of the FETCH_RECIPES cases are appended
 export const getRecipesActions = {
@@ -22,6 +24,6 @@ export const getRecipeDetailActions = {
 
   getRecipeDetail: recipeId => ({
     type: getRecipeDetailActions.FETCH_RECIPE_DETAIL,
+    payload: getRecipeDetailByRecipeId(recipeId)
   })
-
 };
