@@ -15,8 +15,8 @@ class RecipeList extends Component {
   componentDidMount() {
     console.log("items in state = " + this.props.items.map(item => item.get('title')).toJS());
     let ingredients = this.props.items.map(item => item.get('title')).toJS();
-    let call = encodeURIComponent(ingredients)
-    this.props.getRecipes(call)
+    let call = encodeURIComponent(ingredients);
+    this.props.getRecipes(call);
   }
 
   renderRecipes() {
@@ -71,4 +71,4 @@ const mapDispatchtoProps = {
 // promote RecipeList from a component to a container class
 // it needs to know about this new dispatch method, getRecipes
 // Make it available as a prop of the container
-export default connect(mapStateToProps, mapDispatchtoProps)(RecipeList)
+export default connect(mapStateToProps, mapDispatchtoProps)(RecipeList);
