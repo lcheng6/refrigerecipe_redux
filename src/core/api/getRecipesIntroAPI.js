@@ -7,7 +7,7 @@ const ROOT_URL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/rec
 // so we create one with the api call (also a promise)
 // nested inside
 const getRecipesByIngredients = (ingredients) => {
-  console.log("fetching from api ...")
+  console.log("fetching recipe summary from spoonacular api ...")
   return new Promise((resolve, reject) => {
     axios({
       method: 'get',
