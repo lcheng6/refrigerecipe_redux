@@ -21,7 +21,7 @@ const fridgeUpdateAPI = (req) => {
     .catch((error) => {
       reject(error);
     });
-  })
-}
+  });
+};
 
 export default fridgeUpdateAPI;
