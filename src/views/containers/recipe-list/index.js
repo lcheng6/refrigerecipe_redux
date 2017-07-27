@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import RecipeCardIntro from 'src/views/components/recipe-card-intro';
-import { getRecipesActions } from 'src/core/get-recipes';
+import { getRecipesActions, getRecipeDetailActions} from 'src/core/get-recipes';
 
 class RecipeList extends Component {
   constructor(props) {
@@ -58,15 +58,19 @@ function mapStateToProps(state) {
     recipes: state.intro_recipes.recipes,
     fetching: state.intro_recipes.fetching,
     items: state.fridge.items,
+    recipe_details: undefined
   };
 }
 
 // anything returned from this function will
 // end up as props on this container
+
+//TODO: find where getRecipes is called
 const mapDispatchtoProps = {
   // whenever getRecipes is called, the result should
   // be passed to our reducers
-  getRecipes: getRecipesActions.getRecipes
+  getRecipes: getRecipesActions.getRecipes,
+  getRecipeDetail:getRecipeDetailActions.getRecipeDetail
 };
 // promote RecipeList from a component to a container class
 // it needs to know about this new dispatch method, getRecipes
