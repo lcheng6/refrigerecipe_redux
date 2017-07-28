@@ -29,6 +29,9 @@ class RecipeList extends Component {
           usedCount={recipe.usedIngredientCount}
           missedCount={recipe.missedIngredientCount}
           image={recipe.image}
+          recipeId={recipe.id}
+          getRecipeDetail={this.props.getRecipeDetail}
+          recipeDetail = "Nothing"
          />
       );
     });
@@ -59,21 +62,23 @@ function mapStateToProps(state) {
     recipes: state.intro_recipes.recipes,
     fetching: state.intro_recipes.fetching,
     items: state.fridge.items,
-    recipe_details: undefined
+    //recipeDetails: state.recipesDetail.details
   };
 }
+
+//TODO: get mapStateToProps working correctly
 
 // anything returned from this function will
 // end up as props on this container
 
 //TODO: find where getRecipes is called
-const mapDispatchtoProps = {
+const mapDispatchToProps = {
   // whenever getRecipes is called, the result should
   // be passed to our reducers
   getRecipes: getRecipesActions.getRecipes,
-  getRecipeDetail:getRecipeDetailActions.getRecipeDetail
+  getRecipeDetail: getRecipeDetailActions.getRecipeDetail
 };
 // promote RecipeList from a component to a container class
 // it needs to know about this new dispatch method, getRecipes
 // Make it available as a prop of the container
-export default connect(mapStateToProps, mapDispatchtoProps)(RecipeList);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeList);

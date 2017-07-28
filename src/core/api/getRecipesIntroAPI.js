@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios');
 
 const API_KEY = 'G33IWA9BzKmshCOQoLZe3QV4LKnup1tNXmdjsnwCZVLOryqB9h';
 const ROOT_URL = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&limitLicense=false&number=50&ranking=1&ingredients=`

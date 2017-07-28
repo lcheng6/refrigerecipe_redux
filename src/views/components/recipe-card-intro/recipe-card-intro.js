@@ -21,7 +21,7 @@ export class RecipeCardIntro extends Component {
     return (
       <Card>
         <CardImg top width="100%" src={this.props.image} alt="Card image cap" />
-        <CardBlock>
+        <CardBlock onClick={()=>{console.log('Show Recipe '+ this.props.recipeId); this.props.getRecipeDetail(this.props.recipeId);}}>
           <CardTitle>{this.props.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
           <br />
@@ -32,6 +32,16 @@ export class RecipeCardIntro extends Component {
     );
   }
 }
+//TODO: add a Button within Card to display modal.  for the time being use the button to print something to console.
+//later use the button to trigger axios get.
+
+//TODO: add a button to dispatch a getRecipeDetail
+//map state to props -> pull off state.
+//action take ID to axios to detail
+//map dispatch to props ->
+//modal create a route -> route to modal window, the modal window will get 1 recipe to display.
+//in modal window, have a button to save the recipe.
+
 
 // const RecipeCardIntro = (props) => {
 //   return (
@@ -48,13 +58,5 @@ export class RecipeCardIntro extends Component {
 //     </Card>
 //   );
 // };
-//TODO: add a Button within Card to display modal.  for the time being use the button to print something to console.
-//later use the button to trigger axios get.
 
-//TODO: add a button to dispatch a getRecipeDetail
-//map state to props -> pull off state.
-//action take ID to axios to detail
-//map dispatch to props ->
-//modal create a route -> route to modal window, the modal window will get 1 recipe to display.
-//in modal window, have a button to save the recipe.
 export default RecipeCardIntro;
