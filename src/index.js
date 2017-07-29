@@ -1,4 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap.css';
+import './semantic/dist/semantic.min.css';
 import './index.css';
 
 import React from 'react';
@@ -11,6 +12,8 @@ import history from './history';
 import configureStore from './store';
 import App from './views/app';
 import registerServiceWorker from './registerServiceWorker';
+// import './index.css';
+
 // import { composeWithDevTools } from 'redux-devtools-extension';
 
 
