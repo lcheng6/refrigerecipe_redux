@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import RecipeDetailModal from 'src/views/components/recipe-card-intro';
+import RecipeDetailModal from 'src/views/components/recipe-detail-modal';
 
-export class RecipeDetailModal extends Component {
+export class RecipeDetailModalContainer extends Component {
   constructor (props) {
     super(...arguments);
     this.props = props;
@@ -10,12 +10,9 @@ export class RecipeDetailModal extends Component {
 
   render() {
     return (
-      <div>
-
-      </div>
+      <RecipeDetailModal/>
     );
   }
-
 }
 
-export default RecipeDetailModal;
+export default RecipeDetailModalContainer;
