@@ -1,9 +1,11 @@
 import { getRecipeDetailActions } from './actions';
 export const initialRecipeDetailState = {
   recipeDetails: {},
+  currentRecipeId: null,
   fetching: false,
   fetched: false,
   error: null,
+  toggle:false,
 };
 
 
@@ -29,9 +31,12 @@ export function getRecipeDetailReducer (state = initialRecipeDetailState, action
         fetching: false,
         fetched: true,
         //the following lines puts a new entry into recipe details
+        //TODO: work out whether to use recipeDetail or currentRecipeId
         recipeDetails: {
           ...state["recipeDetails"],
-          [recipeId] : action.payload.data}
+          [recipeId] : action.payload.data
+        },
+        currentRecipeId: recipeId,
       });
 
     default:

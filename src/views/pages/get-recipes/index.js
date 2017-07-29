@@ -3,16 +3,21 @@ import { CardColumns } from 'reactstrap';
 
 import FullWidthResponsive from '../../components/layout/full-width'
 import RecipeList from '../../containers/recipe-list';
-// import RecipeDetailModal from '../../containers/recipeDetailModal';
+import RecipeDetailModal from '../../containers/recipe-detail-modal';
 
 const GetRecipes = () => {
   return (
     <div>
-      <FullWidthResponsive>
-        <CardColumns>
-          <RecipeList/>
-        </CardColumns>
-      </FullWidthResponsive>
+      <div>
+        <RecipeDetailModal/>
+      </div>
+      <div>
+        <FullWidthResponsive>
+          <CardColumns>
+            <RecipeList/>
+          </CardColumns>
+        </FullWidthResponsive>
+      </div>
     </div>
   );
 };
