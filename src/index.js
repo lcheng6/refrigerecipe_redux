@@ -35,7 +35,7 @@ function render(Component) {
 if (module.hot) {
   module.hot.accept('./views/app', () => {
     render(require('./views/app').default);
-  })
+  });
 }
 
 

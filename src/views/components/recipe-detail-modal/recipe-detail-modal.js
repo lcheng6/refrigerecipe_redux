@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {Button, Modal, ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
 import classNames from 'classnames';
 
 export class RecipeDetailModal extends Component {
