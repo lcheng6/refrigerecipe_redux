@@ -1,8 +1,8 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import styled from 'styled-components'
-import { NavLink as RrNavLink } from 'react-router-dom'
-import Container from '../layout/full-width'
+import styled from 'styled-components';
+import { NavLink as RrNavLink } from 'react-router-dom';
+import Container from '../layout/full-width';
 
 const Wrapper = styled.div`
 width: 100%;

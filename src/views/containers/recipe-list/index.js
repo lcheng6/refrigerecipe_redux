@@ -63,7 +63,7 @@ function mapStateToProps(state) {
     recipes: state.intro_recipes.recipes,
     fetching: state.intro_recipes.fetching,
     items: state.fridge.items,
-    recipeDetails: state.recipe_details.recipeDetails
+    // recipeDetails: state.recipe_details.recipeDetails
   };
 }
 
