@@ -1,6 +1,5 @@
 // this is an important part... the api...
 import getRecipesByIngredients from '../api/getRecipesIntroAPI';
-import getRecipeDetailByRecipeId from '../api/getRecipeDetailAPI';
 
 // ... implements redux-promise-middleware,
 // so the rest of the FETCH_RECIPES cases are appended
@@ -16,20 +15,4 @@ export const getRecipesActions = {
   }; }
 };
 
-//TODO: find out how to dispatch the action to get more recipes.
-
-export const getRecipeDetailActions = {
-  FETCH_RECIPE_DETAIL_PENDING: "FETCH_RECIPE_DETAIL_PENDING",
-  FETCH_RECIPE_DETAIL_REJECTED: "FETCH_RECIPE_DETAIL_REJECTED",
-  FETCH_RECIPE_DETAIL_FULFILLED: "FETCH_RECIPE_DETAIL_FULFILLED",
-  FETCH_RECIPE_DETAIL: "FETCH_RECIPE_DETAIL",
-
-  //this is the dispatch for getRecipes
-  getRecipeDetail: (recipeId) => {
-    console.log("Dispatch getRecipeDetails");
-    return {
-      type: getRecipeDetailActions.FETCH_RECIPE_DETAIL,
-      payload: getRecipeDetailByRecipeId(recipeId)
-  };}
-};
 

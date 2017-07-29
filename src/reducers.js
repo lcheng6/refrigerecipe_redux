@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { getRecipesReducer, getRecipeDetailReducer} from './core/get-recipes';
+import { getRecipesReducer } from './core/get-recipes';
+import { getRecipeDetailReducer } from './core/get-recipe-detail';
 import { authReducer } from './core/auth';
 import { fridgeReducer } from './core/fridge';
 

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import RecipeCardIntro from 'src/views/components/recipe-card-intro';
-import { getRecipesActions, getRecipeDetailActions} from 'src/core/get-recipes';
+import { getRecipesActions } from 'src/core/get-recipes';
+import { getRecipeDetailActions } from "src/core/get-recipe-detail";
 
 class RecipeList extends Component {
   constructor(props) {
@@ -62,7 +63,6 @@ function mapStateToProps(state) {
     recipes: state.intro_recipes.recipes,
     fetching: state.intro_recipes.fetching,
     items: state.fridge.items,
-    //TODO: validate this statement, not sure about this statement
     recipeDetails: state.recipe_details.recipesDetail
   };
 }

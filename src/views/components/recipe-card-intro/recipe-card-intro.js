@@ -43,20 +43,5 @@ export class RecipeCardIntro extends Component {
 //in modal window, have a button to save the recipe.
 
 
-// const RecipeCardIntro = (props) => {
-//   return (
-//     <Card>
-//       <CardImg top width="100%" src={props.image} alt="Card image cap" />
-//       <CardBlock>
-//         <CardTitle>{props.title}</CardTitle>
-//         <CardSubtitle>Ingredients: </CardSubtitle>
-//         <br />
-//         <CardLink href="#">Used <Badge color="success">{props.usedCount}</Badge></CardLink>
-//         <CardLink href="#">Missing <Badge color="warning">{props.missedCount}</Badge></CardLink>
-//
-//       </CardBlock>
-//     </Card>
-//   );
-// };
 
 export default RecipeCardIntro;
