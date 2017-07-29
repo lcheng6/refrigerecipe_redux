@@ -1,5 +1,5 @@
 // import { List, Record } from 'immutable'
-import { getRecipesActions, getRecipeDetailActions } from './actions';
+import { getRecipesActions } from './actions';
 
 export const initialRecipesIntroState = {
   recipes: [],

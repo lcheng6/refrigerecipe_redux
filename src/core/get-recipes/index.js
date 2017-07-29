@@ -1,2 +1,2 @@
 export { getRecipesReducer } from './reducer';
-export { getRecipesActions  } from './actions';
+export { getRecipesActions } from './actions';

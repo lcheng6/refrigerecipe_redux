@@ -63,16 +63,10 @@ function mapStateToProps(state) {
     recipes: state.intro_recipes.recipes,
     fetching: state.intro_recipes.fetching,
     items: state.fridge.items,
-    recipeDetails: state.recipe_details.recipesDetail
+    recipeDetails: state.recipe_details.recipeDetails
   };
 }
 
-//TODO: get mapStateToProps working correctly
-
-// anything returned from this function will
-// end up as props on this container
-
-//TODO: find where getRecipes is called
 const mapDispatchToProps = {
   // whenever getRecipes is called, the result should
   // be passed to our reducers
