@@ -62,7 +62,8 @@ function mapStateToProps(state) {
     recipes: state.intro_recipes.recipes,
     fetching: state.intro_recipes.fetching,
     items: state.fridge.items,
-    //recipeDetails: state.recipesDetail.details
+    //TODO: validate this statement, not sure about this statement
+    recipeDetails: state.recipe_details.recipesDetail
   };
 }
 
