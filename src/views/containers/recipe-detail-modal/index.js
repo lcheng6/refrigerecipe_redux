@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import RecipeDetailModal from 'src/views/components/recipe-detail-modal';
-import {recipeDetailCardToggle} from 'src/core/get-recipe-detail';
+import {recipeDetailCardInteractionActions} from 'src/core/get-recipe-detail';
+import {} from 'src/core/saved-recipes-firebase';
+//TODO: get the save recipe action.
 
 export class RecipeDetailModalContainer extends Component {
   constructor (props) {
@@ -45,7 +47,7 @@ const mapStateToProps= (state) => ({
 });
 
 const mapDispatchToProps= {
-    cardToggle: recipeDetailCardToggle
+    cardToggle: recipeDetailCardInteractionActions.recipeDetailCardToggle
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetailModalContainer);

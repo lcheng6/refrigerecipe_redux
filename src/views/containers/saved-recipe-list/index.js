@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import RecipeCardIntro from 'src/views/components/recipe-card-intro';
 import { getRecipesActions } from 'src/core/get-recipes';
-import { getRecipeDetailActions, recipeDetailCardToggle } from "src/core/get-recipe-detail";
+import { getRecipeDetailActions, recipeDetailCardInteractionActions } from "src/core/get-recipe-detail";
 
 class SavedRecipeList extends Component {
   constructor(props) {
@@ -72,9 +72,10 @@ const mapDispatchToProps = {
   // be passed to our reducers
   getRecipes: getRecipesActions.getRecipes,
   getRecipeDetail: getRecipeDetailActions.getRecipeDetail,
-  recipeDetailCardShowModal: recipeDetailCardToggle,
+  recipeDetailCardShowModal: recipeDetailCardInteractionActions.recipeDetailCardToggle,
 };
 // promote RecipeList from a component to a container class
 // it needs to know about this new dispatch method, getRecipes
 // Make it available as a prop of the container
+
 export default connect(mapStateToProps, mapDispatchToProps)(SavedRecipeList);

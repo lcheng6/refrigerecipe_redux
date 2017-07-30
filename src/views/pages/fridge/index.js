@@ -7,11 +7,11 @@ import { fridgeActions, getVisibleItems } from 'src/core/fridge';
 import FridgeForm from 'src/views/containers/fridge-form';
 import FridgeList from 'src/views/containers/fridge-list';
 
-import SingleCardResponsive from '../../components/layout/single-column'
+import SingleCardResponsive from '../../components/layout/single-column';
 
 const Fridge = ({createItem, location, removeItem, items, updateItem}) => {
   const params = new URLSearchParams(location.search);
-  const filter = params.get('filter')
+  const filter = params.get('filter');
   return (
     <SingleCardResponsive>
       <FridgeForm handleSubmit={createItem} />

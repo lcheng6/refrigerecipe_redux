@@ -1,5 +1,5 @@
 import { FirebaseList } from 'src/core/firebase';
-import { saveRecipesActions } from './actions';
+import { savedRecipesActions } from './actions';
 import { Item } from './item';
 
 export const savedRecipesList = new FirebaseList({
