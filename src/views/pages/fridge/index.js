@@ -38,7 +38,7 @@ const mapDispatchToProps = {
   removeItem: fridgeActions.removeItem,
   filterItems: fridgeActions.filterItems,
   updateItem: fridgeActions.updateItem
-}
+};
 
 export default withRouter(
   connect(

@@ -2,12 +2,12 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { eventChannel } from 'redux-saga';
 import { call, cancel, fork, put, take } from 'redux-saga/effects';
 import { authActions } from 'src/core/auth';
-import { saveRecipesActions } from './actions';
+import { savedRecipesActions } from './actions';
 import { savedRecipesList } from './saved-recipes-list'; // firebase list
 
 
 function subscribe() {
-  return eventChannel(emit => saveRecipesList.subscribe(emit));
+  return eventChannel(emit => savedRecipesList.subscribe(emit));
 }
 
 function* read() {
@@ -27,9 +27,9 @@ function* write(context, method, onError, ...params) {
   }
 }
 
-const createItem = write.bind(null, saveRecipesList, saveRecipesList.push, saveRecipesActions.createItemFailed);
-const removeItem = write.bind(null, saveRecipesList, saveRecipesList.remove, saveRecipesActions.removeItemFailed);
-const updateItem = write.bind(null, saveRecipesList, saveRecipesList.update, saveRecipesActions.updateItemFailed);
+const createItem = write.bind(null, savedRecipesList, savedRecipesList.push, savedRecipesActions.createItemFailed);
+const removeItem = write.bind(null, savedRecipesList, savedRecipesList.remove, savedRecipesActions.removeItemFailed);
+const updateItem = write.bind(null, savedRecipesList, savedRecipesList.update, savedRecipesActions.updateItemFailed);
 
 
 //=====================================
@@ -40,8 +40,8 @@ function* watchAuthentication() {
   while (true) {
     let { payload } = yield take(authActions.SIGN_IN_FULFILLED);
 
-    saveRecipesList.path = `saveRecipes/${payload.authUser.uid}`;
-    console.log("saveRecipesList.path " + saveRecipesList.path)
+    savedRecipesList.path = `savedRecipes/${payload.authUser.uid}`;
+    console.log("savedRecipesList.path " + savedRecipesList.path)
     const job = yield fork(read);
 
     yield take([authActions.SIGN_OUT_FULFILLED]);
@@ -51,7 +51,7 @@ function* watchAuthentication() {
 
 function* watchCreateItem() {
   while (true) {
-    let { payload } = yield take(saveRecipesActions.CREATE_ITEM);
+    let { payload } = yield take(savedRecipesActions.CREATE_ITEM);
     yield fork(createItem, payload.item);
   }
 }
@@ -62,21 +62,21 @@ function* watchLocationChange() {
     if (payload.pathname === '/') {
       const params = new URLSearchParams(payload.search);
       const filter = params.get('filter');
-      yield put(saveRecipesActions.filterItems(filter));
+      yield put(savedRecipesActions.filterItems(filter));
     }
   }
 }
 
 function* watchRemoveItem() {
   while (true) {
-    let { payload } = yield take(saveRecipesActions.REMOVE_ITEM);
+    let { payload } = yield take(savedRecipesActions.REMOVE_ITEM);
     yield fork(removeItem, payload.item.key);
   }
 }
 
 function* watchUpdateItem() {
   while (true) {
-    let { payload } = yield take(saveRecipesActions.UPDATE_ITEM);
+    let { payload } = yield take(savedRecipesActions.UPDATE_ITEM);
     yield fork(updateItem, payload.item.key, payload.changes);
   }
 }
@@ -86,7 +86,7 @@ function* watchUpdateItem() {
 //  ITEM SAGAS
 //-------------------------------------
 
-export const saveRecipesSagas = [
+export const savedRecipesSagas = [
   fork(watchAuthentication),
   fork(watchCreateItem),
   fork(watchLocationChange),

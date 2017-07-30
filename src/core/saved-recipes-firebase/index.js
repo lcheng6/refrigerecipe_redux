@@ -1,4 +1,4 @@
-export { saveRecipesActions } from './actions';
-export { saveRecipesReducer } from './reducer';
-export { saveRecipesSagas } from './sagas';
+export { savedRecipesActions } from './actions';
+export { savedRecipesReducer } from './reducer';
+export { savedRecipesSagas } from './sagas';
 export { getVisibleItems } from './selectors';
