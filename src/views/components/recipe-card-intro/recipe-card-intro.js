@@ -18,7 +18,9 @@ export class RecipeCardIntro extends Component {
     return (
       <Card>
         <CardImg top width="100%" src={this.props.image} alt="Card image cap" />
-        <CardBlock onClick={()=>{console.log('Show Recipe '+ this.props.recipeId); this.props.getRecipeDetail(this.props.recipeId);}}>
+        <CardBlock onClick={()=>{console.log('Show Recipe '+ this.props.recipeId);
+          this.props.getRecipeDetail(this.props.recipeId);
+          this.props.recipeDetailCardShowModal(true);}}>
           <CardTitle>{this.props.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
           <br />

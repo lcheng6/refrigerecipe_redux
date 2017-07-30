@@ -11,7 +11,6 @@ export class RecipeDetailModal extends Component {
   }
 
   toggle() {
-
     this.props.cardToggle(!this.props.modal);
   }
 
@@ -178,7 +177,6 @@ export class RecipeDetailModal extends Component {
     const recipeDetail = this.props.recipeDetail;
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>Recipe Detail Modal</Button>
         <Modal isOpen={this.props.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>{recipeDetail.title}</ModalHeader>
           <ModalBody>
