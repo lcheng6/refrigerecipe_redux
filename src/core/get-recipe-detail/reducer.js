@@ -1,4 +1,4 @@
-import { getRecipeDetailActions } from './actions';
+import { getRecipeDetailActions, recipeDetailCardInteractionActions } from './actions';
 export const initialRecipeDetailState = {
   recipeDetails: {},
   currentRecipeId: null,
@@ -39,7 +39,25 @@ export function getRecipeDetailReducer (state = initialRecipeDetailState, action
         currentRecipeId: recipeId,
       });
 
+    case recipeDetailCardInteractionActions.TOGGLE_RECIPE_DETAIL_CARD:
+      console.log('toggle action received payload ' + action.payload);
+      return Object.assign({}, state, {
+        toggle:action.payload
+      });
+
     default:
       return state;
   }
 }
+//
+// export function recipeDetailCardInteractionReducer (state = initialRecipeDetailState, action) {
+//   console.log('Recipe Detail Card Recducer - action received', action);
+//   switch(action.type) {
+//     case recipeRecipeDetailCardInteractionActions.TOGGLE_RECIPE_DETAIL_CARD:
+//       console.log('toggle action received payload ' + action.payload);
+//       return state;
+//
+//     default:
+//       return state;
+//   }
+// }

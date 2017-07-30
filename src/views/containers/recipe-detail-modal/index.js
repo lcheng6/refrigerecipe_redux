@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import RecipeDetailModal from 'src/views/components/recipe-detail-modal';
+import {recipeDetailCardToggle} from 'src/core/get-recipe-detail';
 
 export class RecipeDetailModalContainer extends Component {
   constructor (props) {
@@ -11,6 +12,8 @@ export class RecipeDetailModalContainer extends Component {
 
   }
 
+  //TODO: investigate whether declaring render is in container is
+  //pattern or anti-pattern
   render() {
     if(this.props.currentRecipeId) {
       let recipeSummaryIndex = _.findIndex(this.props.recipeSummaries,
@@ -24,6 +27,8 @@ export class RecipeDetailModalContainer extends Component {
           title="Recipe Detail"
           recipeDetail={this.props.recipeDetails[this.props.currentRecipeId]}
           recipeSummary={this.props.recipeSummaries[recipeSummaryIndex]}
+          cardToggle={this.props.cardToggle}
+          modal={this.props.modal}
         />
       );
     }else {
@@ -32,11 +37,15 @@ export class RecipeDetailModalContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
+const mapStateToProps= (state) => ({
     recipeDetails:state.recipe_details.recipeDetails,
     currentRecipeId:state.recipe_details.currentRecipeId,
     recipeSummaries:state.intro_recipes.recipes,
-  };
-}
-export default connect(mapStateToProps)(RecipeDetailModalContainer);
+    modal:state.recipe_details.toggle,
+});
+
+const mapDispatchToProps= {
+    cardToggle: recipeDetailCardToggle
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetailModalContainer);

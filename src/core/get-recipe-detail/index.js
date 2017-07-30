@@ -1,2 +1,2 @@
 export { getRecipeDetailReducer } from './reducer';
-export { getRecipeDetailActions } from './actions';
+export { getRecipeDetailActions, recipeDetailCardToggle} from './actions';

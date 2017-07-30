@@ -4,25 +4,23 @@ import {Button, Modal, ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
 export class RecipeDetailModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modal: false
-    };
+
 
     this.toggle = this.toggle.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
   }
 
   toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
+
+    this.props.cardToggle(!this.props.modal);
   }
 
   saveRecipe() {
     const recipeDetail = this.props.recipeDetail;
-    this.setState({
-      modal: !this.state.modal
-    });
+    // this.setState({
+    //   modal: !this.state.modal
+    // });
+    //TODO: save recipe 
     console.log("Going to save recipeId: " + recipeDetail.id);
   }
 
@@ -139,6 +137,7 @@ export class RecipeDetailModal extends Component {
   }
 
 
+
   renderAnalyzedInstructionSteps() {
     const recipeDetail = this.props.recipeDetail;
     if (undefined !== recipeDetail.analyzedInstructions[0]) {
@@ -180,12 +179,11 @@ export class RecipeDetailModal extends Component {
     return (
       <div>
         <Button color="danger" onClick={this.toggle}>Recipe Detail Modal</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal isOpen={this.props.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>{recipeDetail.title}</ModalHeader>
           <ModalBody>
             {this.renderHeaderBar()}
             {this.renderImageAndIngredients()}
-            {this.renderAvailableInstructions()}
             {this.renderAnalyzedInstructionSteps()}
           </ModalBody>
           <ModalFooter>

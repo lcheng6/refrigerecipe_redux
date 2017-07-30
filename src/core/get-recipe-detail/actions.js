@@ -15,3 +15,14 @@ export const getRecipeDetailActions = {
     };}
 };
 
+
+export const recipeDetailCardInteractionActions = {
+  TOGGLE_RECIPE_DETAIL_CARD: "TOGGLE_RECIPE_DETAIL_CARD"
+};
+
+export function recipeDetailCardToggle(payload) {
+  return {
+    type:recipeDetailCardInteractionActions.TOGGLE_RECIPE_DETAIL_CARD,
+    payload: payload,
+  };
+}

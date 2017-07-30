@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Button from '../button';
-import Icon from '../icon';
 import { Card, CardImg, CardBlock, CardLink,
   CardTitle, CardSubtitle, Badge} from 'reactstrap';
 
@@ -31,16 +29,6 @@ export class RecipeCardIntro extends Component {
     );
   }
 }
-//TODO: add a Button within Card to display modal.  for the time being use the button to print something to console.
-//later use the button to trigger axios get.
-
-//TODO: add a button to dispatch a getRecipeDetail
-//map state to props -> pull off state.
-//action take ID to axios to detail
-//map dispatch to props ->
-//modal create a route -> route to modal window, the modal window will get 1 recipe to display.
-//in modal window, have a button to save the recipe.
-
 
 
 export default RecipeCardIntro;

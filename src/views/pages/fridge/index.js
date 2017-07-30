@@ -22,16 +22,16 @@ const Fridge = ({createItem, location, removeItem, items, updateItem}) => {
         items={items}
       />
     </SingleCardResponsive>
-  )
-}
+  );
+};
 
 Fridge.PropTypes = {
   items: PropTypes.instanceOf(List),
-}
+};
 const mapStateToProps = state => ({
   // items: state.fridge.items
   items: getVisibleItems(state)
-})
+});
 
 const mapDispatchToProps = {
   createItem: fridgeActions.createItem,
@@ -45,4 +45,4 @@ export default withRouter(
     mapStateToProps,
     mapDispatchToProps
   )(Fridge)
-)
+);
