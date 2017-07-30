@@ -25,7 +25,7 @@ export class RecipeCardIntro extends Component {
           <CardTitle>{this.props.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
           <br />
-          <CardLink href="#">Used <Badge color="success">{this.props.usdedCount}</Badge></CardLink>
+          <CardLink href="#">Used <Badge color="success">{this.props.usedCount}</Badge></CardLink>
           <CardLink href="#">Missing <Badge color="warning">{this.props.missedCount}</Badge></CardLink>
         </CardBlock>
       </Card>

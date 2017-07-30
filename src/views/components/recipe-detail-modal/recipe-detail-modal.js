@@ -94,8 +94,12 @@ export class RecipeDetailModal extends Component {
     );
   }
   renderMissingIngredients() {
-    const recipeDetail = this.props.recipeDetail;
-    // const recipeSummary = this.props.recipeSummary;
+    //const recipeDetail = this.props.recipeDetail;
+    const recipeSummary = this.props.recipeSummary;
+
+    const missingItemList = recipeSummary.missedIngredients.map((item) =>
+      <div className="item">{item.name}</div>
+    );
 
     return (
       <div className="ui segment">
@@ -103,31 +107,25 @@ export class RecipeDetailModal extends Component {
           <span>MISSING INGREDIENTS</span>
         </div>
         <div className="ui large list">
-          <div className="item">cream cheese</div>
-          <div className="item">fillo shells</div>
-          <div className="item">ground beef round</div>
-          <div className="item">onion soup mix</div>
-          <div className="item">part skim mozzarella cheese</div>
-          <div className="item">part-skim mozzarella cheese</div>
-          <div className="item">pepper sauce</div>
-          <div className="item">quick cooking oats</div>
-          <div className="item">roma tomatoes</div>
-          <div className="item">tomato sauce</div>
+          {missingItemList}
         </div>
       </div>
     );
   }
   renderUsedIngredients() {
-    const recipeDetail = this.props.recipeDetail;
-    // const recipeSummary = this.props.recipeSummary;
+    //const recipeDetail = this.props.recipeDetail;
+    const recipeSummary = this.props.recipeSummary;
+
+    const usedItemList = recipeSummary.usedIngredients.map((item) =>
+      <div className="item">{item.name}</div>
+    );
     return(
       <div className="ui segment">
         <div className="meta">
           <span>USED INGREDIENTS</span>
         </div>
         <div className="ui large list">
-          <div className="item">chicken breast</div>
-          <div className="item">tomato ketchup</div>
+          {usedItemList}
         </div>
       </div>
     );
