@@ -84,6 +84,15 @@ export class RecipeDetailModal extends Component {
       </div>
     );
   }
+  renderImageAndIngredients() {
+    return(
+      <div className="ui horizontal segments">
+        {this.renderRecipeImage()}
+        {this.renderMissingIngredients()}
+        {this.renderUsedIngredients()}
+      </div>
+    );
+  }
   renderMissingIngredients() {
     const recipeDetail = this.props.recipeDetail;
     // const recipeSummary = this.props.recipeSummary;
@@ -111,16 +120,28 @@ export class RecipeDetailModal extends Component {
   renderUsedIngredients() {
     const recipeDetail = this.props.recipeDetail;
     // const recipeSummary = this.props.recipeSummary;
-
+    return(
+      <div className="ui segment">
+        <div className="meta">
+          <span>USED INGREDIENTS</span>
+        </div>
+        <div className="ui large list">
+          <div className="item">chicken breast</div>
+          <div className="item">tomato ketchup</div>
+        </div>
+      </div>
+    );
   }
 
   renderAvailableInstructions() {
     const recipeDetail = this.props.recipeDetail;
+    // return(
+    //   <div className="ui horizontal segments">
+    //   </div>
+    //
+    // );
 
-  }
-
-  renderAvailableInstructions() {
-    const recipeDetail = this.props.recipeDetail;
+    return null;
   }
 
   render() {
@@ -132,22 +153,8 @@ export class RecipeDetailModal extends Component {
           <ModalHeader toggle={this.toggle}>{recipeDetail.title}</ModalHeader>
           <ModalBody>
             {this.renderHeaderBar()}
-
-            <div className="ui horizontal segments">
-              {this.renderRecipeImage()}
-              {this.renderMissingIngredients()}
-
-
-              <div className="ui segment">
-                <div className="meta">
-                  <span>USED INGREDIENTS</span>
-                </div>
-                <div className="ui large list">
-                  <div className="item">chicken breast</div>
-                  <div className="item">tomato ketchup</div>
-                </div>
-              </div>
-            </div>
+            {this.renderImageAndIngredients()}
+            {this.renderAvailableInstructions()}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Save Recipe</Button>{' '}
