@@ -32,7 +32,6 @@ class SavedRecipeList extends Component {
           recipeId={recipe.id}
           getRecipeDetail={this.props.getRecipeDetail}
           recipeDetailCardShowModal={this.props.recipeDetailCardShowModal}
-          recipeDetail = "Nothing"
         />
       );
     });
