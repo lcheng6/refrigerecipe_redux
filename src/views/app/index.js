@@ -23,6 +23,8 @@ const App = ({authenticated, signOut}) => (
     <main>
       <RequireAuthRoute authenticated={authenticated} exact path="/" component={Fridge}/>
       <RequireAuthRoute authenticated={authenticated} path="/get-recipes" component={GetRecipes}/>
+      <RequireAuthRoute authenticated={authenticated} path="/shopping-list" component={GetRecipes}/>
+      <RequireAuthRoute authenticated={authenticated} path="/saved-recipes" component={GetRecipes}/>
       <RequireUnauthRoute authenticated={authenticated} path="/sign-in" component={SignIn}/>
     </main>
   </div>

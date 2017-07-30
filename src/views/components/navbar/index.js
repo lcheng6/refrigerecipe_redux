@@ -34,11 +34,17 @@ export default class NavBar extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               {this.props.authenticated ?
                 <Nav className="ml-auto" navbar>
-                  <NavItem style={{cursor: "pointer"}} >
-                    <NavLink onClick={this.props.signOut}>Sign Out</NavLink>
-                  </NavItem>
                   <NavItem>
                     <NavLink tag={RrNavLink} to="/get-recipes">Get Recipes</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={RrNavLink} to="/shopping-list">Shopping List</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink tag={RrNavLink} to="/saved-recipes">Saved Recipes</NavLink>
+                  </NavItem>
+                  <NavItem style={{cursor: "pointer"}} >
+                    <NavLink onClick={this.props.signOut}>Sign Out</NavLink>
                   </NavItem>
                 </Nav>
               : null}
