@@ -16,8 +16,8 @@ class RecipeList extends Component {
   componentDidMount() {
     console.log("items in state = " + this.props.items.map(item => item.get('title')).toJS());
     let ingredients = this.props.items.map(item => item.get('title')).toJS();
-    let call = encodeURIComponent(ingredients);
-    this.props.getRecipes(call);
+    //let call = encodeURIComponent(ingredients);
+    this.props.getRecipes(ingredients);
   }
 
   renderRecipes() {

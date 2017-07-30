@@ -18,8 +18,8 @@ const getRecipesByIngredients = (ingredients) => {
       },
       params: {
         "fillIngredients": "true",
-        "ingredients": ["apples","flour","sugar", "butter", "marshmallow", "orange"].join(","),
-        // "ingredients": ingredients,
+        // "ingredients": ["apples","flour","sugar", "butter", "marshmallow", "orange"].join(","),
+        "ingredients": ingredients.join(","),
         "limitLicense": "false",
         "number": "50",
         "ranking": "1"
