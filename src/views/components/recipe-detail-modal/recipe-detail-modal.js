@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Modal, ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
-import classNames from 'classnames';
 
 export class RecipeDetailModal extends Component {
   constructor(props) {
@@ -10,6 +9,7 @@ export class RecipeDetailModal extends Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.saveRecipe = this.saveRecipe.bind(this);
   }
 
   toggle() {
@@ -18,6 +18,13 @@ export class RecipeDetailModal extends Component {
     });
   }
 
+  saveRecipe() {
+    const recipeDetail = this.props.recipeDetail;
+    this.setState({
+      modal: !this.state.modal
+    });
+    console.log("Going to save recipeId: " + recipeDetail.id);
+  }
 
 
   renderHeaderBar() {
@@ -28,7 +35,7 @@ export class RecipeDetailModal extends Component {
           <div className="ui tiny statistic">
             <div className="value">
               <i className="spoon icon"/>
-              {!undefined !== recipeDetail.servings? recipeDetail.servings : 2}
+              {undefined !== recipeDetail.servings? recipeDetail.servings : 2}
             </div>
             <div className="label">
               Servings
@@ -97,8 +104,8 @@ export class RecipeDetailModal extends Component {
     //const recipeDetail = this.props.recipeDetail;
     const recipeSummary = this.props.recipeSummary;
 
-    const missingItemList = recipeSummary.missedIngredients.map((item) =>
-      <div className="item">{item.name}</div>
+    const missingItemList = recipeSummary.missedIngredients.map((item, index) =>
+      <div className="item" key={index}>{item.name}</div>
     );
 
     return (
@@ -116,8 +123,8 @@ export class RecipeDetailModal extends Component {
     //const recipeDetail = this.props.recipeDetail;
     const recipeSummary = this.props.recipeSummary;
 
-    const usedItemList = recipeSummary.usedIngredients.map((item) =>
-      <div className="item">{item.name}</div>
+    const usedItemList = recipeSummary.usedIngredients.map((item, index) =>
+      <div className="item" key={index}>{item.name}</div>
     );
     return(
       <div className="ui segment">
@@ -131,35 +138,41 @@ export class RecipeDetailModal extends Component {
     );
   }
 
-  renderAvailableInstructions() {
-    const recipeDetail = this.props.recipeDetail;
-    // return(
-    //   <div className="ui horizontal segments">
-    //   </div>
-    //
-    // );
-
-    return null;
-  }
 
   renderAnalyzedInstructionSteps() {
     const recipeDetail = this.props.recipeDetail;
-    const stepList = recipeDetail.analyzedInstructions[0].steps.map((step) =>
-
-      <div className="item" key={step.number}>{step.number}. {step.step}</div>
-    );
-    return (
-      <div className="ui horizontal segments">
-        <div className="ui segment">
-          <div className="meta">
-            <span>COOKING INSTRUCTIONS</span>
-          </div>
-          <div className="ui large list">
-            {stepList}
+    if (undefined !== recipeDetail.analyzedInstructions[0]) {
+      //TODO: iterate over the analyzedInstruction as well.
+      const stepList = recipeDetail.analyzedInstructions[0].steps.map((step) =>
+        <div className="item" key={step.number}>{step.number}. {step.step}</div>
+      );
+      return (
+        <div className="ui horizontal segments">
+          <div className="ui segment">
+            <div className="meta">
+              <span>COOKING INSTRUCTIONS</span>
+            </div>
+            <div className="ui large list">
+              {stepList}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }else {
+      return (
+        <div className="ui horizontal segments">
+          <div className="ui segment">
+            <div className="meta">
+              <span>COOKING INSTRUCTIONS</span>
+            </div>
+            <div className="ui large list">
+              N/A
+            </div>
+          </div>
+        </div>
+      );
+    }
+
   }
 
   render() {
@@ -176,7 +189,7 @@ export class RecipeDetailModal extends Component {
             {this.renderAnalyzedInstructionSteps()}
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Save Recipe</Button>{' '}
+            <Button color="primary" onClick={this.saveRecipe}>Save Recipe</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>

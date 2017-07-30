@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import Button from '../button';
 import Icon from '../icon';
 import { Card, CardImg, CardBlock, CardLink,
-  CardTitle, CardSubtitle, Badge,
-  Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+  CardTitle, CardSubtitle, Badge} from 'reactstrap';
 
 // import styled from 'styled-components'
 
