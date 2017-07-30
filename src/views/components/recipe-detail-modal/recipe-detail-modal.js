@@ -142,6 +142,26 @@ export class RecipeDetailModal extends Component {
     return null;
   }
 
+  renderAnalyzedInstructionSteps() {
+    const recipeDetail = this.props.recipeDetail;
+    const stepList = recipeDetail.analyzedInstructions[0].steps.map((step) =>
+
+      <div className="item" key={step.number}>{step.number}. {step.step}</div>
+    );
+    return (
+      <div className="ui horizontal segments">
+        <div className="ui segment">
+          <div className="meta">
+            <span>COOKING INSTRUCTIONS</span>
+          </div>
+          <div className="ui large list">
+            {stepList}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const recipeDetail = this.props.recipeDetail;
     return (
@@ -153,6 +173,7 @@ export class RecipeDetailModal extends Component {
             {this.renderHeaderBar()}
             {this.renderImageAndIngredients()}
             {this.renderAvailableInstructions()}
+            {this.renderAnalyzedInstructionSteps()}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggle}>Save Recipe</Button>{' '}
