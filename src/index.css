@@ -7,3 +7,15 @@ body {
 .card {
   margin-bottom: 15px;
 }
+
+.modal-dialog {
+    width:1100px;
+}
+@media (min-width: 576px) {
+    .modal-dialog {
+        position: relative;
+        width: 1000px;
+        margin: 30px auto;
+        max-width:1200px;
+    }
+}
