@@ -15,9 +15,14 @@ export const savedRecipesActions = {
   LOAD_ITEMS_FULFILLED: 'LOAD_ITEMS_FULFILLED',
 
 
-  createItem: title => ({
+  // createItem: title => ({
+  //   type: savedRecipesActions.CREATE_ITEM,
+  //   payload: {item: {title, completed: false}}
+  // }),
+
+  createItem: recipe => ({
     type: savedRecipesActions.CREATE_ITEM,
-    payload: {item: {title, completed: false}}
+    payload: {item: {...recipe, completed: false}}
   }),
 
   createItemFailed: error => ({

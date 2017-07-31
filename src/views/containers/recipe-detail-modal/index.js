@@ -49,7 +49,7 @@ const mapStateToProps= (state) => ({
 
 const mapDispatchToProps= {
   cardToggle: recipeDetailCardInteractionActions.recipeDetailCardToggle,
-  saveRecipeInFirebase: savedRecipesActions.createRecipeDetail
+  saveRecipeInFirebase: savedRecipesActions.createItem
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetailModalContainer);
