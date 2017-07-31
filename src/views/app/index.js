@@ -13,7 +13,6 @@ import GetRecipes from 'src/views/pages/get-recipes';
 // import ShoppingList from 'src/views/pages/shopping-list';
 import SavedRecipes from 'src/views/pages/saved-recipes';
 import Fridge from 'src/views/pages/fridge';
-import GetSavedRecipes from "../pages/saved-recipes/index";
 
 
 const App = ({authenticated, signOut}) => (
@@ -27,7 +26,7 @@ const App = ({authenticated, signOut}) => (
       <RequireAuthRoute authenticated={authenticated} exact path="/" component={Fridge}/>
       <RequireAuthRoute authenticated={authenticated} path="/get-recipes" component={GetRecipes}/>
       <RequireAuthRoute authenticated={authenticated} path="/shopping-list" component={GetRecipes}/>
-      <RequireAuthRoute authenticated={authenticated} path="/saved-recipes" component={GetSavedRecipes}/>
+      <RequireAuthRoute authenticated={authenticated} path="/saved-recipes" component={SavedRecipes}/>
       <RequireUnauthRoute authenticated={authenticated} path="/sign-in" component={SignIn}/>
     </main>
   </div>

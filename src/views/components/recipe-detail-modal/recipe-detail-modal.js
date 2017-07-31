@@ -19,8 +19,9 @@ export class RecipeDetailModal extends Component {
     // this.setState({
     //   modal: !this.state.modal
     // });
-    //TODO: save recipe 
+    //TODO: save recipe
     console.log("Going to save recipeId: " + recipeDetail.id);
+    this.props.saveRecipeInFirebase(recipeDetail);
   }
 
 
