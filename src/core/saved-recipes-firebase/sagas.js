@@ -27,9 +27,9 @@ function* write(context, method, onError, ...params) {
   }
 }
 
-const createItem = write.bind(null, savedRecipesList, savedRecipesList.push, savedRecipesActions.createItemFailed);
-const removeItem = write.bind(null, savedRecipesList, savedRecipesList.remove, savedRecipesActions.removeItemFailed);
-const updateItem = write.bind(null, savedRecipesList, savedRecipesList.update, savedRecipesActions.updateItemFailed);
+const createRecipeDetail = write.bind(null, savedRecipesList, savedRecipesList.push, savedRecipesActions.createRecipeDetailFailed);
+const removeRecipeDetail = write.bind(null, savedRecipesList, savedRecipesList.remove, savedRecipesActions.removeRecipeDetailFailed);
+const updateRecipeDetail = write.bind(null, savedRecipesList, savedRecipesList.update, savedRecipesActions.updateRecipeDetailFailed);
 
 
 //=====================================
@@ -41,7 +41,7 @@ function* watchAuthentication() {
     let { payload } = yield take(authActions.SIGN_IN_FULFILLED);
 
     savedRecipesList.path = `savedRecipes/${payload.authUser.uid}`;
-    console.log("savedRecipesList.path " + savedRecipesList.path)
+    console.log("savedRecipesList.path " + savedRecipesList.path);
     const job = yield fork(read);
 
     yield take([authActions.SIGN_OUT_FULFILLED]);
@@ -49,35 +49,35 @@ function* watchAuthentication() {
   }
 }
 
-function* watchCreateItem() {
+function* watchCreateRecipeDetail() {
   while (true) {
-    let { payload } = yield take(savedRecipesActions.CREATE_ITEM);
-    yield fork(createItem, payload.item);
+    let { payload } = yield take(savedRecipesActions.CREATE_RECIPE_DETAIL);
+    yield fork(createRecipeDetail, payload.item);
   }
 }
 
 function* watchLocationChange() {
   while (true) {
     let { payload } = yield take(LOCATION_CHANGE);
-    if (payload.pathname === '/') {
+    if (payload.pathname === '/saved-recipes') {
       const params = new URLSearchParams(payload.search);
       const filter = params.get('filter');
-      yield put(savedRecipesActions.filterItems(filter));
+      yield put(savedRecipesActions.filterRecipeDetails(filter));
     }
   }
 }
 
-function* watchRemoveItem() {
+function* watchRemoveRecipeDetail() {
   while (true) {
-    let { payload } = yield take(savedRecipesActions.REMOVE_ITEM);
-    yield fork(removeItem, payload.item.key);
+    let { payload } = yield take(savedRecipesActions.REMOVE_RECIPE_DETAIL);
+    yield fork(removeRecipeDetail, payload.item.key);
   }
 }
 
-function* watchUpdateItem() {
+function* watchUpdateRecipeDetail() {
   while (true) {
-    let { payload } = yield take(savedRecipesActions.UPDATE_ITEM);
-    yield fork(updateItem, payload.item.key, payload.changes);
+    let { payload } = yield take(savedRecipesActions.UPDATE_RECIPE_DETAIL);
+    yield fork(updateRecipeDetail, payload.item.key, payload.changes);
   }
 }
 
@@ -88,8 +88,8 @@ function* watchUpdateItem() {
 
 export const savedRecipesSagas = [
   fork(watchAuthentication),
-  fork(watchCreateItem),
+  fork(watchCreateRecipeDetail),
   fork(watchLocationChange),
-  fork(watchRemoveItem),
-  fork(watchUpdateItem)
+  fork(watchRemoveRecipeDetail),
+  fork(watchUpdateRecipeDetail)
 ];

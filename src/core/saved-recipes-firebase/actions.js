@@ -1,77 +1,85 @@
 export const savedRecipesActions = {
-  CREATE_ITEM: 'CREATE_ITEM',
-  CREATE_ITEM_FAILED: 'CREATE_ITEM_FAILED',
-  CREATE_ITEM_FULFILLED: 'CREATE_ITEM_FULFILLED',
+  CREATE_RECIPE_DETAIL: 'CREATE_RECIPE_DETAIL',
+  CREATE_RECIPE_DETAIL_FAILED: 'CREATE_RECIPE_DETAIL_FAILED',
+  CREATE_RECIPE_DETAIL_FULFILLED: 'CREATE_RECIPE_DETAIL_FULFILLED',
 
-  REMOVE_ITEM: 'REMOVE_ITEM',
-  REMOVE_ITEM_FAILED: 'REMOVE_ITEM_FAILED',
-  REMOVE_ITEM_FULFILLED: 'REMOVE_ITEM_FULFILLED',
+  REMOVE_RECIPE_DETAIL: 'REMOVE_RECIPE_DETAIL',
+  REMOVE_RECIPE_DETAIL_FAILED: 'REMOVE_RECIPE_DETAIL_FAILED',
+  REMOVE_RECIPE_DETAIL_FULFILLED: 'REMOVE_RECIPE_DETAIL_FULFILLED',
 
-  UPDATE_ITEM: 'UPDATE_ITEM',
-  UPDATE_ITEM_FAILED: 'UPDATE_ITEM_FAILED',
-  UPDATE_ITEM_FULFILLED: 'UPDATE_ITEM_FULFILLED',
+  UPDATE_RECIPE_DETAIL: 'UPDATE_RECIPE_DETAIL',
+  UPDATE_RECIPE_DETAIL_FAILED: 'UPDATE_RECIPE_DETAIL_FAILED',
+  UPDATE_RECIPE_DETAIL_FULFILLED: 'UPDATE_RECIPE_DETAIL_FULFILLED',
 
-  FILTER_ITEMS: 'FILTER_ITEMS',
-  LOAD_ITEMS_FULFILLED: 'LOAD_ITEMS_FULFILLED',
+  FILTER_RECIPE_DETAILS: 'FILTER_RECIPE_DETAILS',
+  LOAD_RECIPE_DETAILS_FULFILLED: 'LOAD_RECIPE_DETAILS_FULFILLED',
 
 
-  // createItem: title => ({
-  //   type: savedRecipesActions.CREATE_ITEM,
+  // createRecipeDetail: title => ({
+  //   type: savedRecipesActions.CREATE_RECIPE_DETAIL,
   //   payload: {item: {title, completed: false}}
   // }),
 
-  createItem: recipe => ({
-    type: savedRecipesActions.CREATE_ITEM,
+  createRecipeDetail: recipe => ({
+    type: savedRecipesActions.CREATE_RECIPE_DETAIL,
     payload: {item: {...recipe, completed: false}}
   }),
 
-  createItemFailed: error => ({
-    type: savedRecipesActions.CREATE_ITEM_FAILED,
+  createRecipeDetailFailed: error => ({
+    type: savedRecipesActions.CREATE_RECIPE_DETAIL_FAILED,
     payload: {error}
   }),
 
-  createItemFulfilled: item => ({
-    type: savedRecipesActions.CREATE_ITEM_FULFILLED,
+  createRecipeDetailFulfilled: item => ({
+    type: savedRecipesActions.CREATE_RECIPE_DETAIL_FULFILLED,
     payload: {item}
   }),
 
-  removeItem: item => ({
-    type: savedRecipesActions.REMOVE_ITEM,
+  removeRecipeDetail: item => ({
+    type: savedRecipesActions.REMOVE_RECIPE_DETAIL,
     payload: {item}
   }),
 
-  removeItemFailed: error => ({
-    type: savedRecipesActions.REMOVE_ITEM_FAILED,
+  removeRecipeDetailFailed: error => ({
+    type: savedRecipesActions.REMOVE_RECIPE_DETAIL_FAILED,
     payload: {error}
   }),
 
-  removeItemFulfilled: item => ({
-    type: savedRecipesActions.REMOVE_ITEM_FULFILLED,
+  removeRecipeDetailFulfilled: item => ({
+    type: savedRecipesActions.REMOVE_RECIPE_DETAIL_FULFILLED,
     payload: {item}
   }),
 
-  updateItem: (item, changes) => ({
-    type: savedRecipesActions.UPDATE_ITEM,
+  updateRecipeDetail: (item, changes) => ({
+    type: savedRecipesActions.UPDATE_RECIPE_DETAIL,
     payload: {item, changes}
   }),
 
-  updateItemFailed: error => ({
-    type: savedRecipesActions.UPDATE_ITEM_FAILED,
+  updateRecipeDetailFailed: error => ({
+    type: savedRecipesActions.UPDATE_RECIPE_DETAIL_FAILED,
     payload: {error}
   }),
 
-  updateItemFulfilled: item => ({
-    type: savedRecipesActions.UPDATE_ITEM_FULFILLED,
+  updateRecipeDetailFulfilled: item => ({
+    type: savedRecipesActions.UPDATE_RECIPE_DETAIL_FULFILLED,
     payload: {item}
   }),
 
-  filterItems: filterType => ({
-    type: savedRecipesActions.FILTER_ITEMS,
+  filterRecipeDetails: filterType => ({
+    type: savedRecipesActions.FILTER_RECIPE_DETAILS,
     payload: {filterType}
   }),
 
-  loadItemsFulfilled: items => ({
-    type: savedRecipesActions.LOAD_ITEMS_FULFILLED,
+  // filterRecipeDetails: function(filterType)  {
+  //   console.log('in filter recipe details');
+  //   return {
+  //     type: savedRecipesActions.FILTER_RECIPE_DETAILS,
+  //       payload: {filterType}
+  //   }
+  // },
+
+  loadRecipeDetailsFulfilled: items => ({
+    type: savedRecipesActions.LOAD_RECIPE_DETAILS_FULFILLED,
     payload: {items}
   })
 };
