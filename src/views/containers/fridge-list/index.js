@@ -12,15 +12,15 @@ const FridgeList = ({removeItem, items, updateItem}) => {
         item={item}
         updateItem={updateItem}
       />
-    )
-  })
+    );
+  });
 
   return (
     <div>
       {fridgeItems}
     </div>
-  )
-}
+  );
+};
 
 FridgeList.propTypes = {
   removeItem: PropTypes.func.isRequired,
