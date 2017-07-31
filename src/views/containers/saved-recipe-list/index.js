@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
+import PropTypes from 'prop-types';
 
 import SavedRecipeCard from 'src/views/components/saved-recipe-card';
 
@@ -7,20 +9,18 @@ import SavedRecipeCard from 'src/views/components/saved-recipe-card';
 class SavedRecipeList extends Component {
   constructor(props) {
     super(props);
-    // =====================  HARD CODED ==========================
-    // this.props.getRecipes('rice,eggs,tortillas,sausage')
   }
-  // getRecipes is available on props cuz bindActionCreators
-  // registers it and 'connect' it with react as props below
-  componentDidMount() {
 
+  componentDidMount() {
+    //nothing to be done here.
   }
 
   renderSavedRecipes() {
-    return this.props.recipes.map((recipe) => {
+    return this.props.recipes.map((recipe, index) => {
       return (
         <SavedRecipeCard
-
+          key={index}
+          recipe={recipe}
         />
       );
     });
@@ -54,6 +54,7 @@ function mapStateToProps(state) {
     // recipeDetails: state.recipe_details.recipeDetails
     recipes:state.saved_recipes.items,
   };
+
 }
 
 const mapDispatchToProps = {
@@ -61,5 +62,8 @@ const mapDispatchToProps = {
   // be passed to our reducers
 };
 
+SavedRecipeList.propTypes = {
+  recipes:PropTypes.instanceOf(List),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SavedRecipeList);

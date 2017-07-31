@@ -15,11 +15,12 @@ export class SavedRecipeCard extends Component {
   }
 
   render() {
+    const { recipe } = this.props;
     return (
       <Card>
-        <CardImg top width="100%" src="https://spoonacular.com/recipeImages/marinated-no-mystery-meats-308202.jpeg" alt="Card image cap" />
+        <CardImg top width="100%" src={recipe.image} alt="Card image cap" />
         <CardBlock>
-          <CardTitle>Fake Title</CardTitle>
+          <CardTitle>{recipe.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
           <br />
           <CardLink href="#">Used <Badge color="success">3</Badge></CardLink>
