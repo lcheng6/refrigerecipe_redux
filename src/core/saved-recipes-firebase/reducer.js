@@ -9,8 +9,10 @@ export const InitialState = new Record({
 
 
 export function savedRecipesReducer(state = new InitialState(), {payload, type}) {
+  console.log('in savedRecipesReducer type: ' + type);
   switch (type) {
     case savedRecipesActions.CREATE_ITEM_FULFILLED:
+      console.log('In savedRecipesActions CREATE_ITEM_FULFILLED');
       return state.set('items', state.items.unshift(payload.item));
 
     case savedRecipesActions.FILTER_ITEMS:

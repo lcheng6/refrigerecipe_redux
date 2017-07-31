@@ -5,6 +5,24 @@
         ".read": "auth !== null && auth.uid === $uid",
         ".write": "auth !== null && auth.uid === $uid"
       }
+    },
+    "savedRecipes": {
+      "$uid": {
+        ".read": "auth !== null && auth.uid === $uid",
+        ".write": "auth !== null && auth.uid === $uid"
+      }
+    },
+    "shoppingList": {
+      "$uid": {
+        ".read": "auth !== null && auth.uid === $uid",
+        ".write": "auth !== null && auth.uid === $uid"
+      }
+    },
+    "contactInformation": {
+      "$uid": {
+        ".read": "auth !== null && auth.uid === $uid",
+        ".write": "auth !== null && auth.uid === $uid"
+      }
     }
   }
 }
