@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import RecipeDetailModal from 'src/views/components/recipe-detail-modal';
 import {recipeDetailCardInteractionActions} from 'src/core/get-recipe-detail';
-import {} from 'src/core/saved-recipes-firebase';
+import {savedRecipesActions} from 'src/core/saved-recipes-firebase';
 //TODO: get the save recipe action.
 
 export class RecipeDetailModalContainer extends Component {
@@ -31,6 +31,7 @@ export class RecipeDetailModalContainer extends Component {
           recipeSummary={this.props.recipeSummaries[recipeSummaryIndex]}
           cardToggle={this.props.cardToggle}
           modal={this.props.modal}
+          saveRecipeInFirebase = {this.props.saveRecipeInFirebase }
         />
       );
     }else {
@@ -40,14 +41,15 @@ export class RecipeDetailModalContainer extends Component {
 }
 
 const mapStateToProps= (state) => ({
-    recipeDetails:state.recipe_details.recipeDetails,
-    currentRecipeId:state.recipe_details.currentRecipeId,
-    recipeSummaries:state.intro_recipes.recipes,
-    modal:state.recipe_details.toggle,
+  recipeDetails:state.recipe_details.recipeDetails,
+  currentRecipeId:state.recipe_details.currentRecipeId,
+  recipeSummaries:state.intro_recipes.recipes,
+  modal:state.recipe_details.toggle,
 });
 
 const mapDispatchToProps= {
-    cardToggle: recipeDetailCardInteractionActions.recipeDetailCardToggle
+  cardToggle: recipeDetailCardInteractionActions.recipeDetailCardToggle,
+  saveRecipeInFirebase: savedRecipesActions.createRecipeDetail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeDetailModalContainer);
