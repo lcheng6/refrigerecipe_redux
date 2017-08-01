@@ -14,18 +14,28 @@ export class SavedRecipeCard extends Component {
     this.props = props;
   }
 
+  renderIngredientList() {
+
+  }
   render() {
     const { recipe } = this.props;
+    const ingredientList = recipe.extendedIngredients.map((ingredient, index) =>
+      <div className="item" key={index}>{ingredient.name}</div>
+    );
     return (
       <Card>
         <CardImg top width="100%" src={recipe.image} alt="Card image cap" />
         <CardBlock>
           <CardTitle>{recipe.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
+          {ingredientList}
           <br />
         </CardBlock>
         <div className="extra content">
-          <Button className="mini ui button add-to-cart-button">Add to Cart</Button>
+          <Button className="mini ui button add-to-cart-button">
+              <i className="add to cart icon"/>
+            Add to Cart
+          </Button>
           <span className="right floated">
               <Button className="mini ui button">
                 <i className="external square icon blue"/>
