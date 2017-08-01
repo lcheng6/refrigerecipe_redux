@@ -90,11 +90,43 @@ export class RecipeDetailModal extends Component {
     );
   }
   renderImageAndIngredients() {
-    return(
-      <div className="ui horizontal segments">
-        {this.renderRecipeImage()}
-        {this.renderMissingIngredients()}
-        {this.renderUsedIngredients()}
+
+    const recipeSummary = this.props.recipeSummary;
+    if (recipeSummary) {
+      return(
+        <div className="ui horizontal segments">
+          {this.renderRecipeImage()}
+          {this.renderMissingIngredients()}
+          {this.renderUsedIngredients()}
+        </div>
+      );
+    }else {
+      return (
+        <div className="ui horizontal segments">
+          {this.renderRecipeImage()}
+          {this.renderExtendedIngredients()}
+        </div>
+      );
+    }
+
+  }
+  renderExtendedIngredients() {
+    const recipeDetail = this.props.recipeDetail;
+
+    const extendedIngredients = recipeDetail.extendedIngredients;
+
+    const extendedIngredientsList = extendedIngredients.map((item, index) =>
+      <div className="item" key={index}>{item.originalString}</div>
+    );
+
+    return (
+      <div className="ui segment">
+        <div className="meta">
+          <span>INGREDIENTS</span>
+        </div>
+        <div className="ui large list">
+          {extendedIngredientsList}
+        </div>
       </div>
     );
   }
