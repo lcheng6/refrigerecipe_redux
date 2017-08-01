@@ -30,6 +30,32 @@ body {
 .modal-dialog {
     width:1100px;
 }
+
+[class*="right floated"]
+{
+    float:right
+}
+.extra
+{
+    max-width: 100%;
+    min-height: 0!important;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    border-top: 1px solid rgba(0,0,0,.05)!important;
+    position: static;
+    background: 0 0;
+    width: auto;
+    margin: 0;
+    padding: .75em 1em;
+    top: 0;
+    left: 0;
+    color: rgba(0,0,0,.4);
+    box-shadow: none;
+    -webkit-transition: color .1s ease;
+    transition: color .1s ease;
+}
 @media (min-width: 576px) {
     .modal-dialog {
         position: relative;
