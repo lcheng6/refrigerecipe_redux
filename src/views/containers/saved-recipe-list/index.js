@@ -63,11 +63,11 @@ class SavedRecipeList extends Component {
         }.bind(this),
         'scroll up': function() {
           console.log("Scroll Up");
-          window.scrollBy(0, -200);
+          window.scrollBy(0, -400);
         }.bind(this),
         'scroll down': function() {
           console.log("Scroll Down");
-          window.scrollBy(0, 200);
+          window.scrollBy(0, 400);
         }.bind(this),
         'show easter egg': function() {
           console.log('show easter egg');
