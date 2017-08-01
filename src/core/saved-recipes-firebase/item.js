@@ -18,6 +18,7 @@ export const Item = new Record({
   vegan:null,
 
   sourceUrl: null,
+  isEasterEgg: null,
   //there are other details, too much to list here.
   additionalFields: Map,
 });

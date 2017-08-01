@@ -43,14 +43,25 @@ class SavedRecipeList extends Component {
 
   renderSavedRecipes() {
     return this.props.recipes.map((recipe, index) => {
-      return (
-        <SavedRecipeCard
-          key={index}
-          recipe={recipe}
-          getRecipeDetail={this.props.getRecipeDetail}
-          recipeDetailCardShowModal = {this.props.recipeDetailCardShowModal}
-        />
-      );
+      if(recipe.isEasterEgg) {
+        return (
+          <SavedRecipeCard
+            key={index}
+            recipe={recipe}
+            getRecipeDetail={this.props.getRecipeDetail}
+            recipeDetailCardShowModal = {this.props.recipeDetailCardShowModal}
+          />
+        );
+      }else {
+        return (
+          <SavedRecipeCard
+            key={index}
+            recipe={recipe}
+            getRecipeDetail={this.props.getRecipeDetail}
+            recipeDetailCardShowModal = {this.props.recipeDetailCardShowModal}
+          />
+        );
+      }
     });
   }
 
