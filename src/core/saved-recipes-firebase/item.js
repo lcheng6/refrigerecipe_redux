@@ -20,6 +20,8 @@ export const Item = new Record({
 
   sourceUrl: null,
   isEasterEgg: null,
+
+  servings: null,
   //there are other details, too much to list here.
   additionalFields: Map,
 });

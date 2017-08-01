@@ -216,7 +216,7 @@ export class RecipeDetailModal extends Component {
     const recipeDetail = this.props.recipeDetail;
     return (
       <div>
-        <Modal isOpen={this.props.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal id="RecipeDetailModal" isOpen={this.props.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>{recipeDetail.title}</ModalHeader>
           <ModalBody>
             {this.renderHeaderBar()}

@@ -29,6 +29,10 @@ class SavedRecipeList extends Component {
           console.log("Show first recipe");
           this.showRecipeByIndex(0);
         }.bind(this),
+        'open recipe': function() {
+          console.log("Show first recipe");
+          this.showRecipeByIndex(0);
+        }.bind(this),
         'close recipe': function() {
           console.log("Close recipe");
           this.closeRecipeModal();
@@ -37,7 +41,15 @@ class SavedRecipeList extends Component {
           console.log("Show first recipe");
           this.showRecipeByIndex(0);
         }.bind(this),
+        'open first recipe': function() {
+          console.log("Show first recipe");
+          this.showRecipeByIndex(0);
+        }.bind(this),
         'show second recipe': function() {
+          console.log("Show second recipe");
+          this.showRecipeByIndex(1);
+        }.bind(this),
+        'open second recipe': function() {
           console.log("Show second recipe");
           this.showRecipeByIndex(1);
         }.bind(this),
@@ -45,13 +57,23 @@ class SavedRecipeList extends Component {
           console.log("Show third recipe");
           this.showRecipeByIndex(2);
         }.bind(this),
+        'open third recipe': function() {
+          console.log("Show third recipe");
+          this.showRecipeByIndex(2);
+        }.bind(this),
         'scroll up': function() {
-          console.log("Show next recipe");
+          console.log("Scroll Up");
+          window.scrollBy(0, -200);
         }.bind(this),
         'scroll down': function() {
-          console.log("Show next recipe");
+          console.log("Scroll Down");
+          window.scrollBy(0, 200);
         }.bind(this),
         'show easter egg': function() {
+          console.log('show easter egg');
+          this.showEasterEgg();
+        }.bind(this),
+        'open easter egg': function() {
           console.log('show easter egg');
           this.showEasterEgg();
         }.bind(this),
