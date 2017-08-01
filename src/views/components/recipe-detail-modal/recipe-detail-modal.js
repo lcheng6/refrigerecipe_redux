@@ -101,6 +101,9 @@ export class RecipeDetailModal extends Component {
   renderMissingIngredients() {
     //const recipeDetail = this.props.recipeDetail;
     const recipeSummary = this.props.recipeSummary;
+    if(! recipeSummary) {
+      return null;
+    }
 
     const missingItemList = recipeSummary.missedIngredients.map((item, index) =>
       <div className="item" key={index}>{item.name}</div>
@@ -120,6 +123,9 @@ export class RecipeDetailModal extends Component {
   renderUsedIngredients() {
     //const recipeDetail = this.props.recipeDetail;
     const recipeSummary = this.props.recipeSummary;
+    if (! recipeSummary) {
+      return null;
+    }
 
     const usedItemList = recipeSummary.usedIngredients.map((item, index) =>
       <div className="item" key={index}>{item.name}</div>

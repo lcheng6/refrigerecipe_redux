@@ -20,21 +20,34 @@ class SavedRecipeList extends Component {
     // var startFirework = window.startFirework;
 
     if (annyang) {
-      const PING = 'PING';
-      const PONG = 'PONG';
 
-      const ping = () => ({ type: PING });
       // Let's define a command.
       var commands = {
         'hello': function () {
-          this.props.recipeDetailCardShowModal(true);
+          console.log("Hello World");
+          //this.props.recipeDetailCardShowModal(true);
         }.bind(this),
         'show recipe': function() {
-          console.log("Show recipe");
+          console.log("Show first recipe");
         }.bind(this),
-        'fire': function() {
-          window.startFirework();
-        }.bind(this)
+        'show seoncd recipe': function() {
+          console.log("Show second recipe");
+        }.bind(this),
+        'show third recipe': function() {
+          console.log("Show third recipe");
+        }.bind(this),
+        'show next recipe': function() {
+          console.log("Show next recipe");
+        }.bind(this),
+        'scroll up': function() {
+          console.log("Show next recipe");
+        }.bind(this),
+        'scroll down': function() {
+          console.log("Show next recipe");
+        }.bind(this),
+        'show easter egg': function() {
+          console.log('show easter egg');
+        }
       };
 
       // Add our commands to annyang
