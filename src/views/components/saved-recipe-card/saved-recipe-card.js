@@ -14,9 +14,6 @@ export class SavedRecipeCard extends Component {
     this.props = props;
   }
 
-  renderIngredientList() {
-
-  }
   render() {
     const { recipe } = this.props;
     const ingredientList = recipe.extendedIngredients.map((ingredient, index) =>
