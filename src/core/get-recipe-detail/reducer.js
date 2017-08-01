@@ -45,6 +45,12 @@ export function getRecipeDetailReducer (state = initialRecipeDetailState, action
         toggle:action.payload
       });
 
+    case recipeDetailCardInteractionActions.SET_CURRENT_RECIPE_ID:
+      console.log('set recipe Id action recieved payload ' + action.payload);
+      return Object.assign({}, state, {
+        currentRecipeId: action.payload
+      });
+
     default:
       return state;
   }

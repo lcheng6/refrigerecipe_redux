@@ -13,18 +13,28 @@ export const getRecipeDetailActions = {
       type: getRecipeDetailActions.FETCH_RECIPE_DETAIL,
       payload: getRecipeDetailByRecipeId(recipeId)
     };}
+
+
 };
 
 
 export const recipeDetailCardInteractionActions = {
   TOGGLE_RECIPE_DETAIL_CARD: "TOGGLE_RECIPE_DETAIL_CARD",
+  SET_CURRENT_RECIPE_ID: "SET_CURRENT_RECIPE_ID",
 
   recipeDetailCardToggle: (modalValue) => {
     return {
       type:recipeDetailCardInteractionActions.TOGGLE_RECIPE_DETAIL_CARD,
       payload: modalValue,
     };
-  }
+  },
+
+  setCurrentRecipeId: (recipeId) => {
+    console.log('Dispatch setCurrentRecipeId');
+    return {
+      type: recipeDetailCardInteractionActions.SET_CURRENT_RECIPE_ID,
+      payload: recipeId,
+    };}
 };
 
 // export function recipeDetailCardToggle(payload) {

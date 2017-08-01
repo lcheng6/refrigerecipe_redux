@@ -15,6 +15,7 @@ export const Item = new Record({
   extendedIngredients: Array,
   analyzedInstructions:Array,
 
+  nutrition: Map,
   vegan:null,
 
   sourceUrl: null,
