@@ -42,8 +42,6 @@ export class RecipeDetailModalContainer extends Component {
           />
         );
       }else {
-        //TODO: remove this line;
-        console.log('stop here');
         let savedRecipeDetailIndex = -1;
         let index=0;
         for (index = 0; index < this.props.savedRecipes.size; index++) {

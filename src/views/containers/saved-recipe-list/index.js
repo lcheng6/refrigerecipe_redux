@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
+import _ from "lodash";
 
 import SavedRecipeCard from 'src/views/components/saved-recipe-card';
 import { getRecipeDetailActions, recipeDetailCardInteractionActions }  from "src/core/get-recipe-detail";
@@ -26,15 +27,23 @@ class SavedRecipeList extends Component {
         }.bind(this),
         'show recipe': function() {
           console.log("Show first recipe");
+          this.showRecipeByIndex(0);
         }.bind(this),
-        'show seoncd recipe': function() {
+        'close recipe': function() {
+          console.log("Close recipe");
+          this.closeRecipeModal();
+        }.bind(this),
+        'show first recipe': function() {
+          console.log("Show first recipe");
+          this.showRecipeByIndex(0);
+        }.bind(this),
+        'show second recipe': function() {
           console.log("Show second recipe");
+          this.showRecipeByIndex(1);
         }.bind(this),
         'show third recipe': function() {
           console.log("Show third recipe");
-        }.bind(this),
-        'show next recipe': function() {
-          console.log("Show next recipe");
+          this.showRecipeByIndex(2);
         }.bind(this),
         'scroll up': function() {
           console.log("Show next recipe");
@@ -44,7 +53,8 @@ class SavedRecipeList extends Component {
         }.bind(this),
         'show easter egg': function() {
           console.log('show easter egg');
-        }
+          this.showEasterEgg();
+        }.bind(this),
       };
 
       // Add our commands to annyang
@@ -55,19 +65,65 @@ class SavedRecipeList extends Component {
     }
   }
 
+  showRecipeByIndex(index) {
+    console.log("showRecipeByIndex: " + index);
+    let recipesJS = this.props.recipes.toJS();
+    let recipesIds = _.map(recipesJS, function(elem) {
+      if (elem.isEasterEgg) {
+        return null;
+      }else {
+        return elem.id;
+      }
+    });
+    recipesIds = _.filter(recipesIds, function(id) {
+      return (id);
+    });
+
+    console.log("recipesIds: " + recipesIds);
+
+    let designatedRecipeId = recipesIds[index];
+    this.props.getRecipeDetail(designatedRecipeId);
+    this.props.recipeDetailCardShowModal(true);
+
+  }
+  closeRecipeModal() {
+    this.props.recipeDetailCardShowModal(false);
+  }
+
+  showEasterEgg() {
+    console.log("showEasterEgg ");
+    let recipesJS = this.props.recipes.toJS();
+    let easterEggIds = _.map(recipesJS, function(elem) {
+      if (elem.isEasterEgg) {
+        return elem.id;
+      }else {
+        return null;
+      }
+    });
+    easterEggIds = _.filter(easterEggIds, function(id) {
+      return (id);
+    });
+
+    //only display the first easter egg
+    let designatedRecipeId = easterEggIds[0];
+    this.props.setCurrentRecipeIdWithoutLoadingFromSpoonacular(designatedRecipeId);
+    this.props.recipeDetailCardShowModal(true);
+
+  }
+
   renderSavedRecipes() {
     return this.props.recipes.map((recipe, index) => {
       if(recipe.isEasterEgg) {
         //TODO: verify this part
-        return (
-          <SavedRecipeCard
-            key={index}
-            recipe={recipe}
-            getRecipeDetail={this.props.setCurrentRecipeIdWithoutLoadingFromSpoonacular}
-            recipeDetailCardShowModal = {this.props.recipeDetailCardShowModal}
-          />
-        );
-        // return null;
+        // return (
+        //   <SavedRecipeCard
+        //     key={index}
+        //     recipe={recipe}
+        //     getRecipeDetail={this.props.setCurrentRecipeIdWithoutLoadingFromSpoonacular}
+        //     recipeDetailCardShowModal = {this.props.recipeDetailCardShowModal}
+        //   />
+        // );
+        return null;
       }else {
         return (
           <SavedRecipeCard
