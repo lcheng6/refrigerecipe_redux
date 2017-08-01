@@ -35,16 +35,28 @@ export default class NavBar extends React.Component {
               {this.props.authenticated ?
                 <Nav className="ml-auto" navbar>
                   <NavItem>
-                    <NavLink tag={RrNavLink} to="/get-recipes">Get Recipes</NavLink>
+                    <NavLink tag={RrNavLink} to="/get-recipes">
+                      <i className="download outline icon"/>
+                      Get Recipes
+                    </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={RrNavLink} to="/shopping-list">Shopping List</NavLink>
+                    <NavLink tag={RrNavLink} to="/saved-recipes">
+                      <i className="like outline icon"/>
+                      Saved Recipes
+                    </NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={RrNavLink} to="/saved-recipes">Saved Recipes</NavLink>
+                    <NavLink tag={RrNavLink} to="/shopping-list">
+                      <i className="shop icon"/>
+                      Cart
+                    </NavLink>
                   </NavItem>
                   <NavItem style={{cursor: "pointer"}} >
-                    <NavLink onClick={this.props.signOut}>Sign Out</NavLink>
+                    <NavLink onClick={this.props.signOut}>
+                      <i className="sign out icon"/>
+                      Sign Out
+                    </NavLink>
                   </NavItem>
                 </Nav>
               : null}
