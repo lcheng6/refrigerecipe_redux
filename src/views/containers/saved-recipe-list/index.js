@@ -13,8 +13,14 @@ class SavedRecipeList extends Component {
     super(props);
   }
 
+  componentWillUnmount() {
+    let annyang = window.annyang;
+    if (annyang) {
+      annyang.abort();
+    }
+  }
   componentDidMount() {
-    var annyang = window.annyang;
+    let annyang = window.annyang;
     // var startFirework = window.startFirework;
 
     if (annyang) {
