@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import history from './history';
 import reducers from './reducers';
 import sagas from './sagas';
-import promise from 'redux-promise-middleware'
+import promise from 'redux-promise-middleware';
 
 
 export default function configureStore() {
