@@ -22,18 +22,4 @@ const GetSavedRecipes = () => {
   );
 };
 
-GetSavedRecipes.PropTypes = {
-  items: PropTypes.instanceOf(List),
-};
-const mapStateToProps = state => ({
-  // items: state.fridge.items
-  items: getVisibleItems(state)
-});
-
-const mapDispatchToProps = {
-  createItem: savedRecipesActions.createItem,
-  removeItem: savedRecipesActions.removeItem,
-  filterItems: savedRecipesActions.filterItems,
-  updateItem: savedRecipesActions.updateItem
-};
 export default GetSavedRecipes;
