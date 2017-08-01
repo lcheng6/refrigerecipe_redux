@@ -17,7 +17,7 @@ export class SavedRecipeCard extends Component {
   render() {
     const { recipe } = this.props;
     const ingredientList = recipe.extendedIngredients.map((ingredient, index) =>
-      <div className="item" key={index}>{ingredient.name}</div>
+      <div className="item" key={index}>{ingredient.originalString}</div>
     );
     return (
       <Card>
