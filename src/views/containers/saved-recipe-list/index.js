@@ -16,7 +16,29 @@ class SavedRecipeList extends Component {
   }
 
   componentDidMount() {
-    //nothing to be done here.
+    var annyang = window.annyang;
+
+    if (annyang) {
+      const PING = 'PING';
+      const PONG = 'PONG';
+
+      const ping = () => ({ type: PING });
+      // Let's define a command.
+      var commands = {
+        'hello': function () {
+          this.props.recipeDetailCardShowModal(true);
+        }.bind(this),
+        'show recipe': function() {
+          console.log("Show recipe");
+        }.bind(this),
+      };
+
+      // Add our commands to annyang
+      annyang.addCommands(commands);
+
+      // Start listening.
+      annyang.start();
+    }
   }
 
   renderSavedRecipes() {
