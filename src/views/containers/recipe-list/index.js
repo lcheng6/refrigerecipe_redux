@@ -30,6 +30,7 @@ class RecipeList extends Component {
           missedCount={recipe.missedIngredientCount}
           image={recipe.image}
           recipeId={recipe.id}
+          numLikes={recipe.likes}
           getRecipeDetail={this.props.getRecipeDetail}
           recipeDetailCardShowModal={this.props.recipeDetailCardShowModal}
          />

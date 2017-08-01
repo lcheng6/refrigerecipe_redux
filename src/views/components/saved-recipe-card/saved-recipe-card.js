@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Card, CardImg, CardBlock, CardLink,
-  CardTitle, CardSubtitle, Badge} from 'reactstrap';
+  CardTitle, CardSubtitle, Badge, CardText} from 'reactstrap';
 
 // import styled from 'styled-components'
 
@@ -23,8 +23,6 @@ export class SavedRecipeCard extends Component {
           <CardTitle>{recipe.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
           <br />
-          <CardLink href="#">Used <Badge color="success">3</Badge></CardLink>
-          <CardLink href="#">Missing <Badge color="warning">2</Badge></CardLink>
         </CardBlock>
       </Card>
     );

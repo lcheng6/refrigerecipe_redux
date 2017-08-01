@@ -1,4 +1,4 @@
-import { Record, Array } from 'immutable';
+import { Record, Array, Map } from 'immutable';
 
 
 export const Item = new Record({
@@ -16,5 +16,8 @@ export const Item = new Record({
   analyzedInstructions:Array,
 
   vegan:null,
+
+  sourceUrl: null,
   //there are other details, too much to list here.
+  additionalFields: Map,
 });
