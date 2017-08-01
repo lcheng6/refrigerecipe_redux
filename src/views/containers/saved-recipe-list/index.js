@@ -17,6 +17,7 @@ class SavedRecipeList extends Component {
 
   componentDidMount() {
     var annyang = window.annyang;
+    // var startFirework = window.startFirework;
 
     if (annyang) {
       const PING = 'PING';
@@ -31,6 +32,9 @@ class SavedRecipeList extends Component {
         'show recipe': function() {
           console.log("Show recipe");
         }.bind(this),
+        'fire': function() {
+          window.startFirework();
+        }.bind(this)
       };
 
       // Add our commands to annyang

@@ -35,7 +35,17 @@ body {
 {
     float:right
 }
-.extra
+
+.fireworkCanvas {
+    background:transparent;
+    z-index:100;
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    opacity:.5;
+
+}
+
 {
     max-width: 100%;
     min-height: 0!important;
