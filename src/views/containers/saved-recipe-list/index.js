@@ -4,6 +4,10 @@ import { List } from 'immutable';
 import PropTypes from 'prop-types';
 
 import SavedRecipeCard from 'src/views/components/saved-recipe-card';
+import { recipeDetailCardInteractionActions }  from "src/core/get-recipe-detail";
+
+//TODO: remove this
+import { getRecipeDetailActions }  from "src/core/get-recipe-detail";
 
 
 class SavedRecipeList extends Component {
@@ -21,6 +25,8 @@ class SavedRecipeList extends Component {
         <SavedRecipeCard
           key={index}
           recipe={recipe}
+          getRecipeDetail={this.props.getRecipeDetail}
+          recipeDetailCardShowModal = {this.props.recipeDetailCardShowModal}
         />
       );
     });
@@ -60,6 +66,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
   // whenever getRecipes is called, the result should
   // be passed to our reducers
+  getRecipeDetail:getRecipeDetailActions.getRecipeDetail,
+  recipeDetailCardShowModal:recipeDetailCardInteractionActions.recipeDetailCardToggle,
 };
 
 SavedRecipeList.propTypes = {

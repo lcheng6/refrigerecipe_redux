@@ -22,7 +22,9 @@ export class SavedRecipeCard extends Component {
     return (
       <Card>
         <CardImg top width="100%" src={recipe.image} alt="Card image cap" />
-        <CardBlock>
+        <CardBlock onClick={()=>{console.log('Show Recipe '+ 239253);
+          this.props.getRecipeDetail(239253);
+          this.props.recipeDetailCardShowModal(true);}}>
           <CardTitle>{recipe.title}</CardTitle>
           <CardSubtitle>Ingredients: </CardSubtitle>
           {ingredientList}
