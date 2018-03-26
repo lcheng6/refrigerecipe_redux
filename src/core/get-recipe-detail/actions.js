@@ -1,4 +1,4 @@
-import getRecipeDetailByRecipeId from '../api/getRecipeDetailAPI';
+import getRecipeDetailByRecipeIdFromSpoon from '../api/getRecipeDetailFromSpoonAPI';
 
 export const getRecipeDetailActions = {
   FETCH_RECIPE_DETAIL_PENDING: "FETCH_RECIPE_DETAIL_PENDING",
@@ -11,7 +11,7 @@ export const getRecipeDetailActions = {
     console.log("Dispatch getRecipeDetails");
     return {
       type: getRecipeDetailActions.FETCH_RECIPE_DETAIL,
-      payload: getRecipeDetailByRecipeId(recipeId)
+      payload: getRecipeDetailByRecipeIdFromSpoon(recipeId)
     };}
 
 

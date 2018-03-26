@@ -7,7 +7,7 @@ const SPOONACULAR_OPTION = "/information?includeNutrition=true";
 // redux-promise-middleware requires it get a promise,
 // so we create one with the api call (also a promise)
 // nested inside
-const getRecipeDetailByRecipeId = (recipeId) => {
+const getRecipeDetailByRecipeIdFromSpoon = (recipeId) => {
   console.log("fetching recipe detail from spoonacular api ...")
   return new Promise((resolve, reject) => {
     axios({
@@ -27,4 +27,4 @@ const getRecipeDetailByRecipeId = (recipeId) => {
   });
 };
 
-export default getRecipeDetailByRecipeId;
+export default getRecipeDetailByRecipeIdFromSpoon;

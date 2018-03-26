@@ -1,5 +1,5 @@
 // this is an important part... the api...
-import getRecipesByIngredients from '../api/getRecipesIntroAPI';
+import getRecipesByIngredientsFromSpoon from '../api/getRecipesIntroFromSpoonAPI';
 
 // ... implements redux-promise-middleware,
 // so the rest of the FETCH_RECIPES cases are appended
@@ -11,7 +11,7 @@ export const getRecipesActions = {
 
   getRecipes: (ingredients) => {return {
     type: getRecipesActions.FETCH_RECIPES,
-    payload: getRecipesByIngredients(ingredients)
+    payload: getRecipesByIngredientsFromSpoon(ingredients)
   }; }
 };
 

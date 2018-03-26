@@ -6,7 +6,7 @@ const ROOT_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/rec
 // redux-promise-middleware requires it get a promise,
 // so we create one with the api call (also a promise)
 // nested inside
-const getRecipesByIngredients = (ingredients) => {
+const getRecipesByIngredientsFromSpoon = (ingredients) => {
   console.log("fetching recipe summary from spoonacular api for ingredients: " + ingredients);
   return new Promise((resolve, reject) => {
     axios({
@@ -34,4 +34,4 @@ const getRecipesByIngredients = (ingredients) => {
   });
 };
 
-export default getRecipesByIngredients;
+export default getRecipesByIngredientsFromSpoon;
