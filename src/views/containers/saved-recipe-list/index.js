@@ -14,83 +14,10 @@ class SavedRecipeList extends Component {
   }
 
   componentWillUnmount() {
-    let annyang = window.annyang;
-    if (annyang) {
-      annyang.abort();
-    }
+ 
   }
   componentDidMount() {
-    let annyang = window.annyang;
-    // var startFirework = window.startFirework;
 
-    if (annyang) {
-
-      // Let's define a command.
-      var commands = {
-        'hello': function () {
-          console.log("Hello World");
-          //this.props.recipeDetailCardShowModal(true);
-        }.bind(this),
-        'show recipe': function() {
-          console.log("Show first recipe");
-          this.showRecipeByIndex(0);
-        }.bind(this),
-        'open recipe': function() {
-          console.log("Show first recipe");
-          this.showRecipeByIndex(0);
-        }.bind(this),
-        'close recipe': function() {
-          console.log("Close recipe");
-          this.closeRecipeModal();
-        }.bind(this),
-        'show first recipe': function() {
-          console.log("Show first recipe");
-          this.showRecipeByIndex(0);
-        }.bind(this),
-        'open first recipe': function() {
-          console.log("Show first recipe");
-          this.showRecipeByIndex(0);
-        }.bind(this),
-        'show second recipe': function() {
-          console.log("Show second recipe");
-          this.showRecipeByIndex(1);
-        }.bind(this),
-        'open second recipe': function() {
-          console.log("Show second recipe");
-          this.showRecipeByIndex(1);
-        }.bind(this),
-        'show third recipe': function() {
-          console.log("Show third recipe");
-          this.showRecipeByIndex(2);
-        }.bind(this),
-        'open third recipe': function() {
-          console.log("Show third recipe");
-          this.showRecipeByIndex(2);
-        }.bind(this),
-        'scroll up': function() {
-          console.log("Scroll Up");
-          window.scrollBy(0, -400);
-        }.bind(this),
-        'scroll down': function() {
-          console.log("Scroll Down");
-          window.scrollBy(0, 400);
-        }.bind(this),
-        'show easter egg': function() {
-          console.log('show easter egg');
-          this.showEasterEgg();
-        }.bind(this),
-        'open easter egg': function() {
-          console.log('show easter egg');
-          this.showEasterEgg();
-        }.bind(this),
-      };
-
-      // Add our commands to annyang
-      annyang.addCommands(commands);
-
-      // Start listening.
-      annyang.start();
-    }
   }
 
   showRecipeByIndex(index) {
