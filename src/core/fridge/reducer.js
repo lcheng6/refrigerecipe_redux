@@ -8,6 +8,8 @@ export const InitialState = new Record({
 });
 
 
+//Typical React Redux paradigm, the {payload, type} is the action described in ./actions.js
+//action.js's definition of action is {payload: playload, type: type}.  In ES 2016 grammar, it's {payload, type}
 export function fridgeReducer(state = new InitialState(), {payload, type}) {
   switch (type) {
     case fridgeActions.CREATE_ITEM_FULFILLED:
