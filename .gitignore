@@ -29,12 +29,10 @@ target
 node
 src/_tmp
 static
-dist
 coverage
 .nyc_output
 .tmp
 .DS_Store
 /.idea
-package-lock.json
 
 /server/config/config.js
